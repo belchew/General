@@ -1,94 +1,24 @@
-#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-2days.details.epg.xml.gz"
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:10
 
-#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" , БНТ 1 HD
-https://xyzdddd.mizhls.ru/lb/premium476/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
 
-#EXTINF:-1 tvg-name="bTV" tvg-logo="https://www.glebul.com/images/tv-logo/btv-hd.png" , bTV HD
-https://cdn1.glebul.com/dvr/hd-btv-hd/tracks-v1a1/rewind-86940.m3u8?e=1740581895&hash=dYWdZQnS8vBnJ-aI8Q3prg
+#Live
 
-#EXTINF:-1 tvg-name="Nova TV" tvg-logo="https://www.glebul.com/images/tv-logo/nova-tv-hd.png" , Nova TV HD
-https://xyzdddd.mizhls.ru/lb/premium480/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
+#EXTINF:-1,Nova
+https://cdn8.stgledai.org/nova/index.m3u8?token=e3b61c7ca96f87ad27c3028e918c70f6a911c596-aa0db5c24eaba4ac6945a25fdf31ca67-1740581751-1740570951
+#EXTINF:-1,bTV
+https://cdn13.stgledai.org/btv/index.m3u8?token=1502c92b1f29dd5c76d5648c4fa2fc75aa4782b9-38fd0935ccae5a2e5d9aa6ab353c3573-1740581763-1740570963
+#EXTINF:-1,bTVAction
 
-#EXTINF:-1 tvg-name="BNT 2" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-2.png" , BNT 2
-https://xyzdddd.mizhls.ru/lb/premium477/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
+# Записани видеоклипове (VOD)
+#EXTINF:10.0, Nova 1 
+https://cdn1.glebul.com/dvr/hd-nova-tv-hd/tracks-v1a1/index-1740569100-5400.m3u8?e=1740583569&hash=kp6y5vuE8IQ9QVLN6CGLyA
 
-#EXTINF:-1 tvg-name="BNT 3" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-3-hd.png" , BNT 3
-https://xyzdddd.mizhls.ru/lb/premium478/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
+#EXTINF:15.0, Nova 2 
+https://cdn1.glebul.com/dvr/hd-nova-tv-hd/tracks-v1a1/index-1740565500-3600.m3u8?e=1740583605&hash=id-RAgkO72DghVZeS_4xWQ
 
-#EXTINF:-1 tvg-name="Diema" tvg-logo="https://www.glebul.com/images/tv-logo/diema.png" , Diema 
-https://xyzdddd.mizhls.ru/lb/premium482/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
+#EXTINF:20.0,
+https://cdn1.glebul.com/dvr/hd-nova-tv-hd/tracks-v1a1/index-1740563580-1920.m3u8?e=1740583632&hash=706OQvKqo8U164mfLAiyrQ
 
-#EXTINF:-1 tvg-name="Diema Family" tvg-logo="https://www.glebul.com/images/tv-logo/diema-family.png" , Diema Family
-https://xyzdddd.mizhls.ru/lb/premium485/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="bTV Action" tvg-logo="https://www.glebul.com/images/tv-logo/btv-action-hd.png" , bTV Action
-https://xyzdddd.mizhls.ru/lb/premium481/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="bTV Story" tvg-logo="https://www.glebul.com/images/tv-logo/btv-story.png" , bTV Story
-https://xyzdddd.mizhls.ru/lb/premium484/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-id="bTVCinema.bg" tvg-name="BG:bTV Cinema" tvg-logo="http://iphd.tv/service/bulsat/btv_cinema-23-04-2019.svg" group-title="Bulgars",BG:bTV Cinema
-http://stb.iphd.tv:80/live/91858404/7757776/95279.m3u8
-
-#EXTINF:-1 tvg-id="bTVComedy.bg" tvg-name="BG:bTV Comedy" tvg-logo="http://iphd.tv/service/bulsat/btv_comedy-23-04-2019.svg" group-title="Bulgars",BG:bTV Comedy
-https://cdn1.mobiletv.bg/T5/btvcomedy/btvcomedy_794613_850k.m3u8
-
-#EXTINF:-1 tvg-id="hd.traveltv.bg" tvg-name="hd.traveltv.bg" group-title="News",This is Bulgaria
-https://streamer103.neterra.tv/thisisbulgaria/live.m3u8 
-
-#EXTINF:-1 tvg-id="tv.traveltv.bg" tvg-name="tv.traveltv.bg" group-title="News",Travel TV
-https://streamer103.neterra.tv/travel/live.m3u8
-
-#EXTINF:-1 tvg-id="tv1.bg" tvg-name="tv1.bg" group-title="News",TV1
-https://tv1.cloudcdn.bg:8081/stream.m3u8
-
-#EXTINF:-1 tvg-id="eurocom.bg" tvg-name="eurocom.bg" group-title="News",Eurocom
-https://live.ecomservice.bg/hls/stream.m3u8
-
-#EXTINF:-1 tvg-id="codefashion.bg" tvg-name="codefashion.bg" group-title="News",Code Fashion
-https://cdn3.invivo.bg/Codefashion_5500/tracks-v1a1/mono.m3u8
-
-#EXTINF:-1 tvg-id="codehealth.bg" tvg-name="codehealth.bg" group-title="News",Code Health
-https://cdn3.invivo.bg/codehealth_test/index.m3u8
-
-#EXTINF:-1 tvg-name="The Voice" tvg-logo="https://www.glebul.com/images/tv-logo/the-voice.png" , The Voice
-https://bss1.neterra.tv/thevoice/thevoice.m3u8
-
-#EXTINF:-1 tvg-id="magic.bg" tvg-name="magic.bg" group-title="Music",Magic TV
-https://bss1.neterra.tv/magictv/magictv.m3u8
-
-#EXTINF:-1 tvg-name="City TV" tvg-logo="https://www.glebul.com/images/tv-logo/city-tv.png" , City TV
-https://tv.city.bg/play/tshls/citytv/3.m3u8
-
-#EXTINF:-1 tvg-name="Ring BG" tvg-logo="https://www.glebul.com/images/tv-logo/ring-bg-hd.png" , Ring BG
-https://xyzdddd.mizhls.ru/lb/premium471/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="Nova Sport" tvg-logo="https://www.glebul.com/images/tv-logo/nova-sport-hd.png" , Nova Sport
-https://xyzdddd.mizhls.ru/lb/premium468/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="Diema Sport" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-hd.png" , Diema Sport
-https://xyzdddd.mizhls.ru/lb/premium465/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="Diema Sport 2" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-2-hd.png" , Diema Sport 2
-https://xyzdddd.mizhls.ru/lb/premium466/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="Diema Sport 3" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-3-hd.png" , Diema Sport 3
-https://xyzdddd.mizhls.ru/lb/premium467/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="EURO SPORT 1" tvg-logo="https://www.glebul.com/images/tv-logo/eurosport-1-hd.png" , EURO SPORT 1
-https://xyzdddd.mizhls.ru/lb/premium469/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="EURO SPORT 2" tvg-logo="https://www.glebul.com/images/tv-logo/eurosport-2-hd.png" , EURO SPORT 2
-https://xyzdddd.mizhls.ru/lb/premium470/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="Max Sport 1 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-1-hd.png" , Max Sport 1 HD
-https://xyzdddd.mizhls.ru/lb/premium472/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="Max Sport 2 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-2-hd.png" , Max Sport 2 HD
-https://xyzdddd.mizhls.ru/lb/premium473/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="Max Sport 3 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-3-hd.png" , Max Sport 3 HD
-https://xyzdddd.mizhls.ru/lb/premium474/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
-
-#EXTINF:-1 tvg-name="Max Sport 3 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-3-hd.png" , Max Sport 4 HD
-https://xyzdddd.mizhls.ru/lb/premium475/index.m3u8|Referer=https://cookiewebplay.xyz/|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/132.0|Origin=https://cookiewebplay.xyz
+#EXT-X-ENDLIST
