@@ -1,24 +1,10 @@
-#EXTM3U
+#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/bulgarian.3days.full.epg.xml.gz"
 #EXT-X-VERSION:3
 #EXT-X-TARGETDURATION:10
 
 
-#Live
+#EXTINF:-1 tvg-name="bTV" tvg-logo="https://www.glebul.com/images/tv-logo/btv-hd.png" , bTV HD
+https://cdn1.glebul.com/dvr/hd-btv-hd/tracks-v1a1/index-1740574500-3600.m3u8?e=1740586302&hash=d6bbO1KOxMFD3WyMMsjp5g
 
-#EXTINF:-1,Nova
-https://cdn8.stgledai.org/nova/index.m3u8?token=e3b61c7ca96f87ad27c3028e918c70f6a911c596-aa0db5c24eaba4ac6945a25fdf31ca67-1740581751-1740570951
-#EXTINF:-1,bTV
-https://cdn13.stgledai.org/btv/index.m3u8?token=1502c92b1f29dd5c76d5648c4fa2fc75aa4782b9-38fd0935ccae5a2e5d9aa6ab353c3573-1740581763-1740570963
-#EXTINF:-1,bTVAction
-
-# Записани видеоклипове (VOD)
-#EXTINF:10.0, Nova 1 
-https://cdn1.glebul.com/dvr/hd-nova-tv-hd/tracks-v1a1/index-1740569100-5400.m3u8?e=1740583569&hash=kp6y5vuE8IQ9QVLN6CGLyA
-
-#EXTINF:15.0, Nova 2 
-https://cdn1.glebul.com/dvr/hd-nova-tv-hd/tracks-v1a1/index-1740565500-3600.m3u8?e=1740583605&hash=id-RAgkO72DghVZeS_4xWQ
-
-#EXTINF:20.0, Nova 3 
-https://cdn1.glebul.com/dvr/hd-nova-tv-hd/tracks-v1a1/index-1740563580-1920.m3u8?e=1740583632&hash=706OQvKqo8U164mfLAiyrQ
-
-#EXT-X-ENDLIST
+#EXTINF:9000, Преди обед - 2025-02-26, 09:30
+https://cdn1.glebul.com/dvr/hd-btv-hd/tracks-v1a1/index-1740554700-9000.m3u8?e=1740586462&hash=fc59ILUaXb9-2iGePOPtTA
