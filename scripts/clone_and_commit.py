@@ -92,11 +92,15 @@ def commit_and_push_changes():
     # Отвори локалното репозиторио с gitpython
     repo = git.Repo(repo_path)
     
-    # Добави новия файл
+    # Добави новия файл в staging area (преди commit)
     repo.git.add(local_filename)
     
-    # Извърши commit
-    repo.git.commit('-m', 'Добавен нов файл basic.m3u от URL')
+    # Извърши commit, ако има промени
+    try:
+        repo.git.commit('-m', 'Добавен нов файл basic.m3u от URL')
+        print("Промените са комитнати успешно.")
+    except git.exc.GitCommandError as e:
+        print("Няма промени за комитване:", e)
     
     # Изпрати промените към origin (можеш да промениш името на remote, ако е различно)
     repo.git.push('origin', 'main')
