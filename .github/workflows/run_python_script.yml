@@ -3,28 +3,34 @@ name: Run Python Script
 on:
   push:
     branches:
-      - main  # Изпълнява се, когато се направи push към главния клон (или други клонове, ако желаеш)
+      - main  # Изпълнява се при push към main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Използва последната версия на Ubuntu
-
+  run-python-script:
+    runs-on: ubuntu-latest  # Работи на последната версия на Ubuntu
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2  # Клонира репозитория
+      - name: Checkout code
+        uses: actions/checkout@v2  # Вземаме репозиторието
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'  # Можеш да смениш версията на Python според нуждите
+          python-version: '3.8'  # Изберете версия на Python, която искате
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt  # Ако имаш нужда от зависимости, постави ги в requirements.txt
+          pip install -r requirements.txt  # Ако имате зависимостите в requirements.txt
 
-      - name: Run Python script
-        run: python path/to/your/script.py  # Заменяй с пътя до твоя скрипт
-        env:
-          SOURCE_REPO_PATH: ${{ secrets.SOURCE_REPO_PATH }}  # Можеш да използваш GitHub Secrets за пътищата или други чувствителни данни
-          DEST_REPO_PATH: ${{ secrets.DEST_REPO_PATH }}
+      - name: Run Python Script
+        run: |
+          python scripts/my_script.py  # Скриптът е в директория "scripts"
+          
+      - name: Set environment variables
+        run: |
+          echo "source_repo_path=source_repo" >> $GITHUB_ENV
+          echo "dest_repo_path=destination" >> $GITHUB_ENV  # Задаваме пътищата
+
+      - name: Run the Python script with paths
+        run: |
+          python scripts/my_script.py  # Можеш да предадеш тези пътища като параметри към скрипта
