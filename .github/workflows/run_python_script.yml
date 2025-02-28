@@ -1,6 +1,4 @@
-
-
-name: CI
+name: Python script
 
 on:
   push:
@@ -8,40 +6,36 @@ on:
       - main
 
 jobs:
-  build:
+  run-script:
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout на кода
+      # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Конфигурирай Git с потребителско име и имейл
-      - name: Set git user
+      # Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # Set up Git config
+      - name: Set up Git config
         run: |
           git config --global user.email "belchew@outlook.com"
           git config --global user.name "belchew"
 
-      # Извлечи последните промени от отдалеченото хранилище
-      - name: Pull latest changes from origin/main
+      # Install required packages (requests and gitpython)
+      - name: Install dependencies
         run: |
-          git fetch origin
-          git pull origin main
+          python -m pip install --upgrade pip
+          pip install requests gitpython
 
-      # Направи промените, които искаш (например, замени съдържание на файл)
-      - name: Modify file
+      # Set up GitHub authentication using PAT (token from secrets)
+      - name: Set up GitHub authentication
         run: |
-          # Вашият скрипт за модификация на файла
+          git config --global url."https://${{ secrets.GH_TOKEN }}@github.com".insteadOf "https://github.com"
 
-      # Добави промените към git и извърши commit
-      - name: Commit changes
-        run: |
-          git add .
-          git commit -m "Modified basic.m3u"
-          
-      # Push промените обратно в отдалеченото хранилище
-      - name: Push changes
-        run: |
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Run the Python script
+      - name: Run Python script
+        run: python scripts/clone_and_commit.py
