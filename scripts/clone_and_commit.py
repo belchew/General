@@ -1,7 +1,6 @@
 import os
 import requests
 import git
-
 # Път до твоето репозиторио, това ще бъде автоматично във всяка стъпка на GitHub Actions
 repo_path = os.getcwd()  # Това ще даде директорията на текущото репозиторио в GitHub Actions
 
