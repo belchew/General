@@ -65,32 +65,28 @@ def delete_last_n_lines(file_path, n=18):
 def commit_and_push_changes():
     # Отвори локалното репозиторио с gitpython
     repo = git.Repo(repo_path)
-    
-     # Добави новия файл (ако е променен)
-    repo.git.add(local_filename)
 
-     # Извършваме git pull, за да актуализираме локалния клон
+    # Извършваме git pull, за да актуализираме локалния клон
     print("Извършване на git pull...")
     try:
         repo.git.pull('origin', 'main')  # Изтегляне на последните промени от отдалечения репозиторио
         print("Git pull успешно завършен.")
     except git.exc.GitCommandError as e:
         print(f"Грешка при изпълнение на git pull: {e}")
+        return  # Ако има грешка, прекратяваме операцията
 
-    
-    # Проверка за промени
-    diff = repo.git.diff('--cached')  # Проверка на промени в индекса
-    if not diff:
-        print("Няма промени за комитване.")
-        return  # Ако няма промени, не правим commit
-    
+    # Добави новия файл
+    repo.git.add(local_filename)
+
     # Извърши commit
     repo.git.commit('-m', 'Добавен нов файл basic.m3u от URL')
-    
-    # Изпрати промените към origin (можеш да промениш името на remote, ако е различно)
-    repo.git.push('origin', 'main')
-    print(f"Промените са качени успешно в репозиториото: {repo_path}")
 
+    # Изпрати промените към origin (можеш да промениш името на remote, ако е различно)
+    try:
+        repo.git.push('origin', 'main')
+        print(f"Промените са качени успешно в репозиториото: {repo_path}")
+    except git.exc.GitCommandError as e:
+        print(f"Грешка при изпълнение на git push: {e}")
 if __name__ == "__main__":
     # Изтегли файла и го преименувай на basic.m3u
     download_file(file_url, local_file_path)
