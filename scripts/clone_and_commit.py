@@ -31,7 +31,7 @@ def commit_and_push_changes():
     repo.git.add(local_filename)
     
     # Извърши commit
-    repo.git.commit('-m', 'Добавен нов файл basic.txt от URL')
+    repo.git.commit('-m', 'Добавен нов файл basic.m3u от URL')
     
     # Изпрати промените към origin (можеш да промениш името на remote, ако е различно)
     repo.git.push('origin', 'main')
