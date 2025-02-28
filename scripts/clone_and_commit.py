@@ -3,7 +3,7 @@ import requests
 import git
 
 # Път до твоето репозиторио, това ще бъде автоматично във всяка стъпка на GitHub Actions
-repo_path = os.getcwd()  # Това ще даде директорията на текущото репозиторио в GitHub Actions
+repo_path = os.getcwd()  
 
 # URL на файла, който искаш да клонираш
 file_url = 'https://raw.githubusercontent.com/rosendonchev/linkove/refs/heads/main/video_stream.m3u'  # Замени с твоя URL
