@@ -19,18 +19,23 @@ jobs:
         with:
           python-version: '3.x'
 
-      # Set up Git user configuration
+      # Set up Git config
       - name: Set up Git config
         run: |
           git config --global user.email "belchew@outlook.com"
           git config --global user.name "belchew"
-      
+
       # Install required packages (requests and gitpython)
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests gitpython
 
+      # Set up authentication with PAT token for GitHub Actions
+      - name: Set up GitHub authentication
+        run: |
+          git config --global url."https://${{ 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 }}@github.com".insteadOf "https://github.com"
+      
       # Run the Python script
       - name: Run Python script
         run: python scripts/clone_and_commit.py
