@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Python Script
         run: |
-          python scripts/my_script.py  # Скриптът е в директория "scripts"
+          python newchange_engine.py  # Скриптът е в директория "scripts"
           
       - name: Set environment variables
         run: |
@@ -33,4 +33,4 @@ jobs:
 
       - name: Run the Python script with paths
         run: |
-          python scripts/my_script.py  # Можеш да предадеш тези пътища като параметри към скрипта
+          python newchange_engine.py  # Можеш да предадеш тези пътища като параметри към скрипта
