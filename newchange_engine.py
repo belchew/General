@@ -11,23 +11,21 @@ file_to_copy = 'video_stream.m3u'
 
 import os
 
-repo_path = os.getenv('GITHUB_WORKSPACE', '/home/runner/work/General')
-if os.path.exists(repo_path):
-    print(f"Директорията съществува: {repo_path}")
-else:
-    print(f"Директорията не съществува: {repo_path}")
+def run_git_command(command, repo_path):
+    result = subprocess.run(command, cwd=repo_path, check=True, text=True, capture_output=True)
+    print(result.stdout)
 
-
-# Пример за извикване на git pull
-run_git_command(['git', 'pull', 'origin', 'main'], repo_path)
-
-# Стъпка 1: Актуализиране на source репозиториото
 def update_repo(repo_path):
-    print(f'Изпълнявам git pull в репозитория: {repo_path}')
+    print(f"Изпълнявам git pull в репозитория: {repo_path}")
     run_git_command(['git', 'pull', 'origin', 'main'], repo_path)
-if __name__ == '__main__':
-    repo_path = '/github/workspace'  # Проверено, че репото е в тази директория
-    update_repo(repo_path)
+
+if __name__ == "__main__":
+    repo_path = os.getenv('GITHUB_WORKSPACE', '/home/runner/work/General')
+    if os.path.exists(repo_path):
+        print(f"Директорията съществува: {repo_path}")
+        update_repo(repo_path)
+    else:
+        print(f"Директорията не съществува: {repo_path}")
 
 # Стъпка 2: Копиране на файла от source репозиториото към destination репозиториото
 def copy_file_to_destination():
