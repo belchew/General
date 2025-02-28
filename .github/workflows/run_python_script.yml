@@ -1,34 +1,28 @@
-name: Run Python script
+name: Clone file and Commit to Repo
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - main  # Изпълнявай при push към main branch
 
 jobs:
-  run-script:
+  clone_and_commit:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout the repository
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
-    # Set up Python environment
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v2
       with:
         python-version: '3.8'
 
-    # Install dependencies
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install requests gitpython
 
-    # Run Python script
     - name: Run Python script
-      run: python $GITHUB_WORKSPACE/scripts/newchange_engine.py
+      run: |
+        python scripts/clone_and_commit.py
