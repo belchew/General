@@ -9,23 +9,14 @@ import shutil
 # Файлът, който ще бъде копиран и модифициран
 file_to_copy = 'video_stream.m3u'
 
-repo_path = os.environ.get('GITHUB_WORKSPACE', '/home/runner/work/General/General')
+import os
 
-# Проверка дали директорията съществува
+repo_path = os.getenv('GITHUB_WORKSPACE', '/home/runner/work/General')
 if os.path.exists(repo_path):
-    print(f"Работна директория: {repo_path}")
+    print(f"Директорията съществува: {repo_path}")
 else:
-    print("Директорията не съществува")
+    print(f"Директорията не съществува: {repo_path}")
 
-def run_git_command(command, repo_path):
-    try:
-        result = subprocess.run(command, cwd=repo_path, check=True, text=True, capture_output=True)
-        print(result.stdout)
-        print(result.stderr)
-    except subprocess.CalledProcessError as e:
-        print(f"Error executing command: {e}")
-    except FileNotFoundError as e:
-        print(f"File not found error: {e}")
 
 # Пример за извикване на git pull
 run_git_command(['git', 'pull', 'origin', 'main'], repo_path)
