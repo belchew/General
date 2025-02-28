@@ -2,7 +2,7 @@ name: Python script
 
 on:
   schedule:
-    - cron: '11 * * * *'  # Изпълнява се всеки час, на пълна минута
+    - cron: '13 * * * *'  # Изпълнява се всеки час, на пълна минута
 jobs:
   run-script:
     runs-on: ubuntu-latest
