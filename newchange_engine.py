@@ -20,7 +20,7 @@ def update_repo(repo_path):
     run_git_command(['git', 'pull', 'origin', 'main'], repo_path)
 
 if __name__ == "__main__":
-    repo_path = os.getenv('GITHUB_WORKSPACE', '/home/runner/work/General')
+    repo_path = os.getenv('GITHUB_WORKSPACE', '/home/runner/work/')
     if os.path.exists(repo_path):
         print(f"Директорията съществува: {repo_path}")
         update_repo(repo_path)
