@@ -11,16 +11,21 @@ file_to_copy = 'video_stream.m3u'
 
 # Функция за изпълнение на git команди
 def run_git_command(command, repo_path):
-    """Изпълнява git команди в дадена директория."""
-    result = subprocess.run(command, cwd=repo_path, check=True, text=True, capture_output=True)
-    print(result.stdout)  # Печата изхода от командата за отстраняване на проблеми
+    try:
+        result = subprocess.run(command, cwd=repo_path, check=True, text=True, capture_output=True)
+        print(f"Git command output: {result.stdout}")
+    except subprocess.CalledProcessError as e:
+        print(f"Error executing git command: {e.stderr}")
+        raise e
 
 
 # Стъпка 1: Актуализиране на source репозиториото
 def update_repo(repo_path):
-    """Актуализира репозитория (извършва git pull)."""
-    print(f"Изпълнявам git pull в репозитория: {repo_path}")
+    print(f'Изпълнявам git pull в репозитория: {repo_path}')
     run_git_command(['git', 'pull', 'origin', 'main'], repo_path)
+if __name__ == '__main__':
+    repo_path = '/github/workspace'  # Проверено, че репото е в тази директория
+    update_repo(repo_path)
 
 # Стъпка 2: Копиране на файла от source репозиториото към destination репозиториото
 def copy_file_to_destination():
