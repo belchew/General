@@ -43,7 +43,7 @@ def replace_multiple_content(file_path, replacements):
         print(f"Грешка при замяна на съдържание във файла: {e}")
 
 # Функция за изтриване на последните 18 реда от файла
-def delete_last_n_lines(file_path, n=18):
+def delete_last_n_lines(file_path, n=20):
     try:
         # Отваряме файла за четене
         with open(file_path, 'r', encoding='utf-8') as file:
