@@ -11,14 +11,14 @@ file_to_copy = 'video_stream.m3u'
 
 # Функция за изпълнение на git команди
 def run_git_command(command, repo_path):
-     """Изпълнява git команди в дадена директория."""
+    """Изпълнява git команди в дадена директория."""
     result = subprocess.run(command, cwd=repo_path, check=True, text=True, capture_output=True)
     print(result.stdout)  # Печата изхода от командата за отстраняване на проблеми
 
 
 # Стъпка 1: Актуализиране на source репозиториото
 def update_repo(repo_path):
-  """Актуализира репозитория (извършва git pull)."""
+    """Актуализира репозитория (извършва git pull)."""
     print(f"Изпълнявам git pull в репозитория: {repo_path}")
     run_git_command(['git', 'pull', 'origin', 'main'], repo_path)
 
@@ -109,11 +109,14 @@ def edit_file_in_destination():
    # run_git_command(['git', 'push'], destination_repo_path)
 
 # Основен процес
-def main():
-    # Актуализираме и двете репозитории преди всяка друга стъпка
+ef main():
     # Пътят до репозитория в GitHub Actions
-    source_repo_path = 'https://github.com/rosendonchev/linkove.git'  # Това е директорията, където GitHub автоматично клонира репото
-    print("Основната логика на скрипта се изпълнява тук...")
+    source_repo_path = '/github/workspace'  # Това е директорията, където GitHub автоматично клонира репото
 
+    # Актуализиране на репозитория
+    update_repo(source_repo_path)
+
+    # Добави тук основната си логика
+    print("Основната логика на скрипта се изпълнява тук...")
 if __name__ == "__main__":
     main()
