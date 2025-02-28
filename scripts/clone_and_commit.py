@@ -70,7 +70,8 @@ def commit_and_push_changes():
     print("Извършване на git pull...")
     try:
         # Изтегляне на последните промени от отдалеченото репозиторио
-        repo.git.pull('origin', 'main')
+        repo.git.fetch('--all')  # fetch всички нови данни от origin
+        repo.git.merge('origin/main')  # merge промените от origin/main
         print("Git pull успешно завършен.")
     except git.exc.GitCommandError as e:
         print(f"Грешка при изпълнение на git pull: {e}")
@@ -95,8 +96,6 @@ def commit_and_push_changes():
 
     # Изпрати промените към origin (можеш да промениш името на remote, ако е различно)
     try:
-        # Понеже може да има конфликти между локалната и отдалечената версия на main,
-        # първо ще се уверим, че локалният клон е синхронизиран с отдалечения.
         repo.git.push('origin', 'main')
         print(f"Промените са качени успешно в репозиториото: {repo_path}")
     except git.exc.GitCommandError as e:
