@@ -31,8 +31,10 @@ def download_file(url, dest_path):
 def rearrange_file_lines(file_path):
     # Четене на съдържанието на файла
     with open(file_path, 'r') as file:
-        lines = file.readlines()
+        content = file.readlines()
+        
      content = content.replace('#EXTM3U', '#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-2days.details.epg.xml.gz"\n')
+
       lines = content.splitlines()
             if len(lines) > 18:
                 content = '\n'.join(lines[:-18])
