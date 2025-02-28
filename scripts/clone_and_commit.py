@@ -28,7 +28,7 @@ def rearrange_file_lines(file_path):
         lines = file.readlines()
     
     # Пример за преместване на редове: тук просто сменяме местата на първия и втория ред
-    if len(lines) >= 2:
+    if len(lines) >= 80:
         lines[12], lines[13] = lines[4], lines[5]
         lines[10], lines[11] = lines[6], lines[7]
     # Записване на промененото съдържание обратно в файла
