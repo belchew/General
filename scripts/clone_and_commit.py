@@ -65,16 +65,44 @@ def delete_last_n_lines(file_path, n=18):
 def commit_and_push_changes():
     # Отвори локалното репозиторио с gitpython
     repo = git.Repo(repo_path)
-    
-    # Добави новия файл
-    repo.git.add(local_filename)
-    
-    # Извърши commit
-    repo.git.commit('-m', 'Добавен нов файл basic.m3u от URL')
-    
+
+    # Извършваме git pull, за да актуализираме локалния клон
+    print("Извършване на git pull...")
+    try:
+        # Изтегляне на последните промени от отдалеченото репозиторио
+        repo.git.pull('origin', 'main')
+        print("Git pull успешно завършен.")
+    except git.exc.GitCommandError as e:
+        print(f"Грешка при изпълнение на git pull: {e}")
+        return  # Ако има грешка, прекратяваме операцията
+
+    # Проверка дали файлът съществува, преди да го добавим към git
+    if os.path.exists(local_filename):
+        # Добави новия файл
+        repo.git.add(local_filename)
+        print(f"Файлът {local_filename} е добавен към git.")
+    else:
+        print(f"Грешка: Файлът {local_filename} не съществува.")
+        return  # Прекратяване на операцията, ако файлът не съществува
+
+    try:
+        # Извърши commit само ако има промени
+        repo.git.commit('-m', 'Добавен нов файл basic.m3u от URL')
+        print(f"Промените са успешно записани в локалното репозиторио.")
+    except git.exc.GitCommandError as e:
+        # Ако няма промени, ще игнорираме commit
+        print("Няма нови промени за commit.")
+
     # Изпрати промените към origin (можеш да промениш името на remote, ако е различно)
-    repo.git.push('origin', 'main')
-    print(f"Промените са качени успешно в репозиториото: {repo_path}")
+    try:
+        # Понеже може да има конфликти между локалната и отдалечената версия на main,
+        # първо ще се уверим, че локалният клон е синхронизиран с отдалечения.
+        repo.git.push('origin', 'main')
+        print(f"Промените са качени успешно в репозиториото: {repo_path}")
+    except git.exc.GitCommandError as e:
+        print(f"Грешка при изпълнение на git push: {e}")
+        # Възможност за добавяне на fallback опция за retry (по желание)
+        print("Ще се опитаме отново, ако е необходимо.")
 
 if __name__ == "__main__":
     # Изтегли файла и го преименувай на basic.m3u
