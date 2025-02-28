@@ -29,7 +29,7 @@ jobs:
       - name: Set environment variables
         run: |
           echo "source_repo_path=source_repo" >> $GITHUB_ENV
-          echo "dest_repo_path=destination" >> $GITHUB_ENV  # Задаваме пътищата
+          echo "destination_repo_path=destination" >> $GITHUB_ENV  # Задаваме пътищата
 
       - name: Run the Python script with paths
         run: |
