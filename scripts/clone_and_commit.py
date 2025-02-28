@@ -96,6 +96,9 @@ def commit_and_push_changes():
 
     # Изпрати промените към origin (можеш да промениш името на remote, ако е различно)
     try:
+        # Първо правим pull за актуализиране на локалния клон
+        repo.git.pull('origin', 'main')
+        # След това правим push
         repo.git.push('origin', 'main')
         print(f"Промените са качени успешно в репозиториото: {repo_path}")
     except git.exc.GitCommandError as e:
