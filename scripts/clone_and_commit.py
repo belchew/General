@@ -28,22 +28,20 @@ def download_file(url, dest_path):
     else:
         print(f"Грешка при изтегляне на файла: {response.status_code}")
         
-def edit_file_in_destination():
-    dest_path = os.path.join(repo_path, file_to_copy)
-    try:
-        with open(dest_path, 'r', encoding='utf-8') as file: 
-            content = file.read()
-      
-            # Изтриваме последните 16 реда
-            lines = content.splitlines()
+def rearrange_file_lines(file_path):
+    # Четене на съдържанието на файла
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+     content = content.replace('#EXTM3U', '#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-2days.details.epg.xml.gz"\n')
+      lines = content.splitlines()
             if len(lines) > 18:
                 content = '\n'.join(lines[:-18])
             file.seek(0)
             file.truncate()
             file.write(content)
-        print(f"File {file_to_copy} edited successfully in {repo_path}")
+        print(f"File edited successfully")
     except Exception as e:
-        print(f"Error editing the file {file_to_copy} in {repo_path}: {e}")
+        print(f"Error editing the file")
         
 def commit_and_push_changes():
     # Отвори локалното репозиторио с gitpython
