@@ -1,3 +1,5 @@
+
+
 name: CI
 
 on:
@@ -20,15 +22,22 @@ jobs:
           git config --global user.email "belchew@outlook.com"
           git config --global user.name "belchew"
 
-      # Проверка на git статус (дали има неща за комитване)
-      - name: Check git status
-        run: git status
+      # Извлечи последните промени от отдалеченото хранилище
+      - name: Pull latest changes from origin/main
+        run: |
+          git fetch origin
+          git pull origin main
+
+      # Направи промените, които искаш (например, замени съдържание на файл)
+      - name: Modify file
+        run: |
+          # Вашият скрипт за модификация на файла
 
       # Добави промените към git и извърши commit
       - name: Commit changes
         run: |
           git add .
-          git commit -m "Modified basic.m3u" || echo "No changes to commit"
+          git commit -m "Modified basic.m3u"
           
       # Push промените обратно в отдалеченото хранилище
       - name: Push changes
