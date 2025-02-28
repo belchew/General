@@ -14,6 +14,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Конфигурирай Git с потребителско име и имейл
+      - name: Set git user
+        run: |
+          git config --global user.email "belchew@outlook.com"
+          git config --global user.name "belchew"
+
       # Извлечи последните промени от отдалеченото хранилище
       - name: Pull latest changes from origin/main
         run: |
