@@ -3,25 +3,24 @@ import os
 import shutil
 
 # Пътища към локалните директории на репозиториите
-source_repo_path = "https://github.com/rosendonchev/linkove.git"
-destination_repo_path = "https://github.com/belchew/General.git"
+#source_repo_path = "https://github.com/rosendonchev/linkove.git"
+#destination_repo_path = "https://github.com/belchew/General.git"
 
 # Файлът, който ще бъде копиран и модифициран
 file_to_copy = 'video_stream.m3u'
 
 # Функция за изпълнение на git команди
 def run_git_command(command, repo_path):
-    try:
-        result = subprocess.run(command, cwd=repo_path, check=True, text=True, capture_output=True)
-        print(result.stdout)
-    except subprocess.CalledProcessError as e:
-        print(f"Error running command {command} in {repo_path}: {e}")
-        print(e.stderr)
+     """Изпълнява git команди в дадена директория."""
+    result = subprocess.run(command, cwd=repo_path, check=True, text=True, capture_output=True)
+    print(result.stdout)  # Печата изхода от командата за отстраняване на проблеми
+
 
 # Стъпка 1: Актуализиране на source репозиториото
 def update_repo(repo_path):
-    print(f"Updating repository in {repo_path}...")
-    run_git_command(['git', 'pull'], repo_path)
+  """Актуализира репозитория (извършва git pull)."""
+    print(f"Изпълнявам git pull в репозитория: {repo_path}")
+    run_git_command(['git', 'pull', 'origin', 'main'], repo_path)
 
 # Стъпка 2: Копиране на файла от source репозиториото към destination репозиториото
 def copy_file_to_destination():
@@ -103,26 +102,18 @@ def edit_file_in_destination():
     except Exception as e:
         print(f"Error editing the file {file_to_copy} in {destination_repo_path}: {e}")
 # Стъпка 4: Commit и push в destination репозиториото
-def commit_and_push_changes():
-    print("Committing and pushing changes to the destination repository...")
-    run_git_command(['git', 'add', '.'], destination_repo_path)
-    run_git_command(['git', 'commit', '-m', 'Updated file with new content'], destination_repo_path)
-    run_git_command(['git', 'push'], destination_repo_path)
+#def commit_and_push_changes():
+  #  print("Committing and pushing changes to the destination repository...")
+   # run_git_command(['git', 'add', '.'], destination_repo_path)
+    #run_git_command(['git', 'commit', '-m', 'Updated file with new content'], destination_repo_path)
+   # run_git_command(['git', 'push'], destination_repo_path)
 
 # Основен процес
 def main():
     # Актуализираме и двете репозитории преди всяка друга стъпка
-    update_repo(source_repo_path)
-    update_repo(destination_repo_path)
-    
-    # Копираме файла от source към destination
-    copy_file_to_destination()
-    
-    # Редактираме файла в destination репозиториото
-    edit_file_in_destination()
-    
-    # Правим commit и push в destination репозиториото
-    commit_and_push_changes()
+    # Пътят до репозитория в GitHub Actions
+    source_repo_path = 'https://github.com/rosendonchev/linkove.git'  # Това е директорията, където GitHub автоматично клонира репото
+    print("Основната логика на скрипта се изпълнява тук...")
 
 if __name__ == "__main__":
     main()
