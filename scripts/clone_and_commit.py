@@ -66,8 +66,14 @@ def commit_and_push_changes():
     # Отвори локалното репозиторио с gitpython
     repo = git.Repo(repo_path)
     
-    # Добави новия файл
+     # Добави новия файл (ако е променен)
     repo.git.add(local_filename)
+    
+    # Проверка за промени
+    diff = repo.git.diff('--cached')  # Проверка на промени в индекса
+    if not diff:
+        print("Няма промени за комитване.")
+        return  # Ако няма промени, не правим commit
     
     # Извърши commit
     repo.git.commit('-m', 'Добавен нов файл basic.m3u от URL')
