@@ -1,11 +1,5 @@
 name: Python script
 
-on:
-  # Изпълнение на скрипта всеки час в 13-та минута
-  schedule:
-    - cron: '26 * * * *'  # Това ще изпълнява скрипта на всеки час в 13-та минута
-
-
 jobs:
   run-script:
     runs-on: ubuntu-latest
