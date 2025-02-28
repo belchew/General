@@ -31,11 +31,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests gitpython
 
-      # Set up authentication with PAT token for GitHub Actions
+      # Set up GitHub authentication using PAT (token from secrets)
       - name: Set up GitHub authentication
         run: |
           git config --global url."https://${{ secrets.GH_TOKEN }}@github.com".insteadOf "https://github.com"
-      
+
       # Run the Python script
       - name: Run Python script
         run: python scripts/clone_and_commit.py
