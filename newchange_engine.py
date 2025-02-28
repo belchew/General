@@ -3,8 +3,8 @@ import os
 import shutil
 
 # Пътища към локалните директории на репозиториите
-source_repo_path = r"C:\Users\a1bg537940\Desktop\linkove"
-destination_repo_path = r"C:\Users\a1bg537940\Desktop\General"
+source_repo_path = "https://github.com/rosendonchev/linkove.git"
+destination_repo_path = "https://github.com/belchew/General.git"
 
 # Файлът, който ще бъде копиран и модифициран
 file_to_copy = 'video_stream.m3u'
