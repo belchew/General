@@ -1,105 +1,105 @@
 #EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-2days.details.epg.xml.gz"
 
 #EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD
-https://cdn9.stgledai.org/bnt/index.m3u8?token=a26a9a4e12f73ccdf0480cbf754fe57ef517858e-e75fdd4c5fd00d711b9e3035deabba36-1740779703-1740768903
+https://cdn13.stgledai.org/bnt/index.m3u8?token=635a728156ad71312d66c27b9d6dbce1c2aa7d7a-fb9cf458c2056ebdf6c8bf695445e5d2-1740783302-1740772502
 #EXTINF:-1 tvg-name="БНТ 2" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-2.png" group-title="ЕФИРНИ" , BNT 2
-https://cdn11.stgledai.org/bnt2/index.m3u8?token=75dcd7986adb2aa4ca5058091cca289da16b4df1-8728e61a5cf3e96d02f2210485460421-1740779716-1740768916
+https://cdn9.stgledai.org/bnt2/index.m3u8?token=aadefd27539263f48c57197479b6dbcd9f331fe5-d5c56c7779b0110c14db1fffef8a1434-1740783315-1740772515
 #EXTINF:-1 tvg-name="БНТ 3" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-3-hd.png" group-title="ЕФИРНИ" , BNT 3
-https://cdn11.stgledai.org/bnthd/index.m3u8?token=888de881a9c6ed4422efd163916371949b9d7dcd-cffa7007903baabaac0de2d99c55c9a1-1740779727-1740768927
+https://cdn10.stgledai.org/bnthd/index.m3u8?token=8d84d2c19f9b20fa390f076ad7051abd9e3aa26f-b90c3d4e0b741fa285854c9c724d4276-1740783327-1740772527
 #EXTINF:-1 tvg-name="БНТ 4" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-4.png" group-title="ЕФИРНИ" , BNT 4 HD
-https://cdn11.stgledai.org/bnt4/index.m3u8?token=06203b6bb6c95281b16a1225461545e7d9e2c283-1c8cdd2ac263a5827cc8104fed74e4df-1740779739-1740768939
+https://cdn8.stgledai.org/bnt4/index.m3u8?token=f43bfc2dc5f466d3fe7620dbc460ff7594d4c77e-0d52dc0109fdd963a136d538d80adb47-1740783339-1740772539
 #EXTINF:-1 tvg-name="Nova TV" tvg-logo="https://www.glebul.com/images/tv-logo/nova-tv-hd.png" group-title="ЕФИРНИ" , NovaTV
-https://cdn13.stgledai.org/nova/index.m3u8?token=a6804499f4af228fe8236746998bd31b91512317-bc16d54c255d5491830a6f17e6c5d257-1740779750-1740768950
+https://cdn10.stgledai.org/nova/index.m3u8?token=e7481748142c1cac8a8c62c961ff0e0c0ad7a2fa-47a6b711d93d2cc6e50c2d0b83f5ed13-1740783350-1740772550
 #EXTINF:-1 tvg-name="bTV" tvg-logo="https://www.glebul.com/images/tv-logo/btv-hd.png" group-title="ЕФИРНИ" , bTV HD
-https://cdn8.stgledai.org/btv/index.m3u8?token=a507eb60c573fbd52445f160564997f0266abdab-cb2a8ac568e0b272cd20fdced7569e59-1740779762-1740768962
+https://cdn9.stgledai.org/btv/index.m3u8?token=e1487b5195de96b7835e0614a727b5e68268a205-5da72d0de2493e0e2b6afa19a7a1ebd8-1740783361-1740772561
 #EXTINF:-1 tvg-name="bTV Action" tvg-logo="https://www.glebul.com/images/tv-logo/btv-action-hd.png" group-title="Спортни"  , bTV Action HD
-https://cdn8.stgledai.org/btvaction/index.m3u8?token=fcac82ce5595c592fe8fca0b53497d3e5112c9af-97795be15b1c35a138c55c8002e60074-1740779785-1740768985
+https://cdn8.stgledai.org/btvaction/index.m3u8?token=94a9f2edf411c12fc3b0551cd7972e8fe1251ce8-605d567178750331b977dd5fece670f3-1740783385-1740772585
 #EXTINF:-1 tvg-name="bTV Cinema" tvg-logo="https://www.glebul.com/images/tv-logo/btv-cinema.png" group-title="Филмови" , bTV Cinema HD
-https://cdn11.stgledai.org/btvcinema/index.m3u8?token=a1e1d13ccd0c125f70723e6e878a049269c54965-7fc02ba8bf3f86d22cb859d425f8dedf-1740779797-1740768997
+https://cdn8.stgledai.org/btvcinema/index.m3u8?token=aaa5b37be26e08be224a31f4b6cc8ab892b2dfe3-8e8caeef6ea8e397db33748b3ef74161-1740783397-1740772597
 #EXTINF:-1 tvg-name="bTV Comedy" tvg-logo="https://www.glebul.com/images/tv-logo/btv-comedy.png" group-title="Филмови" , bTV Comedy HD
-https://cdn10.stgledai.org/btvcomedy/index.m3u8?token=8c7b48a25a0c15d8e392dbcd62e77ecd94e1ffc5-607a2499edae2b55becedb56d97fde68-1740779808-1740769008
+https://cdn13.stgledai.org/btvcomedy/index.m3u8?token=e4bfe5a4d6197a03aa2ffba4a063a5519c5ffe88-92e814b35a8e95839a35f5cb7a7cadd4-1740783409-1740772609
 #EXTINF:-1 tvg-name="bTV Story" tvg-logo="https://www.glebul.com/images/tv-logo/btv-story.png" group-title="Филмови" , bTV Story HD
-https://cdn8.stgledai.org/btvlady/index.m3u8?token=fcc10b5d9c52f0d0ccec39ec4071f79ae1a21e41-a4763a925046234084b7b08cc3f4fe76-1740779820-1740769020
+https://cdn8.stgledai.org/btvlady/index.m3u8?token=a2601e93f862e43604054579e828b73e8c7fe540-9e627937fc6aac84457f3e5858565418-1740783420-1740772620
 #EXTINF:-1 tvg-name="KinoNova" tvg-logo="https://www.glebul.com/images/tv-logo/kino-nova.png" group-title="Филмови" , KinoNova
-https://cdn8.stgledai.org/kino/index.m3u8?token=c4f417141585f023b9b3144df8121e02925882fd-4dba7862f6989377d8a63a986d098f72-1740779831-1740769031
+https://cdn10.stgledai.org/kino/index.m3u8?token=c027a016fdebce228d58eaaad1b79fba0760ee80-f8cd6ff8365041a42a3c4115601bc683-1740783432-1740772632
 #EXTINF:-1 tvg-name="Diema" tvg-logo="https://www.glebul.com/images/tv-logo/diema.png" group-title="Филмови" , Diema
-https://cdn10.stgledai.org/diema/index.m3u8?token=39c490ea615ee91179235adeddcee86b1a35fa45-c03fa7f65e23626ce5d4e7378f9eee0b-1740779843-1740769043
+https://cdn13.stgledai.org/diema/index.m3u8?token=1dc351b95f147831ebcd787d5a8426f5e2aa5a65-5a6071d27ee6b45480a13ea51a86c143-1740783443-1740772643
 #EXTINF:-1 tvg-name="Diema Family" tvg-logo="https://www.glebul.com/images/tv-logo/diema-family.png" group-title="Филмови" , Diema Family
-https://cdn9.stgledai.org/diemaf/index.m3u8?token=94ff60fc86478f4134a2e2d20983437c31c5ee7c-ae4033b67fd2f296fa8f028c20de3e0b-1740779854-1740769054
+https://cdn13.stgledai.org/diemaf/index.m3u8?token=d20de59cd62bf2458a23ca9eb2c088d1e72c2943-9013ada47d4df4822028210bb726f366-1740783455-1740772655
 #EXTINF:-1 tvg-name="STAR CHANNEL" tvg-logo="https://www.glebul.com/images/tv-logo/star-channel-hd.png" group-title="Филмови" , STAR CHANNEL HD
-https://cdn8.stgledai.org/fox/index.m3u8?token=99b62d606263a5f3e0a572fde55765e76ec332d3-d2a601659d6f4ed69f1e094eb31a6b7c-1740779866-1740769066
+https://cdn9.stgledai.org/fox/index.m3u8?token=87ca4f7fb7264ec0abd1d2034275758fa2f5ec50-751a0791d6e87de22b90ff5ac02d76b1-1740783466-1740772666
 #EXTINF:-1 tvg-name="STAR Life" tvg-logo="https://www.glebul.com/images/tv-logo/star-life-hd.png" group-title="Филмови" , STAR Life HD
-https://cdn11.stgledai.org/foxlife/index.m3u8?token=28393b3aced65816c9ea2e98d5740c059aef61e9-695257dc6a804cf4b76fbc560bca3dd1-1740779877-1740769077
+https://cdn11.stgledai.org/foxlife/index.m3u8?token=ded7033e952216d712537fa6754e29f2addfed78-45b89e9f09c9a4af0d7aa19f33ca2287-1740783478-1740772678
 #EXTINF:-1 tvg-name="STAR Crime " tvg-logo="https://www.glebul.com/images/tv-logo/star-crime-hd.png" group-title="Филмови" , STAR Crime HD
-https://cdn10.stgledai.org/foxcrime/index.m3u8?token=becb25c239e05544d7ee046ca865cd56bfb9703b-ff8e95eb01cf55166b8bdd66b59f9987-1740779889-1740769089
+https://cdn10.stgledai.org/foxcrime/index.m3u8?token=9ccf96c26d48ad275da69c3a6373a52d9574cd2b-f86b8738085216e56170fce0d79c21bd-1740783490-1740772690
 #EXTINF:-1 tvg-id="FilmboxStars.bg" tvg-name="FilmBox Stars HD" tvg-logo="http://iphd.tv/service/bulsat/filmbox_stars-18-02-2021.svg" group-title="Филмови" , FilmBox Stars HD
-https://cdn13.stgledai.org/filmboxplus/index.m3u8?token=3c365e809234e3eb4d5c7fecb3a98b04297a1856-974c98ac0fcd99cf383292c42d4a46d6-1740779900-1740769100
+https://cdn11.stgledai.org/filmboxplus/index.m3u8?token=b17a4dcf3fa74e93b52b76f5e6d1b7e2f3b5d8a2-7765f4109d1e092437b82b73c4b27b90-1740783501-1740772701
 #EXTINF:-1 tvg-id="FilmBoxExtra.bg" tvg-name="FilmBox Extra HD" tvg-logo="http://iphd.tv/service/bulsat/filmbox_extra-16-02-2021.svg" group-title="Филмови" , FilmBox Extra HD
-https://cdn8.stgledai.org/filmboxextra/index.m3u8?token=716714b1ea2e9416cc8e2d1ac8509347db4b7531-335d156010d1a78c6acac6a094f8ab5f-1740779912-1740769112
+https://cdn9.stgledai.org/filmboxextra/index.m3u8?token=9d78a1e0344010c09e2f35a2f7781aa912c43a19-68dc597627efc40732a05ac803e3006e-1740783512-1740772712
 #EXTINF:-1 tvg-id="MovieStar.bg" tvg-name="BG:Moviestar HD" tvg-logo="http://iphd.tv/service/bulsat/moviestar-23-04-2019.svg" group-title="Филмови" , Moviestar HD
-https://cdn11.stgledai.org/moviestar/index.m3u8?token=447b5c50934242c4c19cc94c606891cb5115dcc4-65c34bd204693eeff6452d3c8aab9d06-1740779924-1740769124
+https://cdn11.stgledai.org/moviestar/index.m3u8?token=a06cd5440efdfb77e646f240d9147c7fc3b9548b-bdbf0cc8087aaf1a03ca06352122f7bf-1740783524-1740772724
 #EXTINF:-1 tvg-id="AMC" tvg-name="AMC" tvg-logo="http://iphd.tv/service/bulsat/amc-17-02-2022.svg" group-title="Филмови" , AMC
-https://cdn10.stgledai.org/amc/index.m3u8?token=56fef85b41370f6b41f603961785ee344894e0dc-15b648dad3caa45dd55086f030c0924a-1740779935-1740769135
+https://cdn10.stgledai.org/amc/index.m3u8?token=da1e5f417c78f370b6e8d363b5ed97e6a115567e-5761aba28a4f47cd02e4beee27867acd-1740783536-1740772736
 #EXTINF:-1 tvg-id="AXN" tvg-name="AXN" tvg-logo="https://www.glebul.com/images/tv-logo/axn.png" group-title="Филмови" , AXN
-https://cdn9.stgledai.org/axn/index.m3u8?token=4a877ea93fed4857b1496dd949afe83bdde47c14-db4d974e1a5f789c4fb62b064ba84d7a-1740779946-1740769146
+https://cdn8.stgledai.org/axn/index.m3u8?token=0c448411f6f3386ddbf83e47163954c31753ace0-8f5ef92033fbd13a962f39797ba9b6ec-1740783547-1740772747
 #EXTINF:-1 tvg-name="24 Kitchen" tvg-logo="https://www.glebul.com/images/tv-logo/24-kitchen-hd.png" group-title="Други" , 24 Kitchen HD
-https://cdn13.stgledai.org/24kitchen/index.m3u8?token=54bdd3b6895f67409a1f82d71b0068829b65647b-592a6e2fb68e1e9db5d2daef642634c8-1740779958-1740769158
+https://cdn13.stgledai.org/24kitchen/index.m3u8?token=1d95449b3456ea438904f33776f84a6c1375da6f-c8fd4e6326955894e63d8d9f374e6e35-1740783558-1740772758
 #EXTINF:-1 tvg-name="Discovery Channel" tvg-logo="https://www.glebul.com/images/tv-logo/discovery-channel-hd.png" group-title="Научни" , Discovery Channel HD
-https://cdn8.stgledai.org/discovery/index.m3u8?token=bfdda2d3cf356e5c83d47f84f102807475060c70-59e9416c55a7db3b123a6f889e008502-1740779969-1740769169
+https://cdn11.stgledai.org/discovery/index.m3u8?token=2913870476cc49f1000680b872cba0289729bf8a-1e5d7e71abb906a655ed37ac31b7b10f-1740783570-1740772770
 #EXTINF:-1 tvg-name="National Geographic" tvg-logo="https://www.glebul.com/images/tv-logo/nat-geo-hd.png" group-title="Научни" National Geographic HD
-https://cdn11.stgledai.org/ng/index.m3u8?token=36655b1a6201bc17a5dd8952bccd61daecad60c7-881288290d1585cdb4af74a00fd9fef0-1740779981-1740769181
+https://cdn10.stgledai.org/ng/index.m3u8?token=f0c765c6534575a6a2e8ba1132b39837dda9a80b-8b65660629eb54451179c2072f52aaed-1740783581-1740772781
 #EXTINF:-1 tvg-name="Nat Geo Wild" tvg-logo="https://www.glebul.com/images/tv-logo/nat-geo-wild-hd.png" group-title="Научни" , Nat Geo Wild HD
-https://cdn9.stgledai.org/natgeowild/index.m3u8?token=e6b63110fe51596f800e1e6fc910b9b1ffd364f0-0a280e0d61eaad4387f64a1f8469a92f-1740779992-1740769192
+https://cdn8.stgledai.org/natgeowild/index.m3u8?token=013033549553a9fb1b48883b9a9caeb1bf4ba6e2-486c470417d65f06c99329e14a5edfbb-1740783593-1740772793
 #EXTINF:-1 tvg-id="HistoryChannel.bg" tvg-name="History Channel HD" tvg-logo="http://iphd.tv/service/bulsat/history_channel-23-04-2019.svg" group-title="Научни" , History Channel HD
-https://cdn9.stgledai.org/historytv/index.m3u8?token=43a2fc05086511518d3869ce602a600e25fd2ed3-38b2b4dea0cb100a0ba01ed157847bdd-1740780004-1740769204
+https://cdn11.stgledai.org/historytv/index.m3u8?token=46f682e0b022b3324b2835f953b208e52d57b976-d0cd1bc59ad1f3431206b18247c79bff-1740783605-1740772805
 #EXTINF:-1 tvg-id="DocuBox" tvg-name="Docu Box HD" tvg-logo="http://iphd.tv/service/bulsat/docubox-16-02-2021.svg" group-title="Научни" , Docu Box HD
-https://cdn8.stgledai.org/docubox/index.m3u8?token=24cce24429d1ce58cb70f9d188c343de833e79d2-3e142387a70ddf18c05b9b97e687e024-1740780015-1740769215
+https://cdn8.stgledai.org/docubox/index.m3u8?token=4157147c7eab347fc6cc4c9e397916e69bdf227d-3717071c53186f760c0b7c8221fbb72d-1740783617-1740772817
 #EXTINF:-1 tvg-id="ViasatHistory.bg" tvg-name="Viasat History HD" tvg-logo="http://iphd.tv/service/bulsat/viasat_history-17-02-2022.svg" group-title="Научни" , Viasat History HD
-https://cdn11.stgledai.org/viasat_history/index.m3u8?token=007f5a5b4da8ebb47ff3c3fdbeb44558b3f682e3-ff0843fcfa31fd34a28d4940e8e9a67b-1740780027-1740769227
+https://cdn10.stgledai.org/viasat_history/index.m3u8?token=2f174d3d03ce199b2e545c92a6fe8957e308878c-09e2b293d575590c91b387005a7f6ceb-1740783628-1740772828
 #EXTINF:-1 tvg-id="ViasatNature.bg" tvg-name="Viasat Nature HD" tvg-logo="http://iphd.tv/service/bulsat/viasat_nature-17-02-2022.svg" group-title="Научни" , Viasat Nature HD
-https://cdn13.stgledai.org/viasat_nature/index.m3u8?token=fe62de3203b264e8938a4f2386b8c631e0897ed3-d915f05b8cfa16f49ceb3c632576d0a3-1740780038-1740769238
+https://cdn9.stgledai.org/viasat_nature/index.m3u8?token=6c6a9e076a1bbf1d5cb77751e88ee5e936b76922-92c3671e2693c9f6311449fcc4343c29-1740783640-1740772840
 #EXTINF:-1 tvg-id="AnimalPlanet.bg" tvg-name="Animal Planet HD" tvg-logo="http://iphd.tv/service/bulsat/animal_planet-23-04-2019.svg" group-title="Научни" , Animal Planet HD
-https://cdn10.stgledai.org/animalplanet/index.m3u8?token=4d76c1e85881a3800de98509354483ecc56f2887-64f5bfd7f8bba3a6359f438916705e57-1740780050-1740769250
+https://cdn8.stgledai.org/animalplanet/index.m3u8?token=14cd51d01efb7867a0374ee574ce2c160ac97014-1e48c289d96e5a637bb7b0e4f7f646a6-1740783651-1740772851
 #EXTINF:-1 tvg-name="TLC" tvg-logo="https://www.glebul.com/images/tv-logo/tlc.png" group-title="Други" , TLC HD
-https://cdn8.stgledai.org/tlc/index.m3u8?token=9aa981eb7253ff1b1c434783692c7a5b651779e3-1af2684114858c8dcad9b51261eef781-1740780061-1740769261
+https://cdn13.stgledai.org/tlc/index.m3u8?token=1230e64da36b73ef20c59988d31156c72ebf7cdd-c7276e2824579bf7c31443b3902551b4-1740783662-1740772862
 #EXTINF:-1 tvg-name="Cartoon Network" tvg-logo="https://www.glebul.com/images/tv-logo/cartoon-network.png" group-title="Детски" , Cartoon Network HD
-https://cdn8.stgledai.org/cartoon/index.m3u8?token=9ab7585dfcf8eada65181c0a659b88ed5c9144c9-618d1af0ff4b9031783cf02a028e0125-1740780073-1740769273
+https://cdn11.stgledai.org/cartoon/index.m3u8?token=00f5404de1f2b6d13d69e044a183ae47bae8bb85-4b51f1dab2e9ab413a4f4346e0083fe1-1740783674-1740772874
 #EXTINF:-1 tvg-name="Disney channel" tvg-logo="https://www.glebul.com/images/tv-logo/disney-channel.png" group-title="Детски" , Disney channel
-https://cdn10.stgledai.org/disney/index.m3u8?token=a595cc39a265dde7c38b0c7c73fd5781575f0f53-9709fd65093a24bb653b39c8fb13a827-1740780085-1740769285
+https://cdn11.stgledai.org/disney/index.m3u8?token=b162480bb06f8dff9d20c4d05415e25b2f6c35ea-fc4b65e662e01b784c1daba546a3228c-1740783685-1740772885
 #EXTINF:-1 tvg-name="Nickelodeon" tvg-logo="https://www.glebul.com/images/tv-logo/nickelodeon.png" group-title="Детски" , Nickelodeon
-https://cdn8.stgledai.org/nickelodeon/index.m3u8?token=3ccd1a3bbdb55c6076ff24082ddedd6103af42d5-37d580891f96ff2f62d1b9c75abc86aa-1740780096-1740769296
+https://cdn9.stgledai.org/nickelodeon/index.m3u8?token=29e40d001d16b2fda8fa47859827ba9362f8c150-c231454cc34768d61857c45e470329f3-1740783697-1740772897
 #EXTINF:-1 tvg-name="NickJr" tvg-logo="https://www.glebul.com/images/tv-logo/nick-jr.png" group-title="Детски" , Nick Jr
-https://cdn9.stgledai.org/nickjr/index.m3u8?token=3cc72d21c9d0c1118fd4b2eca9411896cfe07c36-92240da2eec9b2de71b4a2d69e87e0f0-1740780107-1740769307
+https://cdn9.stgledai.org/nickjr/index.m3u8?token=c107bb38f032418b8cf579675a8be217d8d1e633-979c65654bf00c2eedbad989a86dc93d-1740783708-1740772908
 #EXTINF:-1 tvg-name="Nicktoons" tvg-logo="https://www.glebul.com/images/tv-logo/nicktoons.png" group-title="Детски" , Nicktoons
-https://cdn8.stgledai.org/nicktoons/index.m3u8?token=2bec1908f240a8fef63269b62dcd49f22799df09-6ab53840d7e341f07edc7a25b617b686-1740780119-1740769319
+https://cdn11.stgledai.org/nicktoons/index.m3u8?token=eb3afb2191f63695687c0d260248e04aabf8819d-8e2b2e7239bdd5046f43d5e8bb926d6c-1740783720-1740772920
 #EXTINF:-1 tvg-id="Balkanika.bg" tvg-name="Balkanika HD" tvg-logo="http://iphd.tv/service/bulsat/balkanika-23-04-2019.svg" group-title="Музикални" , Balkanika HD
-https://cdn8.stgledai.org/balkanika/index.m3u8?token=16c73262876d74f8e4b5d27834921717b7cf6d7a-9cf3ead6975230f56e219d6b5a18b185-1740780142-1740769342
+https://cdn11.stgledai.org/balkanika/index.m3u8?token=077202f5d5ebd04536e5e577e4696d02d82393c3-c13af329f7f1e671d517bcbeffe04f1a-1740783743-1740772943
 #EXTINF:-1 tvg-name="Planeta" tvg-logo="https://www.glebul.com/images/tv-logo/planeta-hd.png" group-title="Музикални" , Planeta HD
-https://cdn9.stgledai.org/planetahd/index.m3u8?token=f152106d7cae554da7225e5ca978f18231d80c41-7c30306a37238c9acf85b473dd86723c-1740780154-1740769354
+https://cdn10.stgledai.org/planetahd/index.m3u8?token=588a814a3280482fca1c0952fd3a3de255cbf836-838d8843d920f149b7203cdb3798380e-1740783754-1740772954
 #EXTINF:-1 tvg-name="Planeta Folk" tvg-logo="https://www.glebul.com/images/tv-logo/planeta-folk.png" group-title="Музикални" , Planeta Folk
-https://cdn8.stgledai.org/planetafolk/index.m3u8?token=384f5642ed54d84d48b4dfd80a3529d49ed511d5-cfb7005ae1c629693a92534fb3575709-1740780165-1740769365
+https://cdn8.stgledai.org/planetafolk/index.m3u8?token=41b3a0ea92cc9749efc37e378f44863904654e26-20ad1370656e7877d1ac0f73158572b2-1740783766-1740772966
 #EXTINF:-1,Eurosport1
-https://cdn8.stgledai.org/eurosport/index.m3u8?token=0e8e0036c376936c5e8438b1f9ad3363d8b25de4-7c5422ad35974b6727333d044ae5d303-1740780189-1740769389
+https://cdn8.stgledai.org/eurosport/index.m3u8?token=5ec265c192709de9f1cac4060bbb471e0fee2458-a1efad882ae8f7196c06c3f8fdfaa730-1740783789-1740772989
 #EXTINF:-1,Eurosport2
-https://cdn9.stgledai.org/eurosport2/index.m3u8?token=d88f0cbfa1c0b7f15e3cc85546938a7d545b8b2f-f36da86627c9866f3749bfa95d56be2b-1740780201-1740769401
+https://cdn11.stgledai.org/eurosport2/index.m3u8?token=0934705106e6f370904f0a08e3ae71c3f5e7c231-e61cc2ca8ce6bcefdecc30aa26083286-1740783800-1740773000
 #EXTINF:-1 tvg-name="Diema Sport" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-hd.png" group-title="Спортни" , Diema Sport
-https://cdn8.stgledai.org/diemasport/index.m3u8?token=9cb101648b35325fb430933b353ce76c13c60815-d89a19af0c97cb179157aed77aa73905-1740780212-1740769412
+https://cdn13.stgledai.org/diemasport/index.m3u8?token=03eb28d82b62376d91c7f3699ce1e4702b284ce8-e6c87ec9e767af14f8e0134a143840f5-1740783812-1740773012
 #EXTINF:-1 tvg-name="Diema Sport 2" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-2-hd.png" group-title="Спортни" , Diema Sport 2
-https://cdn13.stgledai.org/diemasport2/index.m3u8?token=63ad0c9486b93d8c8dfb4d2036c48e901fcfa7a6-7e0a8e829379de93ed185dab23ea989b-1740780223-1740769423
+https://cdn11.stgledai.org/diemasport2/index.m3u8?token=c04a2c9742f7a980e68f5650518d08468f9eb134-000416661aca5f0cfa07366112c61fc7-1740783823-1740773023
 #EXTINF:-1 tvg-name="Diema Sport 3" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-3-hd.png" group-title="Спортни" , Diema Sport 3
-https://cdn9.stgledai.org/diemasport3/index.m3u8?token=85848589a464fcbdaacae0825cc960f40477eea8-1c1707246c2d9da76202c4d2e950d391-1740780235-1740769435
+https://cdn13.stgledai.org/diemasport3/index.m3u8?token=6ef5de2a4cf8d5a5c4adbf4a482523f06450e9f1-80e76752a0272f8991b6a5f6ef2df827-1740783835-1740773035
 #EXTINF:-1 tvg-name="Max Sport 1 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-1-hd.png" group-title="Спортни" , Max Sport 1 HD
-https://cdn13.stgledai.org/mtelsport/index.m3u8?token=378b0e5d76cb25209f9c0236b10af7970b8c1c68-8634283cecd91ab9c1f8787adcf6a02f-1740780246-1740769446
+https://cdn10.stgledai.org/mtelsport/index.m3u8?token=55b94a806e3983d237739933f8f80ccba3e85d96-b24681bfb1a957657d4a29b194e1e5fb-1740783846-1740773046
 #EXTINF:-1 tvg-name="Max Sport 2 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-2-hd.png" group-title="Спортни" , Max Sport 2 HD
-https://cdn10.stgledai.org/mtelsport2/index.m3u8?token=8dc7c2a4c9ad35bb36b50c9067d1934a724c12e1-db75a5ff30a6169170389eb0af2f6967-1740780258-1740769458
+https://cdn8.stgledai.org/mtelsport2/index.m3u8?token=284c12ac48c21993da409959f648edaee3f0e2d4-e351483bbd22f7b249e9f95aaf8f329f-1740783858-1740773058
 #EXTINF:-1 tvg-name="Max Sport 3 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-3-hd.png" group-title="Спортни" , Max Sport 3 HD
-https://cdn13.stgledai.org/mtelsport3/index.m3u8?token=7a76430c0f3c895e3054a3f5f98f23bf1e7c3d60-f50a2d7c2b5ce7062737d74954da8a7f-1740780270-1740769470
+https://cdn11.stgledai.org/mtelsport3/index.m3u8?token=427f0406fa4b4998743bc820bf3243a4e4595548-99c892baf81f1eb830323baaf12cbe0f-1740783869-1740773069
 #EXTINF:-1 tvg-name="Max Sport 4 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-4-hd.png" group-title="Спортни" , Max Sport 4 HD
-https://cdn8.stgledai.org/mtelsport4/index.m3u8?token=f4892032c7eb05eca3b06c205c6088d1aa474910-81060a6b411a3f19a1deda47e85951e5-1740780281-1740769481
+https://cdn10.stgledai.org/mtelsport4/index.m3u8?token=5f3cd510b924ec2e065d26856a7de2288a4e18fb-bb66902bfdae026681c97148ae0c842c-1740783880-1740773080
 #EXTINF:-1 tvg-name="Nova Sport" tvg-logo="https://www.glebul.com/images/tv-logo/nova-sport-hd.png" group-title="Спортни" , Nova Sport HD
-https://cdn11.stgledai.org/novasport/index.m3u8?token=88682f766b3689906ef3dd5748e0313c95d76b82-1aa6ed99db887a411634608e0bb56abf-1740780292-1740769492
+https://cdn11.stgledai.org/novasport/index.m3u8?token=bd90487d676bed382f6129762b2346c8d698e66d-2d5053851e451b1b4bfbb077222c1152-1740783892-1740773092
 #EXTINF:-1 tvg-name="Ring BG" tvg-logo="https://www.glebul.com/images/tv-logo/ring-bg-hd.png" group-title="Спортни" , Ring BG
-https://cdn8.stgledai.org/ringbg/index.m3u8?token=12c0d71d5d7254e745287d55fbbb976585a63680-89abfe7ee18c72b4af8b3a153a99f5ad-1740780304-1740769504
+https://cdn11.stgledai.org/ringbg/index.m3u8?token=0e43e3ecfbf8f634986b79c5c282932460ad72e2-6d53515e6ead2ede8511d25cef6731cb-1740783903-1740773103
 #EXTINF:-1,Travel
 https://streamer103.neterra.tv/travel/travel_SD.m3u8
 #EXTINF:-1,The Voice
