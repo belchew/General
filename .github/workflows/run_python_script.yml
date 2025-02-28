@@ -1,4 +1,4 @@
-name: CI Workflow
+name: Run Python script
 
 on:
   push:
@@ -9,16 +9,26 @@ on:
       - main
 
 jobs:
-  build:
+  run-script:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout на репозитория
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    # Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      # Настройка на Python
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-ve
+    # Set up Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+
+    # Install dependencies
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Run Python script
+    - name: Run Python script
+      run: python $GITHUB_WORKSPACE/scripts/newchange_engine.py
