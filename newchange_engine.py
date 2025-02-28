@@ -109,7 +109,7 @@ def edit_file_in_destination():
    # run_git_command(['git', 'push'], destination_repo_path)
 
 # Основен процес
-ef main():
+def main():
     # Пътят до репозитория в GitHub Actions
     source_repo_path = '/github/workspace'  # Това е директорията, където GitHub автоматично клонира репото
 
