@@ -5,7 +5,18 @@ import shutil
 # Пътища към локалните директории на репозиториите
 #source_repo_path = "https://github.com/rosendonchev/linkove.git"
 #destination_repo_path = "https://github.com/belchew/General.git"
+repo_path = os.environ['GITHUB_WORKSPACE']
 
+# Ако името на репозитория е дублирано в пътя, премахни едното копие
+repo_path = repo_path.replace('/General/General', '/General')
+
+print(f"Коригиран път: {repo_path}")
+
+# Проверка дали директорията съществува
+if os.path.exists(repo_path):
+    print("Директорията съществува")
+else:
+    print("Директорията не съществува")
 # Файлът, който ще бъде копиран и модифициран
 file_to_copy = 'video_stream.m3u'
 
