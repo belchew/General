@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Python Script
         run: |
-          python newchange_engine.py  # Скриптът е в директория "scripts"
+          python newchange_engine.py
           
       - name: Set environment variables
         run: |
