@@ -1,28 +1,36 @@
-name: Clone file and Commit to Repo
+name: Python script
 
 on:
   push:
     branches:
-      - main  # Изпълнявай при push към main branch
+      - main
 
 jobs:
-  clone_and_commit:
+  run-script:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
+      # Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests gitpython
+      # Set up Git user configuration
+      - name: Set up Git config
+        run: |
+          git config --global user.email "belchew@outlook.com"
+          git config --global user.name "belchew"
+      
+      # Install required packages (requests and gitpython)
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests gitpython
 
-    - name: Run Python script
-      run: |
-        python scripts/clone_and_commit.py
+      # Run the Python script
+      - name: Run Python script
+        run: python scripts/clone_and_commit.py
