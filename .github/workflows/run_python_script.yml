@@ -20,12 +20,6 @@ jobs:
           git config --global user.email "belchew@outlook.com"
           git config --global user.name "belchew"
 
-      # Направи промените, които искаш (например, замени съдържание на файл)
-      - name: Modify file
-        run: |
-          # Вашият скрипт за модификация на файла
-          echo "New content" >> basic.m3u
-
       # Проверка на git статус (дали има неща за комитване)
       - name: Check git status
         run: git status
