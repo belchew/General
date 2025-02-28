@@ -69,7 +69,8 @@ def commit_and_push_changes():
     # Извършваме git pull, за да актуализираме локалния клон
     print("Извършване на git pull...")
     try:
-        repo.git.pull('origin', 'main')  # Изтегляне на последните промени от отдалечения репозиторио
+        # Изтегляне на последните промени от отдалечения репозиторио
+        repo.git.pull('origin', 'main')
         print("Git pull успешно завършен.")
     except git.exc.GitCommandError as e:
         print(f"Грешка при изпълнение на git pull: {e}")
@@ -78,22 +79,24 @@ def commit_and_push_changes():
     # Добави новия файл
     repo.git.add(local_filename)
 
-    # Извърши commit
-    repo.git.commit('-m', 'Добавен нов файл basic.m3u от URL')
+    try:
+        # Извърши commit само ако има промени
+        repo.git.commit('-m', 'Добавен нов файл basic.m3u от URL')
+        print(f"Промените са успешно записани в локалното репозиторио.")
+    except git.exc.GitCommandError as e:
+        # Ако няма промени, ще игнорираме commit
+        print("Няма нови промени за commit.")
 
     # Изпрати промените към origin (можеш да промениш името на remote, ако е различно)
     try:
+        # Понеже може да има конфликти между локалната и отдалечената версия на main,
+        # първо ще се уверим, че локалният клон е синхронизиран с отдалечения.
         repo.git.push('origin', 'main')
         print(f"Промените са качени успешно в репозиториото: {repo_path}")
     except git.exc.GitCommandError as e:
         print(f"Грешка при изпълнение на git push: {e}")
-if __name__ == "__main__":
-    # Изтегли файла и го преименувай на basic.m3u
-    download_file(file_url, local_file_path)
-    
-    # Изтриване на последните 18 реда от файла
-    delete_last_n_lines(local_file_path, 18)
-
+        # Възможност за добавяне на fallback опция за retry (по желание)
+        print("Ще се опитаме отново, ако е необходимо.")
         # Замяна на множество редове съдържание във файла
     replacements = {
         	"#EXTM3U": '#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-2days.details.epg.xml.gz"\n',
