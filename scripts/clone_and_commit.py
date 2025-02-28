@@ -68,6 +68,15 @@ def commit_and_push_changes():
     
      # Добави новия файл (ако е променен)
     repo.git.add(local_filename)
+
+     # Извършваме git pull, за да актуализираме локалния клон
+    print("Извършване на git pull...")
+    try:
+        repo.git.pull('origin', 'main')  # Изтегляне на последните промени от отдалечения репозиторио
+        print("Git pull успешно завършен.")
+    except git.exc.GitCommandError as e:
+        print(f"Грешка при изпълнение на git pull: {e}")
+
     
     # Проверка за промени
     diff = repo.git.diff('--cached')  # Проверка на промени в индекса
