@@ -9,7 +9,7 @@ repo_path = os.getcwd()
 file_url = 'https://raw.githubusercontent.com/rosendonchev/linkove/refs/heads/main/video_stream.m3u'  # Замени с твоя URL
 
 # Локален път, където ще запишеш файла
-local_filename = 'basic.m3u'  # Промененото име на файла
+local_filename = 'basic.m3u8'  # Промененото име на файла
 local_file_path = os.path.join(repo_path, local_filename)
 
 # Функция за изтегляне на файл от URL
