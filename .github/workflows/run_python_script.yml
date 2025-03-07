@@ -1,4 +1,4 @@
-name: Python script
+name: Refresh
 
 on:
   schedule:
@@ -35,5 +35,5 @@ jobs:
           git config --global url."https://${{ secrets.GH_TOKEN }}@github.com".insteadOf "https://github.com"
 
       # Run the Python script
-      - name: Run Python script
+      - name: Run Refresh
         run: python scripts/clone_and_commit.py
