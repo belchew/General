@@ -136,7 +136,11 @@ if __name__ == "__main__":
             "#EXTINF:-1,Nicktoons": '#EXTINF:-1 tvg-name="Nicktoons" tvg-logo="https://www.glebul.com/images/tv-logo/nicktoons.png" group-title="Детски" , Nicktoons',
             "#EXTINF:-1,NatGeo": '#EXTINF:-1 tvg-name="National Geographic" tvg-logo="https://www.glebul.com/images/tv-logo/nat-geo-hd.png" group-title="Научни" National Geographic HD',
             "#EXTINF:-1,Eurosport1": '#EXTINF:-1 tvg-name="Eurosport" tvg-logo="https://www.glebul.com/images/tv-logo/eurosport-1-hd.png" group-title="Спортни" , Eurosport HD',
-            "#EXTINF:-1,Eurosport2": '#EXTINF:-1 tvg-name="Eurosport 2" tvg-logo="https://www.glebul.com/images/tv-logo/eurosport-2-hd.png" group-title="Спортни" , Eurosport 2 HD'
+            "#EXTINF:-1,Eurosport2": '#EXTINF:-1 tvg-name="Eurosport 2" tvg-logo="https://www.glebul.com/images/tv-logo/eurosport-2-hd.png" group-title="Спортни" , Eurosport 2 HD',
+            "#EXTINF:-1,The Voice": '#EXTINF:-1 tvg-name="The Voice" tvg-logo="https://www.glebul.com/images/tv-logo/the-voice.png" group-title="Музикални" , The Voice',
+            "#EXTINF:-1,City Tv": '#EXTINF:-1 tvg-name="City TV" tvg-logo="https://www.glebul.com/images/tv-logo/city-tv.png" group-title="Музикални" , City TV',
+            "#EXTINF:-1,Travel": '#EXTINF:-1 tvg-name="Travel" tvg-logo="https://www.glebul.com/images/tv-logo/travel-tv.png" group-title="Други" , Travel TV',
+            "#EXTINF:-1,Magic": '#EXTINF:-1 tvg-name="Magic" tvg-logo="https://www.glebul.com/images/tv-logo/magic-tv.png" group-title="Музикални" , Magic TV'
     }
     replace_multiple_content(local_file_path, replacements)
     # Извърши комитване и качване на промените
