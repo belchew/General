@@ -2,7 +2,7 @@ name: Refresh
 
 on:
   schedule:
-    - cron: '4 * * * *'
+    - cron: '59 * * * *'
       timezone: 'EU/Eastern'
 jobs:
   run-script:
