@@ -2,8 +2,7 @@ name: Refresh
 
 on:
   schedule:
-    - cron: '5 * * * *'
-      timezone: Europe/Sofia
+    - cron: '3 * * * *'
 jobs:
   run-script:
     runs-on: ubuntu-latest
