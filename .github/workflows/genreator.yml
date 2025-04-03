@@ -1,29 +1,53 @@
-name: Run Python Script for m3u Generation
+name: Update m3u file from EPG
 
 on:
-  push:
-    branches:
-      - main  # Може да е основният ви клон или други клонове, на които искате да тече скриптът
-  workflow_dispatch:  # Това позволява да стартирате action-а ръчно от GitHub интерфейса
+  schedule:
+    - cron: '0 0 * * *'  # Изпълнение всеки ден в полунощ
+  workflow_dispatch:  # Позволява ръчно стартиране
 
 jobs:
-  run_python_script:
+  update-m3u:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      # Стъпка 1: Проверка на репозитория
+      - name: Checkout the repository
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'  # Или версия на Python, която искате
+      # Стъпка 2: Инсталиране на Python
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests gitpython
+      # Стъпка 3: Инсталиране на необходими зависимости
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
-    - name: Run Python script
-      run: |
-        python scripts/parss.py  # Заменете с името на вашия скрипт
+      # Стъпка 4: Изтегляне на EPG XML файл от първото хранилище
+      - name: Download EPG XML
+        run: |
+          curl -L -o epg.xml https://raw.githubusercontent.com/harrygg/EPG/refs/heads/master/all-2days.basic.epg.xml
+
+      # Стъпка 5: Изтегляне на m3u файла
+      - name: Download sources.m3u
+        run: |
+          curl -L -o sources.m3u https://raw.githubusercontent.com/belchew/General/refs/heads/main/output.m3u
+
+      # Стъпка 6: Изпълнение на Python скрипт за актуализиране на m3u
+      - name: Update m3u file with EPG data
+        run: |
+          python scripts/parss.py
+
+      # Стъпка 7: Качване на промените обратно в GitHub
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'belchew'
+          git config --global user.email 'belchew@outlook.com'
+          git add sources.m3u
+          git commit -m "Update m3u file with new data from EPG"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
