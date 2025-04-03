@@ -4,6 +4,7 @@ import time
 import os
 
 M3U_FILE_PATH = "output.m3u"  # Път на новия m3u файл, който ще генерираме
+local_file_path = os.path.join(repo_path, M3U_FILE_PATH)
 
 # Функция за изтегляне на EPG XML файл
 def download_epg_xml(url):
