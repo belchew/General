@@ -20,7 +20,7 @@ for program in root.findall('.//programme'):
     programs.append({'title': title, 'start_time': start_time, 'end_time': end_time})
 
 # Отваряне на m3u файла за добавяне на нови записи
-with open('sources.m3u', 'a') as m3u_file:
+with open('output.m3u', 'a') as m3u_file:
     for program in programs:
         start_seconds = time_to_seconds(program['start_time'])
         end_seconds = time_to_seconds(program['end_time'])
