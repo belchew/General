@@ -36,7 +36,7 @@ def create_m3u_file(epg_data):
             start = programme.get("start")
             stop = programme.get("stop")
             title = programme.find("title").text if programme.find("title") is not None else "Без заглавие"
-            video_url = "your_video_link.m3u8"  # Примерен m3u8 линк, може да бъде различен
+            video_url = "https://cdn3.glebul.com/hls/hd-code-fashion-tv-hd/index.m3u8?e=1743671236&hash=PkjRaxh2FHOFtRmH4GRbMg"  # Примерен m3u8 линк, може да бъде различен
 
             # Преобразуваме времето от формат ISO в timestamp
             start_timestamp = int(time.mktime(time.strptime(start, "%Y%m%dT%H%M%S000Z")))
