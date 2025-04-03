@@ -26,4 +26,4 @@ jobs:
 
     - name: Run Python script
       run: |
-        python parss.py  # Заменете с името на вашия скрипт
+        python scripts/parss.py  # Заменете с името на вашия скрипт
