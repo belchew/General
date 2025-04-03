@@ -5,7 +5,7 @@ import os
 from git import Repo
 
 # URL на EPG XML файл в GitHub (заменете с вашия URL)
-EPG_URL = "https://raw.githubusercontent.com/your_user/your_repo/master/EPG.xml"
+EPG_URL = "https://raw.githubusercontent.com/harrygg/EPG/refs/heads/master/all-2days.basic.epg.xml"
 M3U_FILE_PATH = "output.m3u"  # Път на новия m3u файл, който ще генерираме
 
 # Функция за изтегляне на EPG XML файл
