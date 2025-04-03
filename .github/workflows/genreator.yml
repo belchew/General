@@ -1,0 +1,29 @@
+name: Run Python Script for m3u Generation
+
+on:
+  push:
+    branches:
+      - main  # Може да е основният ви клон или други клонове, на които искате да тече скриптът
+  workflow_dispatch:  # Това позволява да стартирате action-а ръчно от GitHub интерфейса
+
+jobs:
+  run_python_script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'  # Или версия на Python, която искате
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests gitpython
+
+    - name: Run Python script
+      run: |
+        python script_name.py  # Заменете с името на вашия скрипт
