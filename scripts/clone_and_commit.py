@@ -151,7 +151,19 @@ if __name__ == "__main__":
             "#EXTINF:-1,ID": '#EXTINF:-1 tvg-name="id extra HD" tvg-logo="https://www.glebul.com/images/tv-logo/id-xtra-hd.png" group-title="Филмови" , ID Extra HD',
             "#EXTINF:-1,TravelChannel": '#EXTINF:-1 tvg-name="Travel Channel" tvg-logo="https://www.glebul.com/images/tv-logo/travel-channel-hd.png" group-title="Научни" , Travel Channel',
             "#EXTINF:-1,TLC": '#EXTINF:-1 tvg-name="TLC" tvg-logo="https://www.glebul.com/images/tv-logo/tlc.png" group-title="Други" , TLC HD',
-            "#EXTINF:-1,EuroNews": '#EXTINF:-1 tvg-name="Euronews Bulgaria" tvg-logo="https://www.glebul.com/images/tv-logo/euronews-bulgaria.png" group-title="ЕФИРНИ" , Euronews Bulgaria'
+            "#EXTINF:-1,EuroNews": '#EXTINF:-1 tvg-name="Euronews Bulgaria" tvg-logo="https://www.glebul.com/images/tv-logo/euronews-bulgaria.png" group-title="ЕФИРНИ" , Euronews Bulgaria',
+            "https://cdn1.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
+            "https://cdn2.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
+            "https://cdn3.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
+            "https://cdn4.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
+            "https://cdn5.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
+            "https://cdn6.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
+            "https://cdn7.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
+            "https://cdn8.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
+            "https://cdn9.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
+            "https://cdn10.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
+            "https://cdn11.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
+            "https://cdn12.glebul.com/hls/": 'https://ro.glebul.com/dvr/'
     }
     replace_multiple_content(local_file_path, replacements)
     # Извърши комитване и качване на промените
