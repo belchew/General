@@ -29,7 +29,7 @@ jobs:
       # Стъпка 4: Изтегляне на EPG XML файл от първото хранилище
       - name: Download EPG XML
         run: |
-          curl -L -o epg.xml https://raw.githubusercontent.com/harrygg/EPG/refs/heads/master/all-2days.basic.epg.xml
+          curl -L -o epg.xml https://raw.githubusercontent.com/belchew/General/refs/heads/main/all-2days.basic.epg.xml
 
       # Стъпка 5: Изтегляне на m3u файла
       - name: Download sources.m3u
