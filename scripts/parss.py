@@ -1,5 +1,4 @@
 import xml.etree.ElementTree as ET
-import requests
 from datetime import datetime
 
 # Функция за конвертиране на време в секунди
@@ -14,12 +13,21 @@ root = tree.getroot()
 # Четене на данни от EPG
 programs = []
 for program in root.findall('.//programme'):
-    title = program.find('title').text
-    start_time = program.find('start').text
-    end_time = program.find('stop').text
-    programs.append({'title': title, 'start_time': start_time, 'end_time': end_time})
+    title = program.find('title').text if program.find('title') is not None else "Unknown Title"
+    
+    # Проверка за наличието на start и stop елементи
+    start_time = program.find('start').text if program.find('start') is not None else None
+    end_time = program.find('stop').text if program.find('stop') is not None else None
+    
+    # Ако липсват start или stop, пропускаме програмата
+    if start_time and end_time:
+        programs.append({'title': title, 'start_time': start_time, 'end_time': end_time})
 
-# Отваряне на m3u файла за добавяне на нови записи
+# Показване на извлечените програми
+for program in programs:
+    print(f"Title: {program['title']}, Start: {program['start_time']}, End: {program['end_time']}")
+
+# Примерен начин за обработка на m3u файл
 with open('output.m3u', 'a') as m3u_file:
     for program in programs:
         start_seconds = time_to_seconds(program['start_time'])
