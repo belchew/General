@@ -2,7 +2,7 @@ import requests
 from xml.etree import ElementTree as ET
 import time
 import os
-
+repo_path = os.getcwd()  
 M3U_FILE_PATH = "output.m3u"  # Път на новия m3u файл, който ще генерираме
 local_file_path = os.path.join(repo_path, M3U_FILE_PATH)
 
