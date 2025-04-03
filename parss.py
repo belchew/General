@@ -2,25 +2,31 @@ import requests
 from xml.etree import ElementTree as ET
 import time
 import os
-from git import Repo
 
-# URL на EPG XML файл в GitHub (заменете с вашия URL)
-EPG_URL = "https://raw.githubusercontent.com/harrygg/EPG/refs/heads/master/all-2days.basic.epg.xml"
 M3U_FILE_PATH = "output.m3u"  # Път на новия m3u файл, който ще генерираме
 
 # Функция за изтегляне на EPG XML файл
 def download_epg_xml(url):
     response = requests.get(url)
     if response.status_code == 200:
+        print("EPG XML файлът е изтеглен успешно.")
         return response.text
     else:
-        raise Exception("Не може да се изтегли XML файл")
+        print(f"Грешка при изтегляне на EPG файла: {response.status_code}")
+        return None
 
 # Функция за създаване на m3u файл от EPG данни
 def create_m3u_file(epg_data):
-    # Извличаме всички програми от EPG
+    if epg_data is None:
+        print("EPG данните не са налични.")
+        return
+
     root = ET.fromstring(epg_data)
     programmes = root.findall(".//programme")
+
+    if not programmes:
+        print("Няма намерени програми в EPG XML файла.")
+        return
 
     with open(M3U_FILE_PATH, "w") as m3u_file:
         m3u_file.write("#EXTM3U\n")  # Започваме m3u файла
@@ -28,7 +34,7 @@ def create_m3u_file(epg_data):
         for programme in programmes:
             start = programme.get("start")
             stop = programme.get("stop")
-            title = programme.find("title").text
+            title = programme.find("title").text if programme.find("title") is not None else "Без заглавие"
             video_url = "your_video_link.m3u8"  # Примерен m3u8 линк, може да бъде различен
 
             # Преобразуваме времето от формат ISO в timestamp
@@ -39,35 +45,26 @@ def create_m3u_file(epg_data):
             m3u_file.write(f"#EXTINF:{stop_timestamp - start_timestamp},{title}\n")
             m3u_file.write(f"{video_url}\n")
 
-# Функция за добавяне на файла в Git репозиторио и качване в GitHub
-def commit_and_push_to_github():
-    # Път към текущото репозиторио
-    repo_path = os.getcwd()  # Това е пътят до текущото работно директория
-    repo = Repo(repo_path)
+    print(f"m3u файлът беше успешно създаден и записан в {M3U_FILE_PATH}")
 
-    # Добавяне на новия файл към репозиториото
-    repo.git.add(M3U_FILE_PATH)
+# Проверка дали m3u файлът е записан
+def check_file_created(file_path):
+    if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
+        print(f"Файлът {file_path} е създаден успешно.")
+    else:
+        print(f"Файлът {file_path} не е създаден или е празен.")
 
-    # Комитване на промените
-    repo.index.commit("Добавен нов m3u плейлист")
-
-    # Пушване на промените в GitHub
-    origin = repo.remote(name='origin')
-    origin.push()
-
-# Основна функция за стартиране на процеса
+# Основна функция
 def main():
     try:
         # Стъпка 1: Изтегляне на EPG XML файла
-        epg_data = download_epg_xml(EPG_URL)
+        epg_data = download_epg_xml("https://raw.githubusercontent.com/harrygg/EPG/refs/heads/master/all-2days.basic.epg.xml")
 
         # Стъпка 2: Създаване на m3u файл от EPG данни
         create_m3u_file(epg_data)
 
-        # Стъпка 3: Добавяне и качване на m3u файла в GitHub
-        commit_and_push_to_github()
-
-        print("m3u файл успешно създаден и качен в репозиториото!")
+        # Стъпка 3: Проверка на резултата
+        check_file_created(M3U_FILE_PATH)
 
     except Exception as e:
         print(f"Грешка: {e}")
