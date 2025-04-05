@@ -90,7 +90,7 @@ def scrape_and_push_to_git():
         page = browser.new_page()
         
         # Replace this URL with the URL of the page containing the links you want to scrape
-        url = 'https://seirsanduk.online/bnt-1-hd-online'
+        url = 'https://www.seir-sanduk.com/hd-bnt-1-hd-online'
         page.goto(url)
 
         # Extract all links from the page
