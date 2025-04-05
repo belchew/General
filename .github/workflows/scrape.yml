@@ -1,0 +1,36 @@
+name: Scrape and Push TS Links
+
+on:
+  push:
+    branches:
+      - main  # или другата основна клонка на репозитория
+  schedule:
+    - cron: '0 0 * * *'  # Изпълнява се всеки ден в полунощ
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Изберете подходящата версия на Node.js
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run scrape script
+        run: node scrape.js  # тук ще посочиш пътя до твоя скрипт
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "Your Name"
+          git config --global user.email "your-email@example.com"
+          git add sources.m3u
+          git commit -m "Update sources.m3u"
+          git push
+
