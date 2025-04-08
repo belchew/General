@@ -1,4 +1,3 @@
-# Import python libraries
 import os
 import base64
 import re
@@ -85,21 +84,31 @@ updated_channel_df.drop(['FinalLinkToUse', 'Channel_y', 'SourceLink_y'], axis=1,
 # Reading playlist instance
 file_path = 'sources.m3u'
 
-with open(file_path, 'r') as file:
-    tv_m3u_content = file.read()
+# Ensure the file exists before reading
+if not os.path.exists(file_path):
+    print(f"Error: The file {file_path} does not exist.")
+else:
+    with open(file_path, 'r') as file:
+        tv_m3u_content = file.read()
 
-tv_m3u_content_updated = tv_m3u_content
+    tv_m3u_content_updated = tv_m3u_content
 
-# Updating links in file
-for index, row in updated_channel_df.iterrows():
-    channel_name = row['Channel']
-    link_to_update = row['LinkToUpdate']
-    if link_to_update is not None:
-        pattern = re.escape(channel_name) + r'\n(https://[^\n]+)'
-        tv_m3u_content_updated = re.sub(pattern, f"{channel_name}\n{link_to_update}", tv_m3u_content_updated)
+    # Updating links in file
+    changes_made = False
+    for index, row in updated_channel_df.iterrows():
+        channel_name = row['Channel']
+        link_to_update = row['LinkToUpdate']
+        if link_to_update is not None:
+            pattern = re.escape(channel_name) + r'\n(https://[^\n]+)'
+            new_content = re.sub(pattern, f"{channel_name}\n{link_to_update}", tv_m3u_content_updated)
+            if new_content != tv_m3u_content_updated:
+                tv_m3u_content_updated = new_content
+                changes_made = True
 
-# Write the updated content back to the file
-with open(file_path, 'w') as file:
-    file.write(tv_m3u_content_updated)
-
-print(f"File {file_path} successfully updated.")
+    # If changes were made, write the updated content back to the file
+    if changes_made:
+        with open(file_path, 'w') as file:
+            file.write(tv_m3u_content_updated)
+        print(f"File {file_path} successfully updated.")
+    else:
+        print("No changes were made to the file.")
