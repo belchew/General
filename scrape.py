@@ -1,11 +1,11 @@
-# Импортиране на нужните библиотеки
+# Import python libraries
 import os
 import base64
 import re
 import pandas as pd
 import requests
 
-# Мапиране на канали
+# Channel mapping
 channel_mapping = {
     '#EXTINF:-1, Nat Geo Wild': 'https://www.seir-sanduk.com/?player=1&id=hd-nat-geo-wild-hd&pass=',
     '#EXTINF:-1, Kitchen 24': 'https://www.seir-sanduk.com/?player=1&id=hd-24-kitchen-hd&pass=',
@@ -18,7 +18,7 @@ channel_mapping = {
     '#EXTINF:-1, Epic Drama': 'https://www.seir-sanduk.com/?player=1&id=hd-epic-drama-hd&pass=',
     '#EXTINF:-1, Discovery Channel': 'https://www.seir-sanduk.com/?player=1&id=hd-discovery-channel-hd&pass=',
     '#EXTINF:-1, Star Crime': 'https://www.seir-sanduk.com/?player=1&id=hd-star-crime-hd&pass=',
-    '#EXTINF:-1,Travel TV': 'https://www.seir-sanduk.com/?player=1&id=hd-travel-channel-hd&pass=',
+    '#EXTINF:-1, Travel TV': 'https://www.seir-sanduk.com/?player=1&id=hd-travel-channel-hd&pass=',
     '#EXTINF:-1, Nova News': 'https://www.seir-sanduk.com/?player=1&id=hd-nova-news-hd&pass=',
     '#EXTINF:-1, Nova TV': 'https://www.seir-sanduk.com/?player=1&id=hd-nova-tv-hd&pass=',
     '#EXTINF:-1, BTV': 'https://www.seir-sanduk.com/?player=1&id=hd-btv-hd&pass=',
@@ -28,12 +28,17 @@ channel_mapping = {
     '#EXTINF:-1, TLC 1 RU': 'http://rutv.pw/tlc',
     '#EXTINF:-1, Dorama RU': 'http://rutv.pw/dorama',
     '#EXTINF:-1, EDA RU': 'http://rutv.pw/edahd'
+    # Add more channels as needed
 }
 
-# Функция за обновяване на линковете
+# Creating function to sniff m3u8 links
 def update_links(channel, source_link):
     with requests.Session() as session:
         response = session.get(source_link)
+        if response.status_code != 200:
+            print(f"Error fetching {source_link} for {channel}. Status Code: {response.status_code}")
+            return None
+        print(f"Fetched content for {channel}: {response.text[:500]}...")  # Show the first 500 chars
         match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
         if match:
             m3u_link = match.group(0)
@@ -43,16 +48,19 @@ def update_links(channel, source_link):
             print(f"No m3u link found for {channel}")
             return None
 
-# Обработка на канали
+# Use function to sniff channels links in mapping
 data_list = []
+
 for channel, source_link in channel_mapping.items():
     fetched_link = update_links(channel, source_link)
     data_list.append({'Channel': channel, 'SourceLink': source_link, 'LinkToUpdate': fetched_link})
 
-# Преобразуване в DataFrame
 channel_df = pd.DataFrame(data_list)
 
-# Прекодиране на неправилни линкове
+# Drop rows where 'LinkToUpdate' is NaN
+channel_df = channel_df.dropna(subset=['LinkToUpdate'])
+
+# Since IP block is generating some wrong links, reutilizing valid token
 valid_token = None
 for link in channel_df.loc[channel_df['LinkToUpdate'].str.startswith('https://mx86.glebul.com/hlsfhd/'), 'LinkToUpdate']:
     match = re.search(r'\.m3u8\?e=(\d+)&hash=([^\&]+)', link)
@@ -60,21 +68,29 @@ for link in channel_df.loc[channel_df['LinkToUpdate'].str.startswith('https://mx
         valid_token = match.group(0)
         break
 
-# Поправяне на грешни линкове
+if not valid_token:
+    print("No valid token found in the m3u links. Please check the token extraction logic.")
+
+# Fixing wrong links by replacing them with valid token
 wrong_links_to_edit = channel_df[channel_df['LinkToUpdate'].str.startswith('https://ro.gledam.xyz/hls/')]
-wrong_links_to_edit['FinalLinkToUse'] = wrong_links_to_edit['LinkToUpdate'].apply(lambda x: re.sub(r'^https://ro.gledam.xyz/hls/(.+?)/(.+)$', f'https://mx86.glebul.com/hlsfhd/\\1{valid_token}', x))
+wrong_links_to_edit['FinalLinkToUse'] = wrong_links_to_edit['LinkToUpdate'].apply(
+    lambda x: re.sub(r'^https://ro.gledam.xyz/hls/(.+?)/(.+)$', f'https://mx86.glebul.com/hlsfhd/\\1{valid_token}', x))
 
+# Merging corrected links back to the main DataFrame
 updated_channel_df = pd.merge(channel_df, wrong_links_to_edit, on='LinkToUpdate', how='left', suffixes=('', '_y'))
-updated_channel_df['LinkToUpdate'] = updated_channel_df.apply(lambda row: row['FinalLinkToUse'] if pd.notnull(row['FinalLinkToUse']) else row['LinkToUpdate'], axis=1)
-updated_channel_df.drop(['FinalLinkToUse','Channel_y','SourceLink_y'], axis=1, inplace=True)
+updated_channel_df['LinkToUpdate'] = updated_channel_df.apply(
+    lambda row: row['FinalLinkToUse'] if pd.notnull(row['FinalLinkToUse']) else row['LinkToUpdate'], axis=1)
+updated_channel_df.drop(['FinalLinkToUse', 'Channel_y', 'SourceLink_y'], axis=1, inplace=True)
 
-# Четене на M3U файл
+# Reading playlist instance
 file_path = 'sources.m3u'
-with open(file_path, 'r', encoding='utf-8') as file:
+
+with open(file_path, 'r') as file:
     tv_m3u_content = file.read()
 
-# Обновяване на линковете
 tv_m3u_content_updated = tv_m3u_content
+
+# Updating links in file
 for index, row in updated_channel_df.iterrows():
     channel_name = row['Channel']
     link_to_update = row['LinkToUpdate']
@@ -82,8 +98,8 @@ for index, row in updated_channel_df.iterrows():
         pattern = re.escape(channel_name) + r'\n(https://[^\n]+)'
         tv_m3u_content_updated = re.sub(pattern, f"{channel_name}\n{link_to_update}", tv_m3u_content_updated)
 
-# Записване на обновения файл
-with open(file_path, 'w', encoding='utf-8') as file:
+# Write the updated content back to the file
+with open(file_path, 'w') as file:
     file.write(tv_m3u_content_updated)
 
 print(f"File {file_path} successfully updated.")
