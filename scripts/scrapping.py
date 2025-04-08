@@ -25,12 +25,15 @@ channel_mapping = {
 }
 
 # Функция за извличане на линкове
-# Creating function to m3u8 sniffer
 def update_links(channel, source_link):
+    print(f"Fetching link for channel: {channel} from {source_link}")
     with requests.Session() as session:
         try:
             response = session.get(source_link)
             response.raise_for_status()  # Вдига грешка ако статусът не е 200
+            print(f"Received response with status code {response.status_code} for {channel}")
+            
+            # Извличане на линк към m3u
             match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
             if match:
                 m3u_link = match.group(0)
@@ -47,21 +50,27 @@ def update_links(channel, source_link):
 data_list = []
 m3u_links = []
 
+# Обработка на каналите
 for channel, source_link in channel_mapping.items():
     fetched_link = update_links(channel, source_link)
     data_list.append({'Channel': channel, 'SourceLink': source_link, 'LinkToUpdate': fetched_link})
-    if fetched_link:  # If link is fetched, we add it to the m3u_links list
+    
+    if fetched_link:  # Ако линкът е извлечен, добавяме го в списъка m3u_links
         m3u_links.append(f"{channel}\n{fetched_link}")
+    else:
+        print(f"Skipping channel {channel} because no link was fetched.")
 
 # Преобразуваме данните в DataFrame
 channel_df = pd.DataFrame(data_list)
 
-# Проверка дали м3у линковете са намерени
+# Проверка дали има намерени линкове
 if not m3u_links:
     print("No valid m3u links were found. The file will not be updated.")
 else:
     # Записваме линковете в sources.m3u
     print(f"Writing {len(m3u_links)} m3u links to the file {file_path}")
+    
+    # Изчистваме съдържанието на файла и записваме новите линкове
     with open(file_path, 'w') as file:  # 'w' режим за презапис на файла
         for link in m3u_links:
             file.write(link + '\n')
