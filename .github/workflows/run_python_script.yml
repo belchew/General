@@ -1,12 +1,14 @@
-name: Refresh
+name: Refresh m3u Links
 
 on:
   push:
     branches:
-      - main
+      - main  # Може да бъде друга клонка, ако е необходимо
+  schedule:
+    - cron: '3 * * * *'  # Всеки час, може да промените интервала
 
 jobs:
-  run-script:
+  update-sources-m3u:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,24 +20,19 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Set up Git config
-        run: |
-          git config --global user.email "belchew@outlook.com"
-          git config --global user.name "belchew"
-          
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests gitpython pandas
+          pip install requests pandas
 
-      - name: Run Python script
-        run: |
-          python scripts/scrapping.py
+      - name: Run scrapping script
+        run: python scripts/scrapping.py  # Заменете с пътя до вашия Python скрипт
 
-      - name: Commit and push changes if updated
+      - name: Update sources.m3u (if needed)
         run: |
-          git add sources.m3u
-          git commit -m "Update sources.m3u with new links" || echo "No changes to commit"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          if [ -f "sources.m3u" ]; then
+            echo "sources.m3u already exists, updating...";
+          else
+            echo "sources.m3u does not exist, creating a new one...";
+            touch sources.m3u;
+          fi
