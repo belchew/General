@@ -1,39 +1,30 @@
-name: Refresh
+name: Run Python Script
 
 on:
-#  schedule:
-  #  - cron: '3 * * * *'
+  push:
+    branches:
+      - main  # or the branch you want this to run on
+  pull_request:
+    branches:
+      - main  # optional: triggers on pull requests to the main branch
+
 jobs:
-  run-script:
+  run-python-script:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the repository
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      # Set up Python
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.9'
 
-      # Set up Git config
-      - name: Set up Git config
-        run: |
-          git config --global user.email "belchew@outlook.com"
-          git config --global user.name "belchew"
-
-      # Install required packages (requests and gitpython)
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests gitpython
+          pip install -r requirements.txt
 
-      # Set up GitHub authentication using PAT (token from secrets)
-      - name: Set up GitHub authentication
+      - name: Run the script
         run: |
-          git config --global url."https://${{ secrets.GH_TOKEN }}@github.com".insteadOf "https://github.com"
-
-      # Run the Python script
-      - name: Run Refresh
-        run: python scripts/scrapping.py
+          python scripts/scrapping.py  # Replace with the actual script path
