@@ -34,7 +34,7 @@ def update_links(channel, source_link):
             response.raise_for_status()  # Вдига грешка ако статусът не е 200
             
             print(f"Received response with status code {response.status_code} for {channel}")
-            print(f"Response content preview: {response.text[:200]}...")  # Преглед на първите 200 символа от отговора
+            print(f"Response content preview (first 200 characters): {response.text[:200]}...")  # Преглед на първите 200 символа от отговора
 
             # Извличане на линк към m3u
             match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
