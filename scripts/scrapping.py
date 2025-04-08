@@ -6,18 +6,7 @@ import pandas as pd
 # Път към файла sources.m3u
 file_path = 'sources.m3u'
 
-# Проверка на текущата работна директория
-print(f"Current working directory: {os.getcwd()}")
-
-# Ако файлът не съществува, го създаваме
-if not os.path.exists(file_path):
-    print(f"{file_path} does not exist. Creating a new one.")
-    with open(file_path, 'w') as file:
-        file.write("")  # Създава празен файл
-else:
-    print(f"{file_path} already exists.")
-
-# Канали и техните линкове
+# Канали и линкове
 channel_mapping = {
     '#EXTINF:-1, Nat Geo Wild': 'https://www.seir-sanduk.com/?player=1&id=hd-nat-geo-wild-hd&pass=',
     '#EXTINF:-1, Kitchen 24': 'https://www.seir-sanduk.com/?player=1&id=hd-24-kitchen-hd&pass=',
@@ -32,9 +21,10 @@ def update_links(channel, source_link):
         with requests.Session() as session:
             response = session.get(source_link)
             response.raise_for_status()  # Вдига грешка ако статусът не е 200
-            
+
             print(f"Received response with status code {response.status_code} for {channel}")
-            print(f"Response content preview (first 200 characters): {response.text[:200]}...")  # Преглед на първите 200 символа от отговора
+            # Печат на част от съдържанието на отговора (първите 500 символа)
+            print(f"Response content preview (first 500 characters): {response.text[:500]}...")  
 
             # Извличане на линк към m3u
             match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
