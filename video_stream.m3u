@@ -1,0 +1,152 @@
+#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/bulgarian.3days.full.epg.xml"
+
+#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD
+https://ro.glebul.com/dvr/hd-bnt-1-hd/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="БНТ 2" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-2.png" group-title="ЕФИРНИ" , BNT 2
+https://ro.glebul.com/dvr/bnt-2/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="БНТ 3" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-3-hd.png" group-title="ЕФИРНИ" , BNT 3
+https://ro.glebul.com/dvr/hd-bnt-3-hd/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="БНТ 4" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-4.png" group-title="ЕФИРНИ" , BNT 4 HD
+https://ro.glebul.com/dvr/bnt-4/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="Nova TV" tvg-logo="https://www.glebul.com/images/tv-logo/nova-tv-hd.png" group-title="ЕФИРНИ" , NovaTV
+https://ro.glebul.com/dvr/hd-nova-tv-hd/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="bTV" tvg-logo="https://www.glebul.com/images/tv-logo/btv-hd.png" group-title="ЕФИРНИ" , bTV HD
+https://ro.glebul.com/dvr/hd-btv-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="bTV Action" tvg-logo="https://www.glebul.com/images/tv-logo/btv-action-hd.png" group-title="Спортни"  , bTV Action HD
+https://ro.glebul.com/dvr/hd-btv-action-hd/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="bTV Cinema" tvg-logo="https://www.glebul.com/images/tv-logo/btv-cinema.png" group-title="Филмови" , bTV Cinema HD
+https://ro.glebul.com/dvr/btv-cinema/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="bTV Comedy" tvg-logo="https://www.glebul.com/images/tv-logo/btv-comedy.png" group-title="Филмови" , bTV Comedy HD
+https://ro.glebul.com/dvr/btv-comedy/tracks-v1a1/rewind-18800.m3u8
+#EXTINF:-1 tvg-name="bTV Story" tvg-logo="https://www.glebul.com/images/tv-logo/btv-story.png" group-title="Филмови" , bTV Story HD
+https://ro.glebul.com/dvr/btv-story/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1,BulgariaOnAir
+https://ro.glebul.com/dvr/bulgaria-on-air/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="Nova TV" tvg-logo="https://www.glebul.com/images/tv-logo/nova-tv-hd.png" group-title="ЕФИРНИ" , NovaTVNews
+https://ro.glebul.com/dvr/hd-nova-news-hd/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-name="Diema Family" tvg-logo="https://www.glebul.com/images/tv-logo/diema-family.png" group-title="Филмови" , Diema Family
+https://ro.glebul.com/dvr/diema-family/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-name="Diema" tvg-logo="https://www.glebul.com/images/tv-logo/diema.png" group-title="Филмови" , Diema
+https://ro.glebul.com/dvr/diema/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="KinoNova" tvg-logo="https://www.glebul.com/images/tv-logo/kino-nova.png" group-title="Филмови" , KinoNova
+https://ro.glebul.com/dvr/kino-nova/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-name="STAR Crime " tvg-logo="https://www.glebul.com/images/tv-logo/star-crime-hd.png" group-title="Филмови" , STAR Crime HD
+https://ro.glebul.com/dvr/hd-star-crime-hd/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="STAR CHANNEL" tvg-logo="https://www.glebul.com/images/tv-logo/star-channel-hd.png" group-title="Филмови" , STAR CHANNEL HD
+https://ro.glebul.com/dvr/hd-star-channel-hd/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="STAR Life" tvg-logo="https://www.glebul.com/images/tv-logo/star-life-hd.png" group-title="Филмови" , STAR Life HD
+https://ro.glebul.com/dvr/hd-star-life-hd/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1,HBO
+https://cdn.gledaitv.top:8443/hbo_hd/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1,HBO2
+https://cdn.gledaitv.top:8443/hbo_2_hd/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1,HBO3
+https://cdn.gledaitv.top:8443/hbo_3_hd/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1,Cinemax
+https://cdn.gledaitv.top:8443/cinemax_hd/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1,Cinemax2
+https://cdn.gledaitv.top:8443/cinemax_2_hd/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1,EpicDrama
+https://ro.glebul.com/dvr/hd-epic-drama-hd/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-id="AXN" tvg-name="AXN" tvg-logo="https://www.glebul.com/images/tv-logo/axn.png" group-title="Филмови" , AXN
+https://ro.glebul.com/dvr/axn/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-id="AXN" tvg-name="AXN" tvg-logo="https://www.glebul.com/images/tv-logo/axn.png" group-title="Филмови" , AXNBlack
+https://ro.glebul.com/dvr/axn-black/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-id="AXN" tvg-name="AXN" tvg-logo="https://www.glebul.com/images/tv-logo/axn.png" group-title="Филмови" , AXNWhite
+https://ro.glebul.com/dvr/axn-white/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-name="Discovery Channel" tvg-logo="https://www.glebul.com/images/tv-logo/discovery-channel-hd.png" group-title="Научни" , Discovery Channel HD
+https://ro.glebul.com/dvr/hd-discovery-channel-hd/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="National Geographic" tvg-logo="https://www.glebul.com/images/tv-logo/nat-geo-hd.png" group-title="Научни" , National Geographic HD
+https://ro.glebul.com/dvr/hd-nat-geo-hd/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="Nat Geo Wild" tvg-logo="https://www.glebul.com/images/tv-logo/nat-geo-wild-hd.png" group-title="Научни" , Nat Geo Wild HD
+https://ro.glebul.com/dvr/hd-nat-geo-wild-hd/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1,ID
+https://ro.glebul.com/dvr/hd-id-xtra-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="TLC" tvg-logo="https://www.glebul.com/images/tv-logo/tlc.png" group-title="Други" , TLC HD
+https://ro.glebul.com/dvr/tlc/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="24 Kitchen" tvg-logo="https://www.glebul.com/images/tv-logo/24-kitchen-hd.png" group-title="Други" , 24 Kitchen HD
+https://ro.glebul.com/dvr/hd-24-kitchen-hd/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1,FoodNetwork
+https://ro.glebul.com/dvr/hd-food-network-hd/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1,TravelChannel
+https://ro.glebul.com/dvr/hd-travel-channel-hd/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1,Travel
+https://ro.glebul.com/dvr/travel-tv/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,TV1
+https://ro.glebul.com/dvr/tv-1/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,VTK
+https://ro.glebul.com/dvr/vtk/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,TheVoice
+https://bss1.neterra.tv/thevoice/stream_1.m3u8
+#EXTINF:-1,MagicFM
+https://bss1.neterra.tv/magictv/stream_0.m3u8
+#EXTINF:-1,City
+https://ro.glebul.com/dvr/city-tv/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,DSTV
+https://ro.glebul.com/dvr/dstv/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-name="Planeta Folk" tvg-logo="https://www.glebul.com/images/tv-logo/planeta-folk.png" group-title="Музикални" , Planeta Folk
+https://ro.glebul.com/dvr/planeta-folk/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="Planeta" tvg-logo="https://www.glebul.com/images/tv-logo/planeta-hd.png" group-title="Музикални" , Planeta HD
+https://ro.glebul.com/dvr/hd-planeta-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,Rodina
+https://ro.glebul.com/dvr/rodina-tv/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,TiankovFolk
+https://ro.glebul.com/dvr/tiankov-tv/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,FolklorTV
+https://ro.glebul.com/dvr/folklor-tv/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,EuroNews
+https://ro.glebul.com/dvr/euronews-bulgaria/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,78TV
+https://ro.glebul.com/dvr/hd-78-tv-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,Skat
+https://ro.glebul.com/dvr/skat/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,Eurocom
+https://ro.glebul.com/dvr/evrokom/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,Kanal3
+https://ro.glebul.com/dvr/kanal-3/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="EURO SPORT 1" tvg-logo="https://www.glebul.com/images/tv-logo/eurosport-1-hd.png" group-title="Спортни" , EURO SPORT 1 HD
+https://ro.glebul.com/dvr/hd-eurosport-1-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="EURO SPORT 2" tvg-logo="https://www.glebul.com/images/tv-logo/eurosport-2-hd.png" group-title="Спортни" , EURO SPORT 2 HD
+https://ro.glebul.com/dvr/hd-eurosport-2-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="Diema Sport" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-hd.png" group-title="Спортни" , Diema Sport
+https://ro.glebul.com/dvr/hd-diema-sport-hd/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-name="Diema Sport 2" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-2-hd.png" group-title="Спортни" , Diema Sport 2
+https://ro.glebul.com/dvr/hd-diema-sport-2-hd/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-name="Diema Sport 3" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-3-hd.png" group-title="Спортни" , Diema Sport 3
+https://ro.glebul.com/dvr/hd-diema-sport-3-hd/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-name="Nova Sport" tvg-logo="https://www.glebul.com/images/tv-logo/nova-sport-hd.png" group-title="Спортни" , Nova Sport HD
+https://ro.glebul.com/dvr/hd-nova-sport-hd/tracks-v1a1/rewind-28800.m3u8
+#EXTINF:-1 tvg-name="Ring BG" tvg-logo="https://www.glebul.com/images/tv-logo/ring-bg-hd.png" group-title="Спортни" , Ring BG
+https://ro.glebul.com/dvr/hd-ring-bg-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="Max Sport 1 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-1-hd.png" group-title="Спортни" , Max Sport 1 HD
+https://ro.glebul.com/dvr/hd-max-sport-1-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="Max Sport 2 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-2-hd.png" group-title="Спортни" , Max Sport 2 HD
+https://ro.glebul.com/dvr/hd-max-sport-2-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="Max Sport 3 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-3-hd.png" group-title="Спортни" , Max Sport 3 HD
+https://ro.glebul.com/dvr/hd-max-sport-3-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="Max Sport 4 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-4-hd.png" group-title="Спортни" , Max Sport 4 HD
+https://ro.glebul.com/dvr/hd-max-sport-4-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="Disney channel" tvg-logo="https://www.glebul.com/images/tv-logo/disney-channel.png" group-title="Детски" , Disney channel
+https://ro.glebul.com/dvr/disney-channel/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,EKids
+https://ro.glebul.com/dvr/e-kids/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="Cartoon Network" tvg-logo="https://www.glebul.com/images/tv-logo/cartoon-network.png" group-title="Детски" , Cartoon Network HD
+https://ro.glebul.com/dvr/cartoon-network/tracks-v1a1/rewind-10800.m3u8
+#EXTINF:-1 tvg-name="NickJr" tvg-logo="https://www.glebul.com/images/tv-logo/nick-jr.png" group-title="Детски" , Nick Jr
+https://ro.glebul.com/dvr/nick-jr/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="Nickelodeon" tvg-logo="https://www.glebul.com/images/tv-logo/nickelodeon.png" group-title="Детски" , Nickelodeon
+https://ro.glebul.com/dvr/nickelodeon/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-name="Nicktoons" tvg-logo="https://www.glebul.com/images/tv-logo/nicktoons.png" group-title="Детски" , Nicktoons
+https://ro.glebul.com/dvr/nicktoons/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,Bloomberg
+https://ro.glebul.com/dvr/bloomberg-tv/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,CodeFashion
+https://ro.glebul.com/dvr/hd-code-fashion-tv-hd/tracks-v1a1/playlist.m3u8
+#EXTINF:-1,NHKWorld
+https://nhkworld-tv.akamaized.net/hls/live/2115640/nhkworld-tv/index_1M.m3u8
+#EXTINF:-1,CGTN
+https://english-livebkali.cgtn.com/live/encgtn_0.m3u8
+#EXTINF:-1,CGTN Documentary
+https://english-livebkali.cgtn.com/live/doccgtn_0.m3u8
+#EXTINF:-1,CGTN Russian
+https://russian-livews.cgtn.com/hls/LSvexABhNipibK5KRuUkvHZ7220802LSTeze9o8tdFXMHsb1VosgoT220802cd/playlist.m3u8
