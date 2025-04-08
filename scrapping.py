@@ -129,7 +129,7 @@ def git_commit_and_push():
     try:
         # Изпълняваме git команди
         subprocess.run(['git', 'add', 'sources.m3u'], check=True)  # Добавяме новия файл
-        subprocess.run(['git', 'commit', '-m', 'Обновен m3u файл с нови линкове'], check=True)  # Комитираме
+        subprocess.run(['git', 'commit', '-m', 'Core engine links'], check=True)  # Комитираме
         subprocess.run(['git', 'push'], check=True)  # Пушваме промените в репозитория
     except subprocess.CalledProcessError as e:
         print(f"Грешка при изпълнение на git команда: {e}")
