@@ -54,7 +54,7 @@ for channel, source_link in channel_mapping.items():
 channel_df = pd.DataFrame(data_list)
 
 # Write the fetched m3u links into the sources.m3u file
-file_path = 'C:\\Users\\a1bg537940\\Desktop\\sources.m3u'
+file_path = 'stream.m3u'
 
 # Clear the file before writing new links
 with open(file_path, 'w') as file:  # 'w' mode will overwrite the file (clear it first)
