@@ -59,11 +59,3 @@ with open(file_path, 'w') as file:  # 'w' mode will overwrite the file (clear it
         file.write(link + '\n')
 
 print(f"File {file_path} successfully updated with new links.")
-
-# Ако има ново съдържание, записваме го във файла
-if tv_m3u_content_updated:
-    with open(file_path, 'w') as file:
-        file.write(tv_m3u_content_updated)
-        print(f"File {file_path} successfully updated.")
-else:
-    print("No valid m3u links found, nothing to update.")
