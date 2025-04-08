@@ -9,7 +9,7 @@ import requests
 channel_mapping = {
     '#EXTINF:-1, Nat Geo Wild': 'https://www.seir-sanduk.com/?player=1&id=hd-nat-geo-wild-hd&pass=',
     '#EXTINF:-1, Kitchen 24': 'https://www.seir-sanduk.com/?player=1&id=hd-24-kitchen-hd&pass=',
-    '#EXTINF:-1, BNT 1': 'https://www.seir-sanduk.com/?player=1&id=hd-bnt-1-hd&pass=',
+    '#EXTINF:-1, BNT 1': 'https://www.seir-sanduk.com/hd-bnt-1-hd-online',
     '#EXTINF:-1, BNT 3': 'https://www.seir-sanduk.com/?player=1&id=hd-bnt-3-hd&pass=',
     '#EXTINF:-1, Max Sport 4': 'https://www.seir-sanduk.com/?player=3&id=hd-max-sport-4-hd&pass=',
     '#EXTINF:-1, Max Sport 3': 'https://www.seir-sanduk.com/?player=3&id=hd-max-sport-3-hd&pass=',
