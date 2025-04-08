@@ -1,34 +1,31 @@
-name: Update sources.m3u
+name: Your Workflow Name
 
 on:
   push:
     branches:
-      - main  # или твоята основна клонка, в която искаш да стартираш скрипта
+      - main
   pull_request:
     branches:
-      - main  # или твоята основна клонка, ако искаш да стартираш при PR
+      - main
 
 jobs:
-  run:
-    runs-on: ubuntu-latest  # Може да избереш друга операционна система, ако е необходимо
-    
-    steps:
-    # Стъпка 1: Клониране на репозитория
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    
-    # Стъпка 2: Настройване на Python
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.9'  # Може да избереш друга версия на Python
-    
-    # Стъпка 3: Инсталиране на зависимостите
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pandas requests
+  update_m3u_file:
+    runs-on: ubuntu-latest
 
-    # Стъпка 4: Стартиране на Python скрипта
-    - name: Update sources.m3u
-      run: python scrape.py
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run script
+        run: |
+          python scrape.py
