@@ -1,46 +1,34 @@
 name: Update sources.m3u
 
 on:
- # schedule:
-   # - cron: "*/10 * * * *"
+  push:
+    branches:
+      - main  # или твоята основна клонка, в която искаш да стартираш скрипта
+  pull_request:
+    branches:
+      - main  # или твоята основна клонка, ако искаш да стартираш при PR
 
 jobs:
-  update_tv_m3u:
-    runs-on: ubuntu-latest
-    # Use Node.js 20 by default
-    defaults:
-      run:
-        working-directory: ${{ github.workspace }}
-
+  run:
+    runs-on: ubuntu-latest  # Може да избереш друга операционна система, ако е необходимо
+    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    # Стъпка 1: Клониране на репозитория
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    # Стъпка 2: Настройване на Python
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'  # Може да избереш друга версия на Python
+    
+    # Стъпка 3: Инсталиране на зависимостите
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas requests
 
-      - name: Set up Python
-        uses: actions/setup-python@v5.0.0
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          pip install pandas
-          pip install requests
-
-      - name: Pull changes from remote
-        run: |
-          git pull origin main
-
-      - name: Configure Git
-        run: |
-          git config --local user.email "belchew@outlook.com"
-          git config --local user.name "belchew"
-
-      - name: Run update_links.py
-        run: |
-          python update_links.py
-
-      - name: Commit changes
-        run: |
-          git add .
-          git commit -m "Update sources.m3u file"
-          git push origin main
+    # Стъпка 4: Стартиране на Python скрипта
+    - name: Update sources.m3u
+      run: python scrape.py
