@@ -3,7 +3,7 @@
 import os
 import base64
 import re
-import pandas as pd
+#import pandas as pd
 import requests
 
 # Channel mapping
