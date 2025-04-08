@@ -1,10 +1,22 @@
 import os
-import base64
+import requests
 import re
 import pandas as pd
-import requests
 
-# Channel mapping
+# Проверка дали файлът sources.m3u съществува, ако не го създаваме
+file_path = 'sources.m3u'
+
+# Проверка на директорията
+print(f"Current working directory: {os.getcwd()}")
+
+if not os.path.exists(file_path):
+    print(f"{file_path} does not exist. Creating a new one.")
+    with open(file_path, 'w') as file:
+        file.write("")  # Създава празен файл
+else:
+    print(f"{file_path} already exists.")
+
+# Канали и линкове
 channel_mapping = {
     '#EXTINF:-1, Nat Geo Wild': 'https://www.seir-sanduk.com/?player=1&id=hd-nat-geo-wild-hd&pass=',
     '#EXTINF:-1, Kitchen 24': 'https://www.seir-sanduk.com/?player=1&id=hd-24-kitchen-hd&pass=',
@@ -12,18 +24,20 @@ channel_mapping = {
     # Добавете още канали по необходимост
 }
 
-# Creating function to fetch m3u8 links
+# Функция за извличане на линкове
 def update_links(channel, source_link):
     with requests.Session() as session:
         response = session.get(source_link)
         match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
         if match:
             m3u_link = match.group(0)
+            print(f"Fetched m3u link for {channel}: {m3u_link}")
             return m3u_link
         else:
+            print(f"No m3u link found for {channel}")
             return None
 
-# Use function to fetch channel links in the mapping
+# Събиране на данни
 data_list = []
 for channel, source_link in channel_mapping.items():
     fetched_link = update_links(channel, source_link)
@@ -31,27 +45,26 @@ for channel, source_link in channel_mapping.items():
 
 channel_df = pd.DataFrame(data_list)
 
-# Reading the existing m3u file
-file_path = 'stream.m3u'
-
+# Проверка на съдържанието на файла преди запис
 if os.path.exists(file_path):
     with open(file_path, 'r') as file:
         tv_m3u_content = file.read()
+        print(f"Existing content of {file_path}:\n{tv_m3u_content}")
 else:
-    tv_m3u_content = ""
+    print(f"{file_path} does not exist.")
 
-# Clear the file before writing new content
+# Изчистване на съдържанието на файла преди запис
 tv_m3u_content_updated = ""
 
-# Updating m3u content with the new links
+# Обновяване на съдържанието
 for index, row in channel_df.iterrows():
     channel_name = row['Channel']
     link_to_update = row['LinkToUpdate']
     if link_to_update is not None:
         tv_m3u_content_updated += f"{channel_name}\n{link_to_update}\n"
+        print(f"Updating channel: {channel_name} with link: {link_to_update}")
 
-# Write the updated content back to the file
+# Записване на обновеното съдържание обратно във файла
 with open(file_path, 'w') as file:
     file.write(tv_m3u_content_updated)
-
-print(f"File {file_path} successfully updated.")
+    print(f"File {file_path} successfully updated.")
