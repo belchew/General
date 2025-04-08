@@ -32,7 +32,7 @@ for channel, source_link in channel_mapping.items():
 channel_df = pd.DataFrame(data_list)
 
 # Reading the existing m3u file
-file_path = 'sources.m3u'
+file_path = 'stream.m3u'
 
 if os.path.exists(file_path):
     with open(file_path, 'r') as file:
