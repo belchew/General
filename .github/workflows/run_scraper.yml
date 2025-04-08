@@ -3,23 +3,23 @@ name: Execute Python Script
 on:
   push:
     branches:
-      - main  # Изпълнява се, когато има нови промени в main клона
+      - main
   pull_request:
     branches:
-      - main  # Изпълнява се при пулл заявка към main клона
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Използва най-новата версия на Ubuntu за изпълнение
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2  # Проверява съдържанието на вашето хранилище
+      uses: actions/checkout@v2
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'  # Можете да зададете точна версия на Python, напр. '3.8'
+        python-version: '3.x'  # Задайте версията на Python, ако е нужно
 
     - name: Install dependencies
       run: |
