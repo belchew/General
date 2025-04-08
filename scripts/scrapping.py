@@ -3,12 +3,13 @@ import requests
 import re
 import pandas as pd
 
-# Проверка дали файлът sources.m3u съществува, ако не го създаваме
+# Път към файла sources.m3u
 file_path = 'sources.m3u'
 
-# Проверка на директорията
+# Проверка на текущата работна директория
 print(f"Current working directory: {os.getcwd()}")
 
+# Ако файлът не съществува, го създаваме
 if not os.path.exists(file_path):
     print(f"{file_path} does not exist. Creating a new one.")
     with open(file_path, 'w') as file:
@@ -16,7 +17,7 @@ if not os.path.exists(file_path):
 else:
     print(f"{file_path} already exists.")
 
-# Канали и линкове
+# Канали и техните линкове
 channel_mapping = {
     '#EXTINF:-1, Nat Geo Wild': 'https://www.seir-sanduk.com/?player=1&id=hd-nat-geo-wild-hd&pass=',
     '#EXTINF:-1, Kitchen 24': 'https://www.seir-sanduk.com/?player=1&id=hd-24-kitchen-hd&pass=',
@@ -27,12 +28,14 @@ channel_mapping = {
 # Функция за извличане на линкове
 def update_links(channel, source_link):
     print(f"Fetching link for channel: {channel} from {source_link}")
-    with requests.Session() as session:
-        try:
+    try:
+        with requests.Session() as session:
             response = session.get(source_link)
             response.raise_for_status()  # Вдига грешка ако статусът не е 200
-            print(f"Received response with status code {response.status_code} for {channel}")
             
+            print(f"Received response with status code {response.status_code} for {channel}")
+            print(f"Response content preview: {response.text[:200]}...")  # Преглед на първите 200 символа от отговора
+
             # Извличане на линк към m3u
             match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
             if match:
@@ -42,11 +45,11 @@ def update_links(channel, source_link):
             else:
                 print(f"No m3u link found for {channel}")
                 return None
-        except requests.RequestException as e:
-            print(f"Error fetching link for {channel}: {e}")
-            return None
+    except requests.RequestException as e:
+        print(f"Error fetching link for {channel}: {e}")
+        return None
 
-# Use function to sniff channels links in mapping
+# Списък за съхранение на данни
 data_list = []
 m3u_links = []
 
@@ -59,9 +62,6 @@ for channel, source_link in channel_mapping.items():
         m3u_links.append(f"{channel}\n{fetched_link}")
     else:
         print(f"Skipping channel {channel} because no link was fetched.")
-
-# Преобразуваме данните в DataFrame
-channel_df = pd.DataFrame(data_list)
 
 # Проверка дали има намерени линкове
 if not m3u_links:
