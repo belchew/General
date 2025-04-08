@@ -1,165 +1,92 @@
-import os
-import time
-import git
-from playwright.sync_api import sync_playwright
 
-# Mapping of URL IDs to specific channel names required for the EPG
-channel_name_mapping = {
-    "bnt-1-hd-online": "BNT1",
-    "bnt-2-online": "BNT2",
-    "bnt-3-hd-online": "BNT3",
-    "bnt-4-online": "BNT4",
-    "nova-tv-hd-online": "Nova",
-    "btv-hd-online": "bTV",
-    "btv-action-hd-online": "bTVAction",
-    "btv-cinema-online": "bTVCinema",
-    "btv-comedy-online": "bTVComedy",
-    "btv-story-online": "bTVStory",
-    "bulgaria-on-air-online": "BulgariaOnAir",
-    "cartoon-network-online": "CartoonNetwork",
-    "city-tv-online": "City",
-    "code-fashion-tv-hd-online": "CodeFashion",
-    "diema-family-online": "DiemaFamily",
-    "diema-sport-hd-online": "DiemaSport",
-    "diema-sport-2-hd-online": "DiemaSport2",
-    "diema-sport-3-hd-online": "DiemaSport3",
-    "diema-online": "Diema",
-    "disney-channel-online": "Disney",
-    "discovery-channel-hd-online": "Discovery",
-    "dstv-online": "DSTV",
-    "e-kids-online": "EKids",
-    "epic-drama-hd-online": "EpicDrama",
-    "eurosport-1-hd-online": "Eurosport1",
-    "eurosport-2-hd-online": "Eurosport2",
-    "euronews-bulgaria-online": "EuroNews",
-    "evrokom-online": "Eurocom",
-    "folklor-tv-online": "FolklorTV",
-    "food-network-hd-online": "FoodNetwork",
-    "star-crime-hd-online": "STARCrime",
-    "star-channel-hd-online": "STARChannel",
-    "star-life-hd-online": "STARLife",
-    "id-xtra-hd-online": "ID",
-    "kanal-3-online": "Kanal3",
-    "kino-nova-online": "KinoNova",
-    "max-sport-1-hd-online": "MAXSport1",
-    "max-sport-2-hd-online": "MAXSport2",
-    "max-sport-3-hd-online": "MAXSport3",
-    "max-sport-4-hd-online": "MAXSport4",
-    "nat-geo-hd-online": "NatGeo",
-    "nat-geo-wild-hd-online": "NatGeoWild",
-    "nick-jr-online": "NickJr",
-    "nickelodeon-online": "Nickelodeon",
-    "nicktoons-online": "Nicktoons",
-    "nova-news-hd-online": "NovaNews",
-    "nova-sport-hd-online": "NovaSport",
-    "planeta-folk-online": "PlanetaFolk",
-    "planeta-hd-online": "Planeta",
-    "ring-bg-hd-online": "RING",
-    "rodina-tv-online": "Rodina",
-    "78-tv-hd-online": "78TV",
-    "skat-online": "Skat",
-    "the-voice-online": "TheVoice",
-    "tiankov-tv-online": "TiankovFolk",
-    "tlc-online": "TLC",
-    "travel-channel-hd-online": "TravelChannel",
-    "travel-tv-online": "Travel",
-    "tv-1-online": "TV1",
-    "vtk-online": "VTK",
-    "24-kitchen-hd-online": "24kitchen",
-    "alfa-tv-online": "Alfa",
-    "axn-online": "AXN",
-    "axn-black-online": "AXNBlack",
-    "axn-white-online": "AXNWhite",
-    "bloomberg-tv-online": "Bloomberg",
-    # Add more mappings as needed
+#Import python libraries
+import os
+import base64
+import re
+import pandas as pd
+import requests
+
+# Channel mapping
+channel_mapping = {
+    '#EXTINF:-1, Nat Geo Wild': 'https://www.seir-sanduk.com/?player=1&id=hd-nat-geo-wild-hd&pass=',
+    '#EXTINF:-1, Kitchen 24': 'https://www.seir-sanduk.com/?player=1&id=hd-24-kitchen-hd&pass=',
+    '#EXTINF:-1, BNT 1': 'https://www.seir-sanduk.com/?player=1&id=hd-bnt-1-hd&pass=',
+    '#EXTINF:-1, BNT 3': 'https://www.seir-sanduk.com/?player=1&id=hd-bnt-3-hd&pass=',
+    '#EXTINF:-1, Max Sport 4': 'https://www.seir-sanduk.com/?player=3&id=hd-max-sport-4-hd&pass=',
+    '#EXTINF:-1, Max Sport 3': 'https://www.seir-sanduk.com/?player=3&id=hd-max-sport-3-hd&pass=',
+    '#EXTINF:-1, Diema Sport 3': 'https://www.seir-sanduk.com/?player=3&id=hd-diema-sport-hd&pass=',
+    '#EXTINF:-1, Food Network BG': 'https://www.seir-sanduk.com/?player=1&id=hd-food-network-hd&pass=',
+    '#EXTINF:-1, Epic Drama': 'https://www.seir-sanduk.com/?player=1&id=hd-epic-drama-hd&pass=',
+    '#EXTINF:-1, Discovery Channel': 'https://www.seir-sanduk.com/?player=1&id=hd-discovery-channel-hd&pass=',
+    '#EXTINF:-1, Star Crime': 'https://www.seir-sanduk.com/?player=1&id=hd-star-crime-hd&pass=',
+    '#EXTINF:-1,Travel TV': 'https://www.seir-sanduk.com/?player=1&id=hd-travel-channel-hd&pass=',
+    '#EXTINF:-1, Nova News': 'https://www.seir-sanduk.com/?player=1&id=hd-nova-news-hd&pass=',
+    '#EXTINF:-1, Nova TV': 'https://www.seir-sanduk.com/?player=1&id=hd-nova-tv-hd&pass=',
+    '#EXTINF:-1, BTV': 'https://www.seir-sanduk.com/?player=1&id=hd-btv-hd&pass=',
+    '#EXTINF:-1, Max Sport 1': 'https://www.seir-sanduk.com/?player=3&id=hd-max-sport-1-hd&pass=',
+    '#EXTINF:-1, Max Sport 2': 'https://www.seir-sanduk.com/?player=3&id=hd-max-sport-2-hd&pass=',
+    '#EXTINF:-1, Nova Sports': 'https://www.seir-sanduk.com/?player=3&id=hd-nova-sport-hd&pass=',
+    '#EXTINF:-1, TLC 1 RU': 'http://rutv.pw/tlc',
+    '#EXTINF:-1, Dorama RU': 'http://rutv.pw/dorama',
+    '#EXTINF:-1, EDA RU': 'http://rutv.pw/edahd'
+    # Add more channels as needed
 }
 
-# Set to store recorded channels and avoid duplicates
-recorded_channels = set()
+#Creating function to m3u8 sinffer
+def update_links(channel, source_link):
+    with requests.Session() as session:
+        response = session.get(source_link)
+        match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
+        if match:
+            m3u_link = match.group(0)
+            print(f"Fetched m3u link for {channel}: {m3u_link}")
+            return m3u_link
+        else:
+            print(f"No m3u link found for {channel}")
+            return None
 
-def scrape_and_push_to_git():
-    # Clear the sources.m3u file before writing new data
-    with open('sources.m3u', 'w', encoding='utf-8') as f:
-        f.write('#EXTM3U\n')
-    
-    recorded_channels.clear()
+#Use function to sniff channels links in mapping
+data_list = []
 
-    # Using Playwright to scrape
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        
-        # Replace this URL with the URL of the page containing the links you want to scrape
-        url = 'https://www.seir-sanduk.com/hd-bnt-1-hd-online'
-        page.goto(url)
+for channel, source_link in channel_mapping.items():
+    fetched_link = update_links(channel, source_link)
+    data_list.append({'Channel': channel, 'SourceLink': source_link, 'LinkToUpdate': fetched_link})
 
-        # Extract all links from the page
-        links = page.evaluate("""
-            () => {
-                return Array.from(document.querySelectorAll('a')).map(link => link.href);
-            }
-        """)
+channel_df = pd.DataFrame(data_list)
 
-        for link in links:
-            try:
-                page.goto(link)
+#Since IP block is generating some wrong links, reutilizing valid token
+valid_token = None
+for link in channel_df.loc[channel_df['LinkToUpdate'].str.startswith('https://mx86.glebul.com/hlsfhd/'), 'LinkToUpdate']:
+    match = re.search(r'\.m3u8\?e=(\d+)&hash=([^\&]+)', link)
+    if match:
+        valid_token = match.group(0)
+        break
 
-                player_source = page.evaluate("""
-                    () => {
-                        const scriptTags = document.querySelectorAll('script');
-                        let source = null;
-                        
-                        scriptTags.forEach(script => {
-                            const scriptContent = script.innerHTML;
-                            if (scriptContent.includes('Element")')) {
-                                const match = scriptContent.match(/file:\\s*"([^"]+)"/);
-                                if (match) {
-                                    source = match[1];
-                                }
-                            } else if (scriptContent.includes('const streamUrl =')) {
-                                const match = scriptContent.match(/const streamUrl =\\s*"([^"]+)"/);
-                                if (match) {
-                                    source = match[1];
-                                }  
-                            }
-                        });
+wrong_links_to_edit = channel_df[channel_df['LinkToUpdate'].str.startswith('https://ro.gledam.xyz/hls/')]
+wrong_links_to_edit['FinalLinkToUse'] = wrong_links_to_edit['LinkToUpdate'].apply(lambda x: re.sub(r'^https://ro.gledam.xyz/hls/(.+?)/(.+)$', f'https://mx86.glebul.com/hlsfhd/\\1{valid_token}', x))
 
-                        return source;
-                    }
-                """)
+updated_channel_df = pd.merge(channel_df, wrong_links_to_edit, on='LinkToUpdate', how='left', suffixes=('', '_y'))
+updated_channel_df['LinkToUpdate'] = updated_channel_df.apply(lambda row: row['FinalLinkToUse'] if pd.notnull(row['FinalLinkToUse']) else row['LinkToUpdate'], axis=1)
+updated_channel_df.drop(['FinalLinkToUse','Channel_y','SourceLink_y'], axis=1, inplace=True)
 
-                if player_source and player_source != "https://www.seir-sanduk.com/otustanausta1.mp4":
-                    # Extract the channel name from the URL (if it's part of the URL)
-                    channel_id = link.split('online/')[1].split(' ')[0] if 'online/' in link else 'Unknown Channel'
+#Reading playlist instance
+file_path = 'sources.m3u'
 
-                    # Check the mapping for the correct channel name
-                    channel_name = channel_name_mapping.get(channel_id, channel_id)
+with open(file_path, 'r') as file:
+    tv_m3u_content = file.read()
 
-                    # Skip "Unknown Channel" and duplicates
-                    if channel_name != 'Unknown Channel' and channel_name not in recorded_channels:
-                        with open('sources.m3u', 'a', encoding='utf-8') as f:
-                            f.write(f'#EXTINF:-1,{channel_name}\n{player_source}\n')
+tv_m3u_content_updated = tv_m3u_content
 
-                        print(f'Data successfully written for {channel_name}')
-                        recorded_channels.add(channel_name)  # Add to the set of recorded channels
-                    else:
-                        print(f'Skipped duplicate or unknown channel: {channel_name}')
-                else:
-                    print(f'No player source found for {link}')
+#Updating links in file
+for index, row in updated_channel_df.iterrows():
+    channel_name = row['Channel']
+    link_to_update = row['LinkToUpdate']
+    if link_to_update is not None:
+        pattern = re.escape(channel_name) + r'\n(https://[^\n]+)'
+        tv_m3u_content_updated = re.sub(pattern, f"{channel_name}\n{link_to_update}", tv_m3u_content_updated)
 
-            except Exception as error:
-                print(f'Error visiting {link}: {error}')
+# Write the updated content back to the file
+with open(file_path, 'w') as file:
+    file.write(tv_m3u_content_updated)
 
-        # Close the browser instance
-        browser.close()
-
-    # Commit and push changes to GitHub
-    repo = git.Repo(search_parent_directories=True)
-    repo.git.add('sources.m3u')
-    repo.index.commit('Update sources.m3u with new player sources')
-    origin = repo.remote(name='origin')
-    origin.push()
-
-# Run the function to scrape and push to Git
-if __name__ == "__main__":
-    scrape_and_push_to_git()
+print(f"File {file_path} successfully updated.")
