@@ -25,51 +25,40 @@ channel_mapping = {
 }
 
 # Функция за извличане на линкове
+# Creating function to m3u8 sniffer
 def update_links(channel, source_link):
-    try:
-        with requests.Session() as session:
-            response = session.get(source_link)
-            response.raise_for_status()  # За да хвърлим грешка при лош отговор
-            match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
-            if match:
-                m3u_link = match.group(0)
-                print(f"Fetched m3u link for {channel}: {m3u_link}")
-                return m3u_link
-            else:
-                print(f"No m3u link found for {channel}")
-                return None
-    except Exception as e:
-        print(f"Error fetching link for {channel}: {e}")
-        return None
+    with requests.Session() as session:
+        response = session.get(source_link)
+        match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
+        if match:
+            m3u_link = match.group(0)
+            print(f"Fetched m3u link for {channel}: {m3u_link}")
+            return m3u_link
+        else:
+            print(f"No m3u link found for {channel}")
+            return None
 
-# Събиране на данни
+# Use function to sniff channels links in mapping
 data_list = []
+m3u_links = []
+
 for channel, source_link in channel_mapping.items():
     fetched_link = update_links(channel, source_link)
     data_list.append({'Channel': channel, 'SourceLink': source_link, 'LinkToUpdate': fetched_link})
+    if fetched_link:  # If link is fetched, we add it to the m3u_links list
+        m3u_links.append(f"{channel}\n{fetched_link}")
 
 channel_df = pd.DataFrame(data_list)
 
-# Проверка на съдържанието на файла преди запис
-if os.path.exists(file_path):
-    with open(file_path, 'r') as file:
-        tv_m3u_content = file.read()
-        print(f"Existing content of {file_path}:\n{tv_m3u_content}")
-else:
-    print(f"{file_path} does not exist.")
+# Write the fetched m3u links into the sources.m3u file
+file_path = 'C:\\Users\\a1bg537940\\Desktop\\sources.m3u'
 
-# Изчистване на съдържанието на файла преди запис
-tv_m3u_content_updated = ""
+# Clear the file before writing new links
+with open(file_path, 'w') as file:  # 'w' mode will overwrite the file (clear it first)
+    for link in m3u_links:
+        file.write(link + '\n')
 
-# Обновяване на съдържанието
-for index, row in channel_df.iterrows():
-    channel_name = row['Channel']
-    link_to_update = row['LinkToUpdate']
-    if link_to_update is not None:
-        tv_m3u_content_updated += f"{channel_name}\n{link_to_update}\n"
-        print(f"Updating channel: {channel_name} with link: {link_to_update}")
-    else:
-        print(f"Skipping {channel_name} as no valid m3u link was found.")
+print(f"File {file_path} successfully updated with new links.")
 
 # Ако има ново съдържание, записваме го във файла
 if tv_m3u_content_updated:
