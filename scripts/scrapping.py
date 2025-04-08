@@ -6,6 +6,9 @@ import pandas as pd
 # Път към файла sources.m3u
 file_path = 'sources.m3u'
 
+# Проверка дали файлът съществува и, ако не, го създаваме
+print(f"Checking if the file {file_path} exists...")
+
 # Канали и линкове
 channel_mapping = {
     '#EXTINF:-1, Nat Geo Wild': 'https://www.seir-sanduk.com/?player=1&id=hd-nat-geo-wild-hd&pass=',
