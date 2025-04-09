@@ -33,6 +33,10 @@ jobs:
         run: |
           python -c "import pandas; print(pandas.__version__)"
 
+      - name: Verify gitpython installation
+        run: |
+          python -c "import git; print(git.__version__)"
+
       - name: Run your script
         run: |
           python core/scrape.py
