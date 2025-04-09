@@ -4,6 +4,7 @@ import re
 import pandas as pd
 import requests
 import subprocess
+import git
 
 # Channel mapping
 channel_mapping = {
