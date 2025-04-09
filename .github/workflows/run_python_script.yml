@@ -1,41 +1,31 @@
-name: Refresh
+name: Python CI
 
 on:
-# schedule:
-#  - cron: '*/2 * * * *'
-   push:
-     branches: [main]
-jobs:
-  run-script:
-    runs-on: ubuntu-latest
-    steps:
-      # Checkout the repository
-      - name: Checkout code
-        uses: actions/checkout@v3
+  push:
+    branches: [main]
 
-      # Set up Python
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
           python-version: '3.x'
 
-      # Set up Git config
-      - name: Set up Git config
-        run: |
-          git config --global user.email "belchew@outlook.com"
-          git config --global user.name "belchew"
-
-      # Install required packages (requests and gitpython)
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests gitpython -r requirements.txt
+          pip install -r requirements.txt
 
-      # Set up GitHub authentication using PAT (token from secrets)
-      - name: Set up GitHub authentication
+      - name: Verify pandas installation
         run: |
-          git config --global url."https://${{ secrets.GH_TOKEN }}@github.com".insteadOf "https://github.com"
+          python -c "import pandas; print(pandas.__version__)"
 
-      # Run the Python script
-      - name: Run Refresh
-        run: python core/scrape.py
+      - name: Run your script
+        run: |
+          python /core/scrape.py
