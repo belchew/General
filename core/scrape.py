@@ -127,15 +127,10 @@ def git_commit_and_push():
    # repo_path = '/Users/admin/Downloads/General/'  # Път до вашия локален репозитори
     os.chdir(repo_path)  # Променяме текущата директория на репозитория
 
-    try:
-        # Изпълняваме git команди
-        subprocess.run(['git', 'add', 'sources.m3u'], check=True)  # Добавяме новия файл
-        subprocess.run(['git', 'commit', '-m', 'Core engine links'], check=True)  # Комитираме
-        subprocess.run(['git', 'push'], check=True)  # Пушваме промените в репозитория
-   except subprocess.CalledProcessError as e:
-         print(f"Грешка при изпълнение на git команда: {e}")
-         print(f"Изходът от командата е: {e.output}")
-         print(f"Грешката е: {e.stderr}")
-
+ try:
+    # Вашият код, който може да предизвика грешка
+    subprocess.run(["git", "clone", "https://github.com/your/repo.git"], check=True)
+    except subprocess.CalledProcessError as e:
+    print(f"Error: {e}")
 # Извикваме функцията за качване в GitHub
 git_commit_and_push()
