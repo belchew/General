@@ -127,10 +127,12 @@ def git_commit_and_push():
    # repo_path = '/Users/admin/Downloads/General/'  # Път до вашия локален репозитори
     os.chdir(repo_path)  # Променяме текущата директория на репозитория
 
- try:
-    # Вашият код, който може да предизвика грешка
-    subprocess.run(["git", "clone", "https://github.com/your/repo.git"], check=True)
-    except subprocess.CalledProcessError as e:
-    print(f"Error: {e}")
+try:
+    # Това е кодът в try блока, който се изпълнява, ако няма грешки.
+    result = some_function()
+except SomeError as e:
+    # Това е кодът в except блока, който се изпълнява, ако има грешка.
+    print(f"Error occurred: {e}")
+
 # Извикваме функцията за качване в GitHub
 git_commit_and_push()
