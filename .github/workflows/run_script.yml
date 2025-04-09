@@ -1,41 +1,35 @@
-name: Python script
+name: Python CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  run-script:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      # Checkout the repository
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      # Set up Python
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
           python-version: '3.x'
 
-      # Set up Git config
-      - name: Set up Git config
-        run: |
-          git config --global user.email "belchew@outlook.com"
-          git config --global user.name "belchew"
-
-      # Install required packages (requests and gitpython)
-      - name: Install dependencies
+      - name: Upgrade pip
         run: |
           python -m pip install --upgrade pip
-          pip install requests gitpython
 
-      # Set up GitHub authentication using PAT (token from secrets)
-      - name: Set up GitHub authentication
+      - name: Install dependencies
         run: |
-          git config --global url."https://${{ secrets.GH_TOKEN }}@github.com".insteadOf "https://github.com"
+          pip install -r requirements.txt
+          pip freeze  # За диагностика
 
-      # Run the Python script
-      - name: Run Python script
-        run: python core/scrape.py
+      - name: Verify pandas installation
+        run: |
+          python -c "import pandas; print(pandas.__version__)"
+
+      - name: Run your script
+        run: |
+          python core/scrape.py
