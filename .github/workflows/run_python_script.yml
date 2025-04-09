@@ -1,8 +1,10 @@
 name: Refresh
 
 on:
- schedule:
-  - cron: '*/2 * * * *'
+# schedule:
+#  - cron: '*/2 * * * *'
+   push:
+     branches: [main]
 jobs:
   run-script:
     runs-on: ubuntu-latest
