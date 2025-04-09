@@ -17,10 +17,17 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
+      - name: Upgrade pip
         run: |
           python -m pip install --upgrade pip
+
+      - name: Install dependencies
+        run: |
           pip install -r requirements.txt
+
+      - name: Verify requests installation
+        run: |
+          python -c "import requests; print(requests.__version__)"
 
       - name: Verify pandas installation
         run: |
@@ -28,4 +35,4 @@ jobs:
 
       - name: Run your script
         run: |
-          python core/scrape.py
+          python core/script.py
