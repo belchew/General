@@ -137,4 +137,4 @@ print(f"File {file_path} successfully updated with new links.")
       #  print(f"Грешката е: {e.stderr}")
 
 # Извикваме функцията за качване в GitHub
-#git_commit_and_push()
+commit_and_push_changes()
