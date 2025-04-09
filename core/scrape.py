@@ -122,6 +122,20 @@ with open(file_path, 'w') as file:  # 'w' mode will overwrite the file (clear it
 
 print(f"File {file_path} successfully updated with new links.")
 
+def commit_and_push_changes():
+    # Отвори локалното репозиторио с gitpython
+    repo = git.Repo(repo_path)
+    
+    # Добави новия файл
+    repo.git.add(local_filename)
+    
+    # Извърши commit
+    repo.git.commit('-m', 'Добавен нов файл sources.m3u от URL')
+    
+    # Изпрати промените към origin (можеш да промениш името на remote, ако е различно)
+    repo.git.push('origin', 'main')
+    print(f"Промените са качени успешно в репозиториото: {repo_path}")
+
 #def git_commit_and_push():
  #   repo_path = '/Users/admin/Downloads/General/'  # Път до вашия локален репозитори
   #  os.chdir(repo_path)  # Променяме текущата директория на репозитория
