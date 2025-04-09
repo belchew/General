@@ -112,7 +112,7 @@ for channel, source_link in channel_mapping.items():
 channel_df = pd.DataFrame(data_list)
 
 # Write the fetched m3u links into the sources.m3u file
-file_path = '/Users/admin/Downloads/General/sources.m3u'
+file_path = 'sources.m3u'
 
 # Clear the file before writing new links
 with open(file_path, 'w') as file:  # 'w' mode will overwrite the file (clear it first)
@@ -122,19 +122,19 @@ with open(file_path, 'w') as file:  # 'w' mode will overwrite the file (clear it
 
 print(f"File {file_path} successfully updated with new links.")
 
-def git_commit_and_push():
-    repo_path = '/Users/admin/Downloads/General/'  # Път до вашия локален репозитори
-    os.chdir(repo_path)  # Променяме текущата директория на репозитория
+#def git_commit_and_push():
+ #   repo_path = '/Users/admin/Downloads/General/'  # Път до вашия локален репозитори
+  #  os.chdir(repo_path)  # Променяме текущата директория на репозитория
 
-    try:
+   # try:
         # Изпълняваме git команди
-        subprocess.run(['git', 'add', 'sources.m3u'], check=True)  # Добавяме новия файл
-        subprocess.run(['git', 'commit', '-m', 'Core engine links'], check=True)  # Комитираме
-        subprocess.run(['git', 'push'], check=True)  # Пушваме промените в репозитория
-    except subprocess.CalledProcessError as e:
-        print(f"Грешка при изпълнение на git команда: {e}")
-        print(f"Изходът от командата е: {e.output}")
-        print(f"Грешката е: {e.stderr}")
+    #    subprocess.run(['git', 'add', 'sources.m3u'], check=True)  # Добавяме новия файл
+     #   subprocess.run(['git', 'commit', '-m', 'Core engine links'], check=True)  # Комитираме
+      #  subprocess.run(['git', 'push'], check=True)  # Пушваме промените в репозитория
+   # except subprocess.CalledProcessError as e:
+    #    print(f"Грешка при изпълнение на git команда: {e}")
+     #   print(f"Изходът от командата е: {e.output}")
+      #  print(f"Грешката е: {e.stderr}")
 
 # Извикваме функцията за качване в GitHub
-git_commit_and_push()
+#git_commit_and_push()
