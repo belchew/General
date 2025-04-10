@@ -15,7 +15,7 @@ driver = webdriver.Chrome(options=options)
 
 # Канали, за които да търсим линкове
 channel_mapping = {
-    '#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD': 'https://www.seir-sanduk.com/?id=hd-bnt-1-hd&pass=&hash=',
+    '#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD': 'https://www.seir-sanduk.com/?player=3&id=hd-bnt-1-hd&pass=',
 }
 
 # Функция за извличане на m3u8 линкове
