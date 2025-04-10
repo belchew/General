@@ -9,6 +9,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # Каналите и техните линкове
 channel_mapping = {
@@ -31,8 +33,10 @@ def update_links_with_selenium(channel, source_link):
     time.sleep(5)  # Изчакваме малко време, за да се зареди съдържанието
 
     try:
-        # Търсене на m3u линк
-        m3u_link = driver.find_element(By.XPATH, '//*[contains(text(), ".m3u8")]').get_attribute('href')
+        # Чакаме до 10 секунди за елемент с .m3u8 в href атрибута
+        m3u_link = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, '//a[contains(@href, ".m3u8")]'))
+        ).get_attribute('href')
         print(f"Fetched m3u link for {channel}: {m3u_link}")
         return m3u_link
     except Exception as e:
@@ -48,16 +52,3 @@ m3u_links = []
 for channel, source_link in channel_mapping.items():
     fetched_link = update_links_with_selenium(channel, source_link)
     data_list.append({'Channel': channel, 'SourceLink': source_link, 'LinkToUpdate': fetched_link})
-    if fetched_link:  # Ако линкът е намерен, го добавяме към списъка
-        m3u_links.append(f"{channel}\n{fetched_link}")
-
-# Записване на линковете в sources.m3u файл
-file_path = 'sources.m3u'
-
-# Изчистваме файла преди да запишем новите линкове
-with open(file_path, 'w') as file:
-    file.write('#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-2days.details.epg.xml.gz"\n')  # Добавяме на първия ред #EXTM3U
-    for link in m3u_links:
-        file.write(link + '\n')
-
-print(f"File {file_path} successfully updated with new links.")
