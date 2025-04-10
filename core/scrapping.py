@@ -1,3 +1,4 @@
+
 import os
 import base64
 import re
@@ -86,7 +87,6 @@ channel_mapping = {
     # Add more channels as needed
 }
 
-# Функция за извличане на m3u8 линкове
 def update_links(channel, source_link):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
@@ -94,15 +94,15 @@ def update_links(channel, source_link):
 
     try:
         with requests.Session() as session:
-            response = session.get(source_link, headers=headers, timeout=60)  # Увеличаваме тайм-аут
+            response = session.get(source_link, headers=headers, timeout=60)
             print(f"Status code for {source_link}: {response.status_code}")
-            
+            print(f"Response content preview: {response.text[:500]}")  # Покажи първите 500 символа от HTML
+
             # Проверяваме дали заявката е успешна
             if response.status_code != 200:
                 print(f"Failed to fetch {source_link} - Status code: {response.status_code}")
                 return None
             
-            # Търсим m3u8 линка в отговора
             match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
             if match:
                 m3u_link = match.group(0)
@@ -116,41 +116,26 @@ def update_links(channel, source_link):
         print(f"Error fetching {source_link}: {e}")
         return None
 
-# Извличаме линковете за всички канали
+
+# Use function to sniff channels links in mapping
 data_list = []
 m3u_links = []
 
 for channel, source_link in channel_mapping.items():
     fetched_link = update_links(channel, source_link)
     data_list.append({'Channel': channel, 'SourceLink': source_link, 'LinkToUpdate': fetched_link})
-    if fetched_link:  # Ако линкът е намерен, добавяме го в списъка
+    if fetched_link:  # If link is fetched, we add it to the m3u_links list
         m3u_links.append(f"{channel}\n{fetched_link}")
 
-# Записваме резултатите в датафрейм
 channel_df = pd.DataFrame(data_list)
 
-# Писане на новите линкове в 'sources.m3u' файл
+# Write the fetched m3u links into the sources.m3u file
 file_path = 'sources.m3u'
 
-# Почистваме файла преди да запишем новите линкове
-with open(file_path, 'w') as file:  # 'w' ще изчисти файла
+# Clear the file before writing new links
+with open(file_path, 'w') as file:  # 'w' mode will overwrite the file (clear it first)
     file.write('#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-2days.details.epg.xml.gz"\n')  # Добавяме на първия ред #EXTM3U
     for link in m3u_links:
         file.write(link + '\n')
 
 print(f"File {file_path} successfully updated with new links.")
-
-# Функция за git commit и push
-def git_commit_and_push():
-    repo_path = '.'  # Използваме текущата директория, където е репото
-    try:
-        # Изпълняваме git команди
-        subprocess.run(['git', 'add', 'sources.m3u'], check=True)  # Добавяме новия файл
-        subprocess.run(['git', 'commit', '-m', 'Core engine links'], check=True)  # Комитираме
-        subprocess.run(['git', 'push'], check=True)  # Пушваме промените в репозитория
-    except subprocess.CalledProcessError as e:
-        print(f"Git command failed: {e}")
-
-# Извикваме функцията за качване в GitHub
-git_commit_and_push()
-
