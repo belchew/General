@@ -5,7 +5,7 @@ import pandas as pd
 
 # Channel mapping
 channel_mapping = {
-    '#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD': 'https://www.seir-sanduk.com/?id=hd-bnt-1-hd&pass=&hash='
+    '#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD': 'https://www.gledaitv.fan/diema-sport-live-tv.html'
     # Добави още канали, ако е необходимо
 }
 
