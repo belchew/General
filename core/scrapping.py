@@ -49,7 +49,7 @@ channel_mapping = {
             '#EXTINF:-1 tvg-name="Diema Sport" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-hd.png" group-title="Спортни" , Diema Sport': 'https://www.seir-sanduk.com/myiframe.php?tv=hd-diema-sport-hd',
             '#EXTINF:-1 tvg-name="Diema" tvg-logo="https://www.glebul.com/images/tv-logo/diema.png" group-title="Филмови" , Diema': 'https://www.seir-sanduk.com/?id=diema&pass=&hash=',
             '#EXTINF:-1 tvg-name="Planeta" tvg-logo="https://www.glebul.com/images/tv-logo/planeta-hd.png" group-title="Музикални" , Planeta HD': 'https://www.seir-sanduk.com/?id=hd-planeta-hd&pass=&hash=',
-            '#EXTINF:-1 tvg-name="Nova TV" tvg-logo="https://www.glebul.com/images/tv-logo/nova-tv-hd.png" group-title="ЕФИРНИ" , NovaTV': 'https://www.seir-sanduk.com/?id=hd-nova-tv-hd&pass=&hash=',
+            '#EXTINF:-1 tvg-name="Nova TV" tvg-logo="https://www.glebul.com/images/tv-logo/nova-tv-hd.png" group-title="ЕФИРНИ" , NovaTV': 'https://www.seir-sanduk.com/?player=3&id=hd-nova-tv-hd&pass=',
             '#EXTINF:-1 tvg-name="Cartoon Network" tvg-logo="https://www.glebul.com/images/tv-logo/cartoon-network.png" group-title="Детски" , Cartoon Network HD': 'https://www.seir-sanduk.com/?id=cartoon-network&pass=&hash=',
             '#EXTINF:-1 tvg-name="Disney channel" tvg-logo="https://www.glebul.com/images/tv-logo/disney-channel.png" group-title="Детски" , Disney channel': 'https://www.seir-sanduk.com/?id=disney-channel&pass=&hash=',
             '#EXTINF:-1 tvg-name="Nickeldeon" tvg-logo="https://www.glebul.com/images/tv-logo/nickelodeon.png" group-title="Детски" , Nickelodeon': 'https://www.seir-sanduk.com/?id=nickelodeon&pass=&hash=',
