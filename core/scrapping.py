@@ -9,7 +9,7 @@ import time
 
 # Структура за каналите
 channel_mapping = {
-    '#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD': 'https://www.seir-sanduk.com/?id=hd-bnt-1-hd&pass=&hash=',
+    '#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD': 'https://www.seir-sanduk.com/hd-diema-sport-hd-online?player=3&id=hd-diema-sport-hd&pass=',
 }
 
 # Функция за търсене на линкове с Selenium
