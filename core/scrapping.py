@@ -123,7 +123,7 @@ with open(file_path, 'w') as file:  # 'w' mode will overwrite the file (clear it
 print(f"File {file_path} successfully updated with new links.")
 
 def git_commit_and_push():
-    repo_path = '/Users/admin/Downloads/General/'  # Път до вашия локален репозитори
+    repo_path = 'https://github.com/belchew/General.git'  # Път до вашия локален репозитори
     os.chdir(repo_path)  # Променяме текущата директория на репозитория
 
     try:
