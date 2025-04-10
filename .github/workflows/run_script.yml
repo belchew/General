@@ -1,4 +1,4 @@
-name: Run Python Script Every 30 Minutes
+name: Python CI
 
 on:
   schedule:
