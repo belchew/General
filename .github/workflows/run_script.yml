@@ -1,4 +1,4 @@
-name: Run Python Script Every 30 Minutes
+name: Python CI
 
 on:
   schedule:
@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main  # Изпълнява при push към main
+  workflow_dispatch:  # Разрешава ръчно стартиране от GitHub UI
 
 jobs:
   build:
@@ -35,7 +36,7 @@ jobs:
           python core/scrapping.py  # Стартирайте вашия скрипт
 
       - name: Upload sources.m3u as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2  # Променете версията на v2
         with:
           name: sources.m3u
           path: sources.m3u
