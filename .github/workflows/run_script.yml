@@ -32,10 +32,13 @@ jobs:
           wget -q https://chromedriver.storage.googleapis.com/135.0.7049.84/chromedriver_linux64.zip -O chromedriver.zip
 
           # Проверка дали файлът е изтеглен
-          ls -l chromedriver.zip
-          
-          # Ако файлът съществува, разархивираме
           if [ -f chromedriver.zip ]; then
+            echo "chromedriver.zip е изтеглен успешно."
+
+            # Показваме съдържанието на архива, за да се уверим, че е правилно изтеглен
+            unzip -l chromedriver.zip
+            
+            # Разархивиране на ChromeDriver
             unzip chromedriver.zip
             mv chromedriver /usr/local/bin/
             chmod +x /usr/local/bin/chromedriver
