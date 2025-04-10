@@ -24,11 +24,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Set up Chromium
-        uses: browser-actions/setup-chromium@v2
-        with:
-          chromium-version: 'latest'
+      - name: Install Chromium and ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+          sudo apt-get install -y chromium-chromedriver
 
       - name: Run the scraper
         run: |
           python core/scrapping.py
+        env:
+          DISPLAY: ":99"  # Указваме на Chrome да работи в headless режим
+          CHROME_BIN: "/usr/bin/chromium-browser"
+          CHROME_DRIVER: "/usr/lib/chromium-browser/chromedriver"
