@@ -1,4 +1,4 @@
-name: Upload Artifact Example
+name: Simple Upload Artifact
 
 on:
   push:
@@ -6,28 +6,15 @@ on:
       - main
 
 jobs:
-  build:
+  upload-artifact:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
       with:
-        python-version: '3.x'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Run script
-      run: python your_script.py
-
-    - name: Upload result artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: sources
+        name: my-artifact
         path: ./sources.m3u
