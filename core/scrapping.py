@@ -1,25 +1,29 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 import time
-import requests
-import pandas as pd
+import re
 
-# Channel mapping
+# Структура за каналите
 channel_mapping = {
     '#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD': 'https://www.seir-sanduk.com/?id=hd-bnt-1-hd&pass=&hash=',
 }
 
-# Function to get m3u8 link using Selenium
+# Функция за търсене на линкове с Selenium
 def update_links_selenium(channel, source_link):
-    # Initialize the browser driver (you may need to install the proper webdriver for your browser)
-    driver = webdriver.Chrome()  # Ensure that you have installed the appropriate ChromeDriver
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Стартира браузъра в "headless" режим (без графичен интерфейс)
+    
+    # Създаване на WebDriver с автоматично конфигуриран ChromeDriver
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+
     driver.get(source_link)
-    
-    time.sleep(5)  # Wait for the page to load (you may need to adjust this)
-    
+    time.sleep(5)  # Изчакване за зареждане на страницата
+
     try:
-        # Try to find the m3u8 link on the page
-        m3u_link_element = driver.find_element(By.XPATH, '//*[contains(text(), "index.m3u8")]')
+        # Търсене на m3u8 линк
+        m3u_link_element = driver.find_element_by_xpath('//*[contains(text(), "index.m3u8")]')
         m3u_link = m3u_link_element.get_attribute("href")
         print(f"Fetched m3u link for {channel}: {m3u_link}")
         return m3u_link
@@ -29,23 +33,19 @@ def update_links_selenium(channel, source_link):
     finally:
         driver.quit()
 
-# Use function to sniff channels links in mapping
+# Използваме функцията за извличане на линкове
 data_list = []
 m3u_links = []
 
 for channel, source_link in channel_mapping.items():
     fetched_link = update_links_selenium(channel, source_link)
     data_list.append({'Channel': channel, 'SourceLink': source_link, 'LinkToUpdate': fetched_link})
-    if fetched_link:  # If link is fetched, we add it to the m3u_links list
+    if fetched_link:  # Ако линкът е намерен, го добавяме в списъка
         m3u_links.append(f"{channel}\n{fetched_link}")
 
-channel_df = pd.DataFrame(data_list)
-
-# Write the fetched m3u links into the sources.m3u file
+# Записваме новите линкове в .m3u файл
 file_path = 'sources.m3u'
-
-# Clear the file before writing new links
-with open(file_path, 'w') as file:  # 'w' mode will overwrite the file (clear it first)
+with open(file_path, 'w') as file:
     file.write('#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-2days.details.epg.xml.gz"\n')  # Добавяме на първия ред #EXTM3U
     for link in m3u_links:
         file.write(link + '\n')
