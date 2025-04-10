@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By  # Импортиране на By
 import time
 import re
 
@@ -26,7 +27,7 @@ def update_links_selenium(channel, source_link):
 
     try:
         # Търсене на m3u8 линк
-        m3u_link_element = driver.find_element_by_xpath('//*[contains(text(), "index.m3u8")]')
+        m3u_link_element = driver.find_element(By.XPATH, '//*[contains(text(), "index.m3u8")]')  # Промяна тук
         m3u_link = m3u_link_element.get_attribute("href")
         print(f"Fetched m3u link for {channel}: {m3u_link}")
         return m3u_link
