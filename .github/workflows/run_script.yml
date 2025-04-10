@@ -1,46 +1,45 @@
 name: Python CI
 
 on:
-  push:
-    branches: [main]
   schedule:
-    - cron: "*/30 * * * *"
-  workflow_dispatch:
+    - cron: '*/30 * * * *'  # Изпълнява на всеки 30 минути
+  push:
+    branches:
+      - main  # Изпълнява при push към main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Използва последната версия на Ubuntu
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Извършва checkout на кода от репозитория
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.x'  # Използва Python 3.x версия
 
-      - name: Upgrade pip
+      - name: Install system dependencies
         run: |
-          python -m pip install --upgrade pip
+          sudo apt-get update
+          sudo apt-get install -y wget curl unzip
+          curl -sS -L https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip -o chromedriver.zip
+          unzip chromedriver.zip
+          mv chromedriver /usr/local/bin/
+          chmod +x /usr/local/bin/chromedriver
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
-          pip install -r requirements.txt
+          pip install --upgrade pip
+          pip install -r requirements.txt  # Инсталира зависимостите от requirements.txt
           pip freeze  # За диагностика
 
       - name: Verify pandas installation
         run: |
           python -c "import pandas; print(pandas.__version__)"
 
-      - name: Run your script
+      - name: Run the script
         run: |
-          python core/scrapping.py
+          python core/scrapping.py  # Изпълнява твоя Python скрипт
 
-      - name: Commit and push updated sources.m3u
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add sources.m3u
-          git commit -m "Update sources.m3u via GitHub Actions" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
