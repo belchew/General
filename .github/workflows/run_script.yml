@@ -24,19 +24,25 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y wget curl unzip
-          
+
           # Добавяме стъпка за проверка на версията на Chrome
           google-chrome --version
-          
+
           # Изтегляне на съвместимия ChromeDriver за версия 135
           wget -q https://chromedriver.storage.googleapis.com/135.0.7049.84/chromedriver_linux64.zip -O chromedriver.zip
 
-          # Проверка дали zip файлът е изтеглен
+          # Проверка дали файлът е изтеглен
           ls -l chromedriver.zip
           
-          unzip chromedriver.zip
-          mv chromedriver /usr/local/bin/
-          chmod +x /usr/local/bin/chromedriver
+          # Ако файлът съществува, разархивираме
+          if [ -f chromedriver.zip ]; then
+            unzip chromedriver.zip
+            mv chromedriver /usr/local/bin/
+            chmod +x /usr/local/bin/chromedriver
+          else
+            echo "chromedriver.zip не е изтеглен правилно."
+            exit 1
+          fi
 
       - name: Install Python dependencies
         run: |
