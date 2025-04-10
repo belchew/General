@@ -1,46 +1,44 @@
-name: Python CI
+name: Python script with Selenium
 
 on:
   push:
-    branches: [main]
-  schedule:
-    - cron: "*/30 * * * *"
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  selenium:
+    runs-on: ubuntu-latest  # Може да използваш и windows-latest, ако работиш с Windows
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'  # Може да промениш на версията, която използваш
 
-      - name: Upgrade pip
-        run: |
-          python -m pip install --upgrade pip
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install selenium
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          pip freeze  # За диагностика
+    - name: Install Google Chrome and ChromeDriver
+      run: |
+        # Добавяне на Google Chrome
+        sudo apt-get update
+        sudo apt-get install -y wget curl
+        curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o google-chrome.deb
+        sudo dpkg -i google-chrome.deb
+        sudo apt-get install -f
+        
+        # Инсталиране на ChromeDriver
+        LATEST=$(curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        wget https://chromedriver.storage.googleapis.com/${LATEST}/chromedriver_linux64.zip
+        unzip chromedriver_linux64.zip
+        sudo mv chromedriver /usr/local/bin/ # Поставя го в системния път
+        sudo chmod +x /usr/local/bin/chromedriver
 
-      - name: Verify pandas installation
-        run: |
-          python -c "import pandas; print(pandas.__version__)"
-
-      - name: Run your script
-        run: |
-          python core/scrapping.py
-
-      - name: Commit and push updated sources.m3u
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add sources.m3u
-          git commit -m "Update sources.m3u via GitHub Actions" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+    - name: Run Python script
+      run: |
+        python your_script.py  # Тук стартирате вашия Python скрипт
