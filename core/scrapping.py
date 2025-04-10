@@ -14,9 +14,12 @@ channel_mapping = {
 def update_links_selenium(channel, source_link):
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Стартира браузъра в "headless" режим (без графичен интерфейс)
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
     
     # Създаване на WebDriver с автоматично конфигуриран ChromeDriver
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+    service = Service(ChromeDriverManager().install())  # Използваме Service за ChromeDriver
+    driver = webdriver.Chrome(service=service, options=chrome_options)  # Премахваме директния път към ChromeDriver
 
     driver.get(source_link)
     time.sleep(5)  # Изчакване за зареждане на страницата
