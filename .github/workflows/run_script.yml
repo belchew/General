@@ -1,4 +1,4 @@
-name: Python CI
+name: Run Python Script Every 30 Minutes
 
 on:
   schedule:
@@ -24,8 +24,16 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y wget curl unzip
+          
+          # Добавяме стъпка за проверка на версията на Chrome
+          google-chrome --version
+          
           # Изтегляне на съвместимия ChromeDriver за версия 135
-          curl -sS -L https://chromedriver.storage.googleapis.com/135.0.7049.84/chromedriver_linux64.zip -o chromedriver.zip
+          wget -q https://chromedriver.storage.googleapis.com/135.0.7049.84/chromedriver_linux64.zip -O chromedriver.zip
+
+          # Проверка дали zip файлът е изтеглен
+          ls -l chromedriver.zip
+          
           unzip chromedriver.zip
           mv chromedriver /usr/local/bin/
           chmod +x /usr/local/bin/chromedriver
