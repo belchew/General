@@ -3,6 +3,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By  # Импортиране на By
+from selenium.webdriver.support.ui import WebDriverWait  # За изчакване на елементи
+from selenium.webdriver.support import expected_conditions as EC  # За условията за изчакване
 import time
 
 # Структура за каналите
@@ -22,11 +24,23 @@ def update_links_selenium(channel, source_link):
     driver = webdriver.Chrome(service=service, options=chrome_options)  # Премахваме директния път към ChromeDriver
 
     driver.get(source_link)
-    time.sleep(5)  # Изчакване за зареждане на страницата
-
+    
     try:
-        # Търсене на линкове съдържащи "index.m3u8" в текста
-        m3u_link_elements = driver.find_elements(By.XPATH, '//*[contains(@href, "index.m3u8")]')  # Променено тук
+        # Изчакване на бутон или елемент, който стартира плеъра (тук се предполага, че има такъв елемент)
+        # Примерен XPath за бутон за стартиране на плеъра (може да трябва да бъде променен според HTML структурата)
+        play_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//button[contains(text(), "Play")]'))  # Променете XPath според нуждите
+        )
+        
+        # Кликване на бутона за пускане на плеъра
+        play_button.click()
+        print(f"Video player started for {channel}")
+
+        # Изчакване да се заредят линковете (можете да регулирате времето за изчакване, ако е необходимо)
+        time.sleep(5)  # Това може да се замени с WebDriverWait, ако е необходимо да изчакате определени елементи
+
+        # Търсене на линкове съдържащи "index.m3u8"
+        m3u_link_elements = driver.find_elements(By.XPATH, '//*[contains(@href, "index.m3u8")]')
 
         # Извличаме всички намерени линкове
         m3u_links = [element.get_attribute("href") for element in m3u_link_elements]
