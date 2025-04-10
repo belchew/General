@@ -7,25 +7,31 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
-# Channel mapping
+# Каналите и техните линкове
 channel_mapping = {
     '#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD': 'https://www.seir-sanduk.com/?id=hd-bnt-1-hd&pass=&hash=',
 }
 
-# Функция за обновяване на линковете чрез Selenium
+# Функция за откриване на m3u линкове чрез Selenium
 def update_links_with_selenium(channel, source_link):
-    # Настройки за стартиране на Chrome без графичен интерфейс (headless)
-    options = webdriver.ChromeOptions()
+    # Опции за браузъра Chrome (или Chromium в GitHub Actions)
+    options = Options()
     options.add_argument('--headless')  # Стартира браузъра без графичен интерфейс
+    options.add_argument('--no-sandbox')  # Това е необходимо за GitHub Actions
+    options.add_argument('--disable-dev-shm-usage')  # За да избегнем проблеми с паметта в CI среда
+    options.binary_location = os.environ.get('CHROME_BIN', '/usr/bin/chromium-browser')  # Път до Chromium в CI
+
+    # Инициализация на WebDriver с конфигурираните опции
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-    driver.get(source_link)  # Зареждаме страницата
-    time.sleep(3)  # Да се изчака малко, за да се зареди динамично съдържанието
+    driver.get(source_link)
+    time.sleep(5)  # Изчакваме малко време, за да се зареди съдържанието
 
     try:
-        # Търсене на m3u линк чрез XPath
+        # Търсене на m3u линк
         m3u_link = driver.find_element(By.XPATH, '//*[contains(text(), ".m3u8")]').get_attribute('href')
         print(f"Fetched m3u link for {channel}: {m3u_link}")
         return m3u_link
