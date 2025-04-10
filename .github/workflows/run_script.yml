@@ -7,11 +7,14 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Clear GitHub Actions cache
+      run: rm -rf ~/.cache
 
     - name: Check if sources.m3u exists
       run: |
@@ -23,7 +26,7 @@ jobs:
         fi
 
     - name: Upload result artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       with:
         name: sources
         path: ./sources.m3u
