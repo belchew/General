@@ -40,7 +40,7 @@ def write_to_m3u(channel_name, channel_link):
 
 def main():
     # Примерен URL и канал
-    url = "https://www.some-streaming-site.com/channel/bnt-1-hd"
+    url = "https://www.seir-sanduk.com/?id=hd-bnt-1-hd&pass=&hash="
     channel_name = "BNT 1 HD"
     
     # Извличане на видео линк
