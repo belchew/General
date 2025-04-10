@@ -1,28 +1,29 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import re
+from selenium.webdriver.chrome.service import Service
 import time
+import re
 
 def update_links(channel, source_link):
-    # Настройки за Selenium (headless режим, без отваряне на графичен браузър)
+    # Настройки за Selenium (headless режим)
     options = Options()
-    options.headless = True  # Работи в headless режим (без графичен интерфейс)
-    
-    # Пътят към ChromeDriver (използвай правилния път за твоя компютър)
-    driver = webdriver.Chrome(executable_path=r'път_към_chromedriver', options=options)
+    options.headless = True  # Работи без браузър
+
+    # Използваме инсталирания ChromeDriver от системния път
+    driver = webdriver.Chrome(options=options)
 
     try:
-        # Зареждаме URL-то на канала
+        # Зареждаме страницата
         driver.get(source_link)
         
-        # Изчакваме малко, за да се зареди динамично съдържанието (ако е необходимо)
-        time.sleep(5)  # Този таймаут може да бъде настроен според нуждите
+        # Изчакваме малко, за да се зареди динамично съдържанието
+        time.sleep(5)
 
         # Вземаме HTML съдържанието на страницата
         page_source = driver.page_source
         
         # Логваме част от съдържанието на страницата, за да видим дали линкът е там
-        print(f"Page source snippet: {page_source[:500]}...")  # Показваме само първите 500 символа за да видим как изглежда съдържанието
+        print(f"Page source snippet: {page_source[:500]}...")  # Показваме първите 500 символа
 
         # Регулярен израз за намиране на m3u линковете
         match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', page_source)
