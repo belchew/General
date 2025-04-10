@@ -1,57 +1,37 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-import time
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 
-# Функция за инициализиране на драйвера с Chrome
-def get_driver():
-    options = Options()
-    options.add_argument("--headless")  # Скрива браузъра, за да работи в бекграунд
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+def get_chrome_driver():
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Без графичен интерфейс
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+
+    # Автоматично инсталиране на правилната версия на ChromeDriver
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     return driver
 
-# Примерна функция за извличане на линкове от сайт
-def get_stream_link(url):
-    driver = get_driver()
+def fetch_m3u_links(url, output_file="sources.m3u"):
+    driver = get_chrome_driver()
     driver.get(url)
+
+    # Тук трябва да добавите логиката за извличане на линковете от страницата
+    # Пример: Извличане на всички линкове от <a> тагове (можете да адаптирате за вашата структура)
+    links = driver.find_elements_by_tag_name("a")
     
-    # Добавете логика за извличане на линк от страницата
-    # Например, търсене на видео линк или m3u8 линк:
-    time.sleep(5)  # Добавяне на изчакване за зареждане на съдържанието
-    try:
-        video_link = driver.find_element(By.XPATH, '//*[@id="video-player"]/@src').get_attribute("src")
-    except Exception as e:
-        print(f"Не успях да намеря видео линк: {e}")
-        video_link = None
+    # Записване на линковете в m3u файл
+    with open(output_file, "w") as file:
+        for link in links:
+            href = link.get_attribute("href")
+            if href:
+                # Записване на линковете в .m3u формат
+                file.write(f"{href}\n")
     
     driver.quit()
-    return video_link
+    print(f"Линковете са записани в {output_file}")
 
-# Функция за запис в m3u файл
-def write_to_m3u(channel_name, channel_link):
-    with open("sources.m3u", "a") as file:
-        file.write(f'#EXTINF:-1 tvg-name="{channel_name}" tvg-logo="https://www.glebul.com/images/tv-logo/{channel_name.lower()}-hd.png" group-title="ЕФИРНИ", {channel_name}\n')
-        file.write(f'{channel_link}\n')
-
-def main():
-    # Примерен URL и канал
-    url = "https://www.seir-sanduk.com/?id=hd-bnt-1-hd&pass=&hash="
-    channel_name = "BNT 1 HD"
-    
-    # Извличане на видео линк
-    video_link = get_stream_link(url)
-    
-    if video_link:
-        # Записване на линка в sources.m3u
-        write_to_m3u(channel_name, video_link)
-        print(f'Записан линк за {channel_name} в sources.m3u')
-    else:
-        print(f'Не беше намерен линк за {channel_name}')
-
-if __name__ == "__main__":
-    main()
+# Примерно използване на функцията
+url = "https://example.com"  # Поставете URL-то на страницата от която искате да извлечете линкове
+fetch_m3u_links(url)
