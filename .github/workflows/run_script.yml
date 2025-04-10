@@ -1,4 +1,4 @@
-name: Python script with Selenium
+name: Python script without Selenium
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  selenium:
-    runs-on: ubuntu-latest  # Може да използваш и windows-latest, ако работиш с Windows
+  scraping:
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
@@ -16,29 +16,15 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'  # Може да промениш на версията, която използваш
+        python-version: '3.8'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install selenium
-
-    - name: Install Google Chrome and ChromeDriver
-      run: |
-        # Добавяне на Google Chrome
-        sudo apt-get update
-        sudo apt-get install -y wget curl
-        curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o google-chrome.deb
-        sudo dpkg -i google-chrome.deb
-        sudo apt-get install -f
-        
-        # Инсталиране на ChromeDriver
-        LATEST=$(curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-        wget https://chromedriver.storage.googleapis.com/${LATEST}/chromedriver_linux64.zip
-        unzip chromedriver_linux64.zip
-        sudo mv chromedriver /usr/local/bin/ # Поставя го в системния път
-        sudo chmod +x /usr/local/bin/chromedriver
+        pip install requests
+        pip install beautifulsoup4
+        pip install pandas
 
     - name: Run Python script
       run: |
-        python core/scrapping.py  # Тук стартирате вашия Python скрипт
+        python core/scrapping.py
