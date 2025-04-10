@@ -160,18 +160,9 @@ if __name__ == "__main__":
             "#EXTINF:-1,TV1": '#EXTINF:-1 tvg-name="TV1" tvg-logo="https://www.glebul.com/images/tv-logo/tv-1.png" group-title="ЕФИРНИ" , TV1',
             "#EXTINF:-1,TiankovFolk": '#EXTINF:-1 tvg-name="TiankovFolk" tvg-logo="https://www.glebul.com/images/tv-logo/tiankov-tv.png" group-title="Музикални" , Tiankov Folk',
             "#EXTINF:-1,Kanal3": '#EXTINF:-1 tvg-name="Kanal3" tvg-logo="https://www.glebul.com/images/tv-logo/kanal-3.png" group-title="ЕФИРНИ" , VTK',
-            "https://cdn1.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
-            "https://cdn2.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
-            "https://cdn3.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
-            "https://cdn4.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
-            "https://cdn5.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
-            "https://cdn6.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
-            "https://cdn7.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
-            "https://cdn8.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
-            "https://cdn9.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
-            "https://cdn10.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
-            "https://cdn11.glebul.com/hls/": 'https://ro.glebul.com/dvr/',
-            "https://cdn12.glebul.com/hls/": 'https://ro.glebul.com/dvr/'
+            "/hls/": '/dvr/',
+            "index.m3u8?": 'tracks-v1a1/rewind-86940.m3u8?'
+     
     }
     replace_multiple_content(local_file_path, replacements)
     # Извърши комитване и качване на промените
