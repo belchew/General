@@ -33,5 +33,5 @@ def fetch_m3u_links(url, output_file="sources.m3u"):
     print(f"Линковете са записани в {output_file}")
 
 # Примерно използване на функцията
-url = "https://example.com"  # Поставете URL-то на страницата от която искате да извлечете линкове
+url = "https://www.seir-sanduk.com/?id=hd-bnt-1-hd&pass=&hash="  # Поставете URL-то на страницата от която искате да извлечете линкове
 fetch_m3u_links(url)
