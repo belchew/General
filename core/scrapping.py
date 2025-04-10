@@ -1,120 +1,44 @@
-import os
-import re
-import requests
-import subprocess
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-
-# Channel mapping
-channel_mapping = {
-    '#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD': 'https://www.seir-sanduk.com/?id=hd-bnt-1-hd&pass=&hash=',
-    # Добави тук и други канали с техните URL адреси, ако има нужда
-}
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager  # Импортиране на webdriver_manager
 
 def update_links_with_selenium(channel, source_link):
-    """
-    Използва Selenium, за да зареди динамично съдържание и да извлече m3u8 линкове.
-    """
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless")  # Стартиране на браузър без GUI
-    driver = webdriver.Chrome(options=options)
+    # Настройки за Chrome драйвера
+    options = Options()
+    options.add_argument('--headless')  # Без графичен интерфейс (за CI/CD)
+    options.add_argument('--no-sandbox')  # Избягване на проблеми в CI/CD
+    options.add_argument('--disable-dev-shm-usage')  # Ограничения за ресурси в контейнерите
 
-    try:
-        driver.get(source_link)
-        driver.implicitly_wait(10)  # Изчаква 10 секунди, за да се заредят JavaScript елементите
-
-        # Търсене на m3u8 линковете
-        page_source = driver.page_source
-        match = re.search(r'https:\/\/[^\s"]+\.m3u8(?:\?[^\s"]*)?', page_source)
-
-        if match:
-            m3u_link = match.group(0)
-            print(f"Fetched m3u link for {channel}: {m3u_link}")
-            return m3u_link
-        else:
-            print(f"No m3u link found for {channel}")
-            return None
-    finally:
-        driver.quit()  # Затваря браузъра
-
-def update_links(channel, source_link):
-    """
-    Използва requests, за да зареди съдържанието на страницата и да извлече m3u8 линковете.
-    """
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-    }
-
-    try:
-        with requests.Session() as session:
-            response = session.get(source_link, headers=headers, timeout=60)
-            print(f"Status code for {source_link}: {response.status_code}")
-            # Логване на първите 500 символа от съдържанието на HTML
-            print(f"HTML preview: {response.text[:500]}")  # Показва първите 500 символа от HTML
-
-            if response.status_code != 200:
-                print(f"Failed to fetch {source_link} - Status code: {response.status_code}")
-                return None
-
-            # Проверка дали можем да намерим m3u8 линк
-            match = re.search(r'https:\/\/[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
-            if match:
-                m3u_link = match.group(0)
-                print(f"Fetched m3u link for {channel}: {m3u_link}")
-                return m3u_link
-            else:
-                print(f"No m3u link found for {channel}")
-                return None
-    except requests.RequestException as e:
-        print(f"Error fetching {source_link}: {e}")
-        return None
-
-def git_commit_and_push():
-    """
-    Комитва и пушва промените в GitHub репозитория.
-    """
-    repo_path = '/path/to/your/repo'  # Път до локалния репозитори
-    os.chdir(repo_path)  # Променяме текущата директория на репозитория
-
-    try:
-        # Изпълняваме git команди
-        subprocess.run(['git', 'add', 'sources.m3u'], check=True)  # Добавяме новия файл
-        subprocess.run(['git', 'commit', '-m', 'Core engine links'], check=True)  # Комитираме
-        subprocess.run(['git', 'push'], check=True)  # Пушваме промените в репозитория
-    except subprocess.CalledProcessError as e:
-        print(f"Git error: {e}")
-
-# Основна логика за извличане на линкове и актуализиране на файла
-def main():
-    data_list = []
-    m3u_links = []
-
-    for channel, source_link in channel_mapping.items():
-        # Изпълняваме с requests, ако не работи - пробваме със Selenium
-        print(f"Processing {channel}...")
-        fetched_link = update_links(channel, source_link)
-        
-        if not fetched_link:
-            print(f"Trying with Selenium for {channel}...")
-            fetched_link = update_links_with_selenium(channel, source_link)
-        
-        data_list.append({'Channel': channel, 'SourceLink': source_link, 'LinkToUpdate': fetched_link})
-        if fetched_link:  # Ако линкът е намерен, го добавяме към списъка
-            m3u_links.append(f"{channel}\n{fetched_link}")
-
-    # Записваме линковете в sources.m3u файл
-    file_path = 'sources.m3u'
+    # Инсталиране на ChromeDriver чрез webdriver_manager
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     
-    with open(file_path, 'w') as file:  # 'w' режим ще презапише файла
-        file.write('#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-2days.details.epg.xml.gz"\n')
-        for link in m3u_links:
-            file.write(link + '\n')
+    driver.get(source_link)  # Отваря линка в браузъра
 
-    print(f"File {file_path} successfully updated with new links.")
+    # Опитайте да намерите линк с m3u
+    try:
+        m3u_link = driver.find_element(By.XPATH, '//*[@id="m3u_link_xpath"]')  # Замести с правилния XPath
+        return m3u_link.get_attribute('href')  # Връща m3u линка
+    except Exception as e:
+        print(f"Error while extracting m3u link: {e}")
+        return None
+    finally:
+        driver.quit()  # Затваряме браузъра след приключване
 
-    # Извикваме Git командите за комит и пуш
-    git_commit_and_push()
+def main():
+    channels = [
+        {"name": "БНТ 1", "link": "https://www.seir-sanduk.com/?id=hd-bnt-1-hd&pass=&hash="},
+        # Добавете повече канали тук, ако е нужно
+    ]
 
-# Стартиране на основната логика
+    for channel in channels:
+        print(f"Processing channel: {channel['name']}")
+        fetched_link = update_links_with_selenium(channel['name'], channel['link'])
+        if fetched_link:
+            print(f"Fetched link for {channel['name']}: {fetched_link}")
+        else:
+            print(f"Failed to fetch link for {channel['name']}")
+
 if __name__ == "__main__":
     main()
