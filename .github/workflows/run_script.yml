@@ -25,7 +25,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y wget curl unzip
 
-          # Добавяме стъпка за проверка на версията на Chrome
+          # Проверка на версията на Chrome
           google-chrome --version
 
           # Изтегляне на съвместимия ChromeDriver за версия 135
@@ -37,7 +37,7 @@ jobs:
 
             # Показваме съдържанието на архива, за да се уверим, че е правилно изтеглен
             unzip -l chromedriver.zip
-            
+
             # Разархивиране на ChromeDriver
             unzip chromedriver.zip
             mv chromedriver /usr/local/bin/
