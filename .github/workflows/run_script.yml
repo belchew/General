@@ -36,6 +36,12 @@ jobs:
           DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
           echo "ChromeDriver version detected: $DRIVER_VERSION"
 
+          # Проверка дали получаваме правилния резултат за DRIVER_VERSION
+          if [ -z "$DRIVER_VERSION" ]; then
+            echo "Error: Не може да се намери съвместима версия на ChromeDriver."
+            exit 1
+          fi
+
           # Изтегляне на ChromeDriver
           wget -q "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip" -O chromedriver.zip
 
