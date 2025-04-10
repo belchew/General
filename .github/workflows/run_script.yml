@@ -1,4 +1,4 @@
-name: Python CI
+name: Run Python Script Every 30 Minutes
 
 on:
   schedule:
@@ -33,3 +33,9 @@ jobs:
       - name: Run the script
         run: |
           python core/scrapping.py  # Стартирайте вашия скрипт
+
+      - name: Upload sources.m3u as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: sources.m3u
+          path: sources.m3u
