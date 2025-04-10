@@ -1,4 +1,4 @@
-name: Run Python Script
+name: Upload Artifact Example
 
 on:
   push:
@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.9'
+        python-version: '3.x'
 
     - name: Install dependencies
       run: |
@@ -24,11 +24,10 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run script
-      run: |
-        python your_script.py
+      run: python your_script.py
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
+    - name: Upload result artifact
+      uses: actions/upload-artifact@v2
       with:
-        name: output
-        path: ./output_directory
+        name: sources
+        path: ./sources.m3u
