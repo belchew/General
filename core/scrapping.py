@@ -11,22 +11,16 @@ channel_mapping = {
 
 # Функция за извличане на .m3u8 линкове
 def update_links(channel, source_link):
-    response = requests.get(source_link)
-    
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.text, 'html.parser')  # Парсваме HTML съдържанието
-        # Намираме всички линкове, които съдържат .m3u8
-        m3u8_links = re.findall(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', soup.prettify())
-        
-        if m3u8_links:
-            print(f"Fetched m3u link for {channel}: {m3u8_links[0]}")  # Показваме първия линк
-            return m3u8_links[0]  # Връщаме първия линк, ако има такива
+    with requests.Session() as session:
+        response = session.get(source_link)
+        match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
+        if match:
+            m3u_link = match.group(0)
+            print(f"Fetched m3u link for {channel}: {m3u_link}")
+            return m3u_link
         else:
             print(f"No m3u link found for {channel}")
             return None
-    else:
-        print(f"Failed to fetch the page for {channel}. Status code: {response.status_code}")
-        return None
 
 # Събиране на линковете
 data_list = []
