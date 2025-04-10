@@ -87,35 +87,18 @@ channel_mapping = {
     # Add more channels as needed
 }
 
+# Creating function to m3u8 sniffer
 def update_links(channel, source_link):
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-    }
-
-    try:
-        with requests.Session() as session:
-            response = session.get(source_link, headers=headers, timeout=60)
-            print(f"Status code for {source_link}: {response.status_code}")
-            print(f"Response content preview: {response.text[:500]}")  # Покажи първите 500 символа от HTML
-
-            # Проверяваме дали заявката е успешна
-            if response.status_code != 200:
-                print(f"Failed to fetch {source_link} - Status code: {response.status_code}")
-                return None
-            
-            match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
-            if match:
-                m3u_link = match.group(0)
-                print(f"Fetched m3u link for {channel}: {m3u_link}")
-                return m3u_link
-            else:
-                print(f"No m3u link found for {channel}")
-                return None
-
-    except requests.RequestException as e:
-        print(f"Error fetching {source_link}: {e}")
-        return None
-
+    with requests.Session() as session:
+        response = session.get(source_link)
+        match = re.search(r'https://[^\s"]+\.m3u8(?:\?[^\s"]*)?', response.text)
+        if match:
+            m3u_link = match.group(0)
+            print(f"Fetched m3u link for {channel}: {m3u_link}")
+            return m3u_link
+        else:
+            print(f"No m3u link found for {channel}")
+            return None
 
 # Use function to sniff channels links in mapping
 data_list = []
