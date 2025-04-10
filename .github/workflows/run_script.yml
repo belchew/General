@@ -41,4 +41,4 @@ jobs:
 
     - name: Run Python script
       run: |
-        python your_script.py  # Тук стартирате вашия Python скрипт
+        python core/scrapping.py  # Тук стартирате вашия Python скрипт
