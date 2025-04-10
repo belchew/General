@@ -1,8 +1,7 @@
-import os
-import base64
-import re
-import requests
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 import time
+import requests
 import pandas as pd
 
 # Channel mapping
@@ -10,38 +9,32 @@ channel_mapping = {
     '#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD': 'https://www.seir-sanduk.com/?id=hd-bnt-1-hd&pass=&hash=',
 }
 
-# Creating function to m3u8 sniffer
-def update_links(channel, source_link, retries=3, delay=5):
-    with requests.Session() as session:
-        # Add headers to simulate browser request
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        }
-        for attempt in range(retries):
-            try:
-                print(f"Making request to {source_link} (Attempt {attempt + 1})")
-                response = session.get(source_link, headers=headers, timeout=30)  # Increased timeout
-                print(f"Response status code: {response.status_code}")
-                # Search for m3u8 link in the response text
-                match = re.search(r'https://cdn[^\s"]+index.m3u8\?[^"]*', response.text)
-                if match:
-                    m3u_link = match.group(0)
-                    print(f"Fetched m3u link for {channel}: {m3u_link}")
-                    return m3u_link
-                else:
-                    print(f"No m3u link found for {channel}")
-                    return None
-            except requests.exceptions.RequestException as e:
-                print(f"Attempt {attempt + 1} failed: {e}")
-                time.sleep(delay)  # Wait before retrying
-        return None  # Return None if all attempts fail
+# Function to get m3u8 link using Selenium
+def update_links_selenium(channel, source_link):
+    # Initialize the browser driver (you may need to install the proper webdriver for your browser)
+    driver = webdriver.Chrome()  # Ensure that you have installed the appropriate ChromeDriver
+    driver.get(source_link)
+    
+    time.sleep(5)  # Wait for the page to load (you may need to adjust this)
+    
+    try:
+        # Try to find the m3u8 link on the page
+        m3u_link_element = driver.find_element(By.XPATH, '//*[contains(text(), "index.m3u8")]')
+        m3u_link = m3u_link_element.get_attribute("href")
+        print(f"Fetched m3u link for {channel}: {m3u_link}")
+        return m3u_link
+    except Exception as e:
+        print(f"Error finding m3u link for {channel}: {e}")
+        return None
+    finally:
+        driver.quit()
 
 # Use function to sniff channels links in mapping
 data_list = []
 m3u_links = []
 
 for channel, source_link in channel_mapping.items():
-    fetched_link = update_links(channel, source_link)
+    fetched_link = update_links_selenium(channel, source_link)
     data_list.append({'Channel': channel, 'SourceLink': source_link, 'LinkToUpdate': fetched_link})
     if fetched_link:  # If link is fetched, we add it to the m3u_links list
         m3u_links.append(f"{channel}\n{fetched_link}")
