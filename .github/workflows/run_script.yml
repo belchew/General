@@ -25,18 +25,23 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y wget curl unzip
 
-          # Проверка на версията на Chrome
+          # Проверка на версията на Google Chrome
           google-chrome --version
 
-          # Изтегляне на съвместимия ChromeDriver за версия 135
-          wget -q https://chromedriver.storage.googleapis.com/135.0.7049.84/chromedriver_linux64.zip -O chromedriver.zip
+          # Изтегляне на съвместимия ChromeDriver за версия 135 (извеждаме версията от Chrome)
+          CHROME_VERSION=$(google-chrome --version | sed 's/[^0-9]*\([0-9]*\)\.[0-9]*\.[0-9]*\.[0-9]*/\1/')
+          echo "Chrome version detected: $CHROME_VERSION"
 
-          # Проверка дали файлът е изтеглен
+          # Търсене на правилната версия на ChromeDriver
+          DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+          echo "ChromeDriver version detected: $DRIVER_VERSION"
+
+          # Изтегляне на ChromeDriver
+          wget -q "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip" -O chromedriver.zip
+
+          # Проверка дали файлът е изтеглен успешно
           if [ -f chromedriver.zip ]; then
             echo "chromedriver.zip е изтеглен успешно."
-
-            # Показваме съдържанието на архива, за да се уверим, че е правилно изтеглен
-            unzip -l chromedriver.zip
 
             # Разархивиране на ChromeDriver
             unzip chromedriver.zip
