@@ -121,20 +121,3 @@ with open(file_path, 'w') as file:  # 'w' mode will overwrite the file (clear it
         file.write(link + '\n')
 
 print(f"File {file_path} successfully updated with new links.")
-
-def git_commit_and_push():
-    repo_path = 'https://github.com/belchew/General.git'  # Път до вашия локален репозитори
-    os.chdir(repo_path)  # Променяме текущата директория на репозитория
-
-    try:
-        # Изпълняваме git команди
-        subprocess.run(['git', 'add', 'sources.m3u'], check=True)  # Добавяме новия файл
-        subprocess.run(['git', 'commit', '-m', 'Core engine links'], check=True)  # Комитираме
-        subprocess.run(['git', 'push'], check=True)  # Пушваме промените в репозитория
-    except subprocess.CalledProcessError as e:
-        print(f"Грешка при изпълнение на git команда: {e}")
-        print(f"Изходът от командата е: {e.output}")
-        print(f"Грешката е: {e.stderr}")
-
-# Извикваме функцията за качване в GitHub
-git_commit_and_push()
