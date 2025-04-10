@@ -1,4 +1,4 @@
-name: Simple Upload Artifact
+name: Upload Artifact Example
 
 on:
   push:
@@ -6,15 +6,24 @@ on:
       - main
 
 jobs:
-  upload-artifact:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
+    - name: Check if sources.m3u exists
+      run: |
+        if [ ! -f ./sources.m3u ]; then
+          echo "sources.m3u not found!"
+          exit 1
+        else
+          echo "sources.m3u found!"
+        fi
+
+    - name: Upload result artifact
+      uses: actions/upload-artifact@v1
       with:
-        name: my-artifact
+        name: sources
         path: ./sources.m3u
