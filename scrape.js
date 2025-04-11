@@ -3,11 +3,13 @@ const fs = require('fs');
 
 // Канали (примерен списък – може да добавиш още)
 const channelNameMapping = {
-  "bnt-1-hd-online": "BNT1",
-  "bnt-2-online": "BNT2",
-  "bnt-3-hd-online": "BNT3",
-  "nova-tv-hd-online": "Nova",
-  "btv-hd-online": "bTV",
+    "hd-bnt-1-hd": "BNT1",
+    "bnt-2": "BNT2",
+    "hd-bnt-3-hd": "BNT3",
+    "bnt-4": "BNT4",
+    "hd-nova-tv-hd": "Nova",
+    "hd-btv-hd": "bTV",
+    "hd-btv-action-hd": "bTVAction"
 };
 
 (async () => {
@@ -29,7 +31,7 @@ const channelNameMapping = {
       }
     });
 
-    const fullURL = `https://seirsanduk.online/${urlPart}`;
+    const fullURL = `https://www.seir-sanduk.com/${urlPart}`;
     console.log(`⏳ Отварям: ${fullURL}`);
 
     try {
