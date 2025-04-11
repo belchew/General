@@ -1,14 +1,13 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
-// Mapping of URL parts към реални имена на канали
+// Канали (примерен списък – може да добавиш още)
 const channelNameMapping = {
   "bnt-1-hd-online": "BNT1",
   "bnt-2-online": "BNT2",
   "bnt-3-hd-online": "BNT3",
   "nova-tv-hd-online": "Nova",
   "btv-hd-online": "bTV",
-  // 👉 добави още, колкото искаш
 };
 
 (async () => {
@@ -17,14 +16,12 @@ const channelNameMapping = {
     args: ['--no-sandbox']
   });
 
-  // Изчистваме стария файл
   fs.writeFileSync('sources.m3u', '#EXTM3U\n', 'utf-8');
 
   for (const [urlPart, channelName] of Object.entries(channelNameMapping)) {
     const page = await browser.newPage();
     const m3u8Links = new Set();
 
-    // Следим всички мрежови отговори и записваме .m3u8 линкове
     page.on('response', async (response) => {
       const url = response.url();
       if (url.includes('.m3u8')) {
@@ -34,10 +31,12 @@ const channelNameMapping = {
 
     const fullURL = `https://seirsanduk.online/${urlPart}`;
     console.log(`⏳ Отварям: ${fullURL}`);
-    
+
     try {
       await page.goto(fullURL, { waitUntil: 'networkidle2' });
-      await page.waitForTimeout(5000); // изчакваме зареждане
+
+      // Заместваме waitForTimeout с timeout чрез Promise
+      await new Promise(resolve => setTimeout(resolve, 5000));
 
       if (m3u8Links.size > 0) {
         for (const link of m3u8Links) {
