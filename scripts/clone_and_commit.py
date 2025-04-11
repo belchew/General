@@ -160,7 +160,14 @@ if __name__ == "__main__":
             "#EXTINF:-1,TV1": '#EXTINF:-1 tvg-name="TV1" tvg-logo="https://www.glebul.com/images/tv-logo/tv-1.png" group-title="ЕФИРНИ" , TV1',
             "#EXTINF:-1,TiankovFolk": '#EXTINF:-1 tvg-name="TiankovFolk" tvg-logo="https://www.glebul.com/images/tv-logo/tiankov-tv.png" group-title="Музикални" , Tiankov Folk',
             "#EXTINF:-1,Kanal3": '#EXTINF:-1 tvg-name="Kanal3" tvg-logo="https://www.glebul.com/images/tv-logo/kanal-3.png" group-title="ЕФИРНИ" , VTK',
-            "/hls/": '/dvr/',
+            "https://cdn2.glebul.com/hls/": 'https://cdn11.glebul.com/dvr/',
+            "https://cdn3.glebul.com/hls/": 'https://cdn11.glebul.com/dvr/',
+            "https://cdn4.glebul.com/hls/": 'https://cdn11.glebul.com/dvr/',
+            "https://cdn5.glebul.com/hls/": 'https://cdn11.glebul.com/dvr/',
+            "https://cdn6.glebul.com/hls/": 'https://cdn11.glebul.com/dvr/',
+            "https://cdn7.glebul.com/hls/": 'https://cdn11.glebul.com/dvr/',
+            "https://cdn8.glebul.com/hls/": 'https://cdn11.glebul.com/dvr/',
+            "https://cdn9.glebul.com/hls/": 'https://cdn11.glebul.com/dvr/',
             "index.m3u8?": 'tracks-v1a1/rewind-86940.m3u8?'
      
     }
