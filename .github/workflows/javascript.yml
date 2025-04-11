@@ -1,8 +1,8 @@
-name: Run JavaScript
+name: Run JavaScript with Puppeteer
 
 on:
   push:
-    branches: [main]  # Или друга, по твой избор
+    branches: [main]
 
 jobs:
   run-js:
@@ -15,7 +15,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Или друга версия, напр. 16, 20 и т.н.
+          node-version: '18'
 
-      - name: Run JavaScript file
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Puppeteer script
         run: node scrape.js
