@@ -1,0 +1,21 @@
+name: Run JavaScript
+
+on:
+  push:
+    branches: [main]  # Или друга, по твой избор
+
+jobs:
+  run-js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Или друга версия, напр. 16, 20 и т.н.
+
+      - name: Run JavaScript file
+        run: node scrape.js
