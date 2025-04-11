@@ -80,7 +80,7 @@ if __name__ == "__main__":
     download_file(file_url, local_file_path)
     
     # Изтриване на последните 18 реда от файла
-    # delete_last_n_lines(local_file_path, 18)
+    delete_last_n_lines(local_file_path, 2)
 
         # Замяна на множество редове съдържание във файла
     replacements = {
