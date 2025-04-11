@@ -36,4 +36,4 @@ jobs:
 
       # Run the Python script
       - name: Run Refresh
-        run: python scripts/clone_and_commit.py
+        run: python scrape.js
