@@ -38,4 +38,4 @@ jobs:
 
       # Run the Python script
       - name: Run Refresh
-        run: javascrypt scrape.js
+        run: Python scripts/run_commit.py
