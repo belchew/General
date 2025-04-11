@@ -73,14 +73,10 @@ const channelNameMapping = {
     // Add more mappings as needed
 };
 
-// Set to store recorded channels and avoid duplicates
-const recordedChannels = new Set();
-
 async function scrapeAndPushToGit() {
     // Clear the sources.m3u file before writing new data
     fs.writeFileSync('sources.m3u', '', 'utf-8');
     fs.appendFileSync('sources.m3u', "#EXTM3U\n", 'utf-8');
-    recordedChannels.clear();
     
     // Launch a new browser instance with --no-sandbox flag
     const browser = await puppeteer.launch({
@@ -89,7 +85,7 @@ async function scrapeAndPushToGit() {
     const page = await browser.newPage();
 
     // Replace this URL with the URL of the page containing the links you want to scrape
-    const url = 'https://www.seir-sanduk.com/bnt-1-hd-online';
+    const url = 'https://www.seir-sanduk.com/';
     
     await page.goto(url, { waitUntil: 'networkidle2' });
 
@@ -112,8 +108,8 @@ async function scrapeAndPushToGit() {
                     const scriptContent = script.innerHTML;
                     console.log(`Script Content: ${scriptContent}`);  // Log the script content
                     
-                    if (scriptContent.includes('theVideoElement").')) {
-                        const match = scriptContent.match(/file:\s*"([^"]+)"/);
+                    if (scriptContent.includes('jwplayer(')) {
+                        const match = scriptContent.match(/file:\s*["']([^"']+)["']/);
                         if (match) {
                             source = match[1];
                         }
@@ -131,20 +127,12 @@ async function scrapeAndPushToGit() {
                     // Check the mapping for the correct channel name
                     const channelName = channelNameMapping[channelId] || channelId;
                     
-                    // Skip "Unknown Channel" and duplicates
-                    if (channelName !== 'Unknown Channel' && !recordedChannels.has(channelName)) {
-                        const data = `#EXTINF:-1,${channelName}\n${playerSource}\n`;
+                    const data = `#EXTINF:-1,${channelName}\n${playerSource}\n`;
 
-                        fs.appendFileSync('sources.m3u', data, 'utf-8');
-                        
-                        console.log(`Data successfully written for ${channelName}`);
-                        recordedChannels.add(channelName);  // Add to the set of recorded channels
-                    } else if (channelName === 'Unknown Channel') {
-                        console.log(`Skipped: ${channelName}`);
-                    } else {
-                        console.log(`Skipped duplicate channel: ${channelName}`);
-                    }
-                                       
+                    // Append the data to sources.m3u
+                    fs.appendFileSync('sources.m3u', data, 'utf-8');
+                    
+                    console.log(`Data successfully written for ${link}`);
                 }
             } else {
                 console.log(`player.source not found for ${link}`);
@@ -181,7 +169,6 @@ async function scrapeAndPushToGit() {
         });
     });
 }
-
 
 // Export the function to be used in the server
 module.exports = scrapeAndPushToGit;
