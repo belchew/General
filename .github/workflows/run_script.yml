@@ -38,4 +38,4 @@ jobs:
 
       # Run the Python script
       - name: Run Refresh
-        run: Python scripts/clone_and_commit.py
+        run: python scripts/clone_and_commit.py
