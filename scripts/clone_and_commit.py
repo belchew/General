@@ -60,24 +60,6 @@ def delete_last_n_lines(file_path, n=18):
     except Exception as e:
         print(f"Грешка при изтриване на последните {n} реда от файла: {e}")
         
-def swap_m3u_lines(input_path, output_path=None):
-    with open(input_path, "r", encoding="windows-1251") as file:
-        lines = file.readlines()
-
-    # Размяна на ред 2 с 6 (индекси 1 и 5) и 20 с 30 (индекси 19 и 29)
-    lines[4], lines[12] = lines[12], lines[4]
-    lines[5], lines[13] = lines[13], lines[5]
-    lines[6], lines[10] = lines[10], lines[6]
-    lines[7], lines[11] = lines[11], lines[7]
-
-    # Ако няма подаден output_path – презаписва оригиналния файл
-    save_path = output_path if output_path else input_path
-
-    with open(save_path, "w", encoding="windows-1251") as file:
-        file.writelines(lines)
-
-    print(f"✅ Разменено и записано в: {save_path}")
-
 # Функция за клониране на репозиторио и качване на промените
 def commit_and_push_changes():
     # Отвори локалното репозиторио с gitpython
