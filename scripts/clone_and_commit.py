@@ -5,7 +5,7 @@ import git
 # Път до твоето репозиторио, това ще бъде автоматично във всяка стъпка на GitHub Actions
 repo_path = os.getcwd()  
 
-file_url = 'https://raw.githubusercontent.com/rosendonchev/skandalScraping/refs/heads/main/sources.m3u' 
+file_url = 'https://raw.githubusercontent.com/belchew/connectdirect/refs/heads/main/sources.m3u?token=GHSAT0AAAAAADDRB4TCRGQL4FUXNBRQWLL22BB75GA' 
 
 # Локален път, където ще запишеш файла
 local_filename = 'basic.m3u' 
