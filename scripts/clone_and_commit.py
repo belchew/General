@@ -41,8 +41,8 @@ def download_file(url, dest_path):
     except Exception as e:
         print(f"Грешка при замяна на съдържание във файла: {e}")
 
-# Функция за изтриване на последните 18 реда от файла
- def delete_last_n_lines(file_path, n=18):
+# Функция за изтриване на последните 0 реда от файла
+ def delete_last_n_lines(file_path, n=0):
     try:
         # Отваряме файла за четене
         with open(file_path, 'r', encoding='utf-8') as file:
