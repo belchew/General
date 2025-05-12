@@ -42,23 +42,23 @@ def download_file(url, dest_path):
         print(f"Грешка при замяна на съдържание във файла: {e}")
 
 # Функция за изтриване на последните 18 реда от файла
-# def delete_last_n_lines(file_path, n=18):
-#    try:
+ def delete_last_n_lines(file_path, n=18):
+    try:
         # Отваряме файла за четене
-#        with open(file_path, 'r', encoding='utf-8') as file:
-#            lines = file.readlines()
+        with open(file_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
 
         # Премахваме последните n реда
-#        lines = lines[:-n]
+        lines = lines[:-n]
 
         # Записваме обратно промененото съдържание в същия файл
-#        with open(file_path, 'w', encoding='utf-8') as file:
-#            file.writelines(lines)
+        with open(file_path, 'w', encoding='utf-8') as file:
+                        file.writelines(lines)
 
-#        print(f"Последните {n} реда са изтрити успешно от файла {file_path}.")
+        print(f"Последните {n} реда са изтрити успешно от файла {file_path}.")
     
-#    except Exception as e:
-#        print(f"Грешка при изтриване на последните {n} реда от файла: {e}")
+    except Exception as e:
+        print(f"Грешка при изтриване на последните {n} реда от файла: {e}")
         
 # Функция за клониране на репозиторио и качване на промените
 def commit_and_push_changes():
