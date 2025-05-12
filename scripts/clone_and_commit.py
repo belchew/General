@@ -43,7 +43,7 @@ def copy_and_modify_file(source_url, destination_path, replacements):
     replace_phrases_in_file(destination_path, replacements)
 
 # Примерни данни
-source_url = 'https://raw.githubusercontent.com/belchew/connectdirect/refs/heads/main/sources.m3u?token=GHSAT0AAAAAADDDGHLJEWAEZY4FWXKO4GQK2BCDTYQ'  # URL на файла от друго репозитори
+source_url = 'https://raw.githubusercontent.com/belchew/connectdirect/refs/heads/main/sources.m3u'  # URL на файла от друго репозитори
 destination_path = 'basic.m3u'  # Локалният път, където да запишеш файла
 replacements = {
      "https://cdn2.glebul.com/hls/": 'https://cdn11.glebul.com/dvr/',
