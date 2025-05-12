@@ -5,7 +5,7 @@ import git
 # Път до твоето репозиторио, това ще бъде автоматично във всяка стъпка на GitHub Actions
 repo_path = os.getcwd()  
 
-file_url = 'https://raw.githubusercontent.com/belchew/connectdirect/refs/heads/main/sources.m3u?token=GHSAT0AAAAAADDRB4TCRGQL4FUXNBRQWLL22BB75GA' 
+file_url = 'https://raw.githubusercontent.com/belchew/connectdirect/refs/heads/main/sources.m3u?token=GHSAT0AAAAAADDRB4TCRGQL4FUXNBRQWLL22BB75GA'  
 
 # Локален път, където ще запишеш файла
 local_filename = 'basic.m3u' 
@@ -22,7 +22,7 @@ def download_file(url, dest_path):
         print(f"Грешка при изтегляне на файла: {response.status_code}")
         
 # Функция за замяна на съдържание във файла
- def replace_multiple_content(file_path, replacements):
+def replace_multiple_content(file_path, replacements):
     try:
         # Отваряме файла за четене
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -41,8 +41,8 @@ def download_file(url, dest_path):
     except Exception as e:
         print(f"Грешка при замяна на съдържание във файла: {e}")
 
-# Функция за изтриване на последните 0 реда от файла
- def delete_last_n_lines(file_path, n=0):
+# Функция за изтриване на последните 18 реда от файла
+def delete_last_n_lines(file_path, n=0):
     try:
         # Отваряме файла за четене
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -53,7 +53,7 @@ def download_file(url, dest_path):
 
         # Записваме обратно промененото съдържание в същия файл
         with open(file_path, 'w', encoding='utf-8') as file:
-                        file.writelines(lines)
+            file.writelines(lines)
 
         print(f"Последните {n} реда са изтрити успешно от файла {file_path}.")
     
@@ -80,10 +80,10 @@ if __name__ == "__main__":
     download_file(file_url, local_file_path)
     
     # Изтриване на последните 18 реда от файла
-     delete_last_n_lines(local_file_path, 0)
+    delete_last_n_lines(local_file_path, 0)
 
         # Замяна на множество редове съдържание във файла
-replacements = {
+    replacements = {
         	#"#EXTM3U": '#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-3days.details.epg.xml.gz"\n',
             #"#EXTINF:-1,BNT 1": '#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD',
             #"#EXTINF:-1,BNT 2": '#EXTINF:-1 tvg-name="БНТ 2" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-2.png" group-title="ЕФИРНИ" , BNT 2',
