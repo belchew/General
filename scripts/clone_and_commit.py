@@ -127,7 +127,7 @@ if __name__ == "__main__":
             "#EXTINF:-1,DiemaSport": '#EXTINF:-1 tvg-name="Diema Sport" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-hd.png" group-title="Спортни" , Diema Sport HD',
             "#EXTINF:-1,Diema": '#EXTINF:-1 tvg-name="Diema" tvg-logo="https://www.glebul.com/images/tv-logo/diema.png" group-title="Филмови" , Diema',
             "#EXTINF:-1,Planeta": '#EXTINF:-1 tvg-name="Planeta" tvg-logo="https://www.glebul.com/images/tv-logo/planeta-hd.png" group-title="Музикални" , Planeta HD',
-            "#EXTINF:-1,Nova": '#EXTINF:-1 tvg-name="Nova" tvg-logo="https://www.glebul.com/images/tv-logo/nova-tv-hd.png" group-title="ЕФИРНИ" , NovaTV',
+            "#EXTINF:-1,Nova": '#EXTINF:-1 tvg-name="Nova" tvg-logo="https://www.glebul.com/images/tv-logo/nova-tv-hd.png" group-title="ЕФИРНИ" , Nova HD',
             "#EXTINF:-1,Cartoon Network": '#EXTINF:-1 tvg-name="Cartoon Network" tvg-logo="https://www.glebul.com/images/tv-logo/cartoon-network.png" group-title="Детски" , Cartoon Network HD',
             "#EXTINF:-1,Disney": '#EXTINF:-1 tvg-name="Disney channel" tvg-logo="https://www.glebul.com/images/tv-logo/disney-channel.png" group-title="Детски" , Disney channel',
             "#EXTINF:-1,Nickeldeon": '#EXTINF:-1 tvg-name="Nickeldeon" tvg-logo="https://www.glebul.com/images/tv-logo/nickelodeon.png" group-title="Детски" , Nickelodeon',
