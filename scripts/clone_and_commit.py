@@ -41,8 +41,8 @@ def replace_multiple_content(file_path, replacements):
     except Exception as e:
         print(f"Грешка при замяна на съдържание във файла: {e}")
 
-# Функция за изтриване на последните 18 реда от файла
-def delete_last_n_lines(file_path, n=18):
+# Функция за изтриване на последните 20 реда от файла
+def delete_last_n_lines(file_path, n=20):
     try:
         # Отваряме файла за четене
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     download_file(file_url, local_file_path)
     
     # Изтриване на последните 18 реда от файла
-    delete_last_n_lines(local_file_path, 18)
+    delete_last_n_lines(local_file_path, 20)
 
         # Замяна на множество редове съдържание във файла
     replacements = {
