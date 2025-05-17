@@ -171,7 +171,7 @@ if __name__ == "__main__":
             "https://cdn8.glebul.com/hls/": 'https://cdn11.glebul.com/dvr/',
             "https://cdn9.glebul.com/hls/": 'https://cdn11.glebul.com/dvr/',
             #"index.m3u8?": 'tracks-v1a1/rewind-86940.m3u8?'
-            "index.m3u8?": 'tracks-v1a1/index.m3u8?'
+            #"index.m3u8?": 'tracks-v1a1/index.m3u8?'
      
     }
     replace_multiple_content(local_file_path, replacements)
