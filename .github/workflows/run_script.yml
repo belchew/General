@@ -4,8 +4,8 @@ on:
   workflow_dispatch:        # 👉 Ръчно стартиране от GitHub UI
 #  push:
 #    branches: [main]        # 👉 Автоматично при push към main
-#  schedule:
-#    - cron: '1 * * * *'     # 👉 Автоматично всяка час в 5-тата минута
+  schedule:
+    - cron: '1 * * * *'     # 👉 Автоматично всяка час в 5-тата минута
 
 jobs:
   run-script:
