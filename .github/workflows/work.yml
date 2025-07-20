@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "01 */1 * * *"
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -32,9 +32,9 @@ jobs:
       - name: Checkout Generall repo (private repo)
         uses: actions/checkout@v3
         with:
-          repository: belchew/Generall  # Заменете с пълното име на репозиториото
-          token: ${{ secrets.general }}  # Токен за достъп
-          path: Generall  # Път, където ще бъде клонирано
+          repository: belchew/Generall  
+          token: ${{ secrets.general }}  
+          path: Generall  
           persist-credentials: false
 
       - name: Copy basic.m3u from Generall repo
@@ -43,7 +43,7 @@ jobs:
 
       - name: Commit and push only if basic.m3u changed
         env:
-          GH_PAT: ${{ secrets.general }}  # Токен за commit и push
+          GH_PAT: ${{ secrets.general }}  
         run: |
           git config user.name "belchew"
           git config user.email "belchew@outlook.com"
