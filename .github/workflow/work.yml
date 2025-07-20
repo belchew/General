@@ -1,0 +1,60 @@
+name: auto
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "01 */1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout public repo (connectdirect)
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false  
+
+      - name: Exit if commit is from auto
+        run: |
+          LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          echo "Last commit: $LAST_COMMIT_MESSAGE"
+          if [[ "$LAST_COMMIT_MESSAGE" == "Update sources.m3u" ]]; then
+            echo "Detected auto-refresh commit, exiting..."
+            exit 0
+          fi
+
+      - name: Checkout private repo (connecting)
+        uses: actions/checkout@v3
+        with:
+          repository: belchew/connecting
+          token: ${{ secrets.general }}  # Сменено на general токен
+          path: connecting
+          persist-credentials: false
+
+      - name: Copy basic.m3u from private repo
+        run: |
+          cp connecting/basic.m3u ./
+
+      - name: Commit and push only if basic changed
+        env:
+          GH_PAT: ${{ secrets.general }}  # Сменено на general токен
+        run: |
+          git config user.name "belchew"
+          git config user.email "belchew@outlook.com"
+          git rm -r --cached connecting || true  
+          git add basic.m3u
+
+          if git diff --cached --quiet; then
+            echo "No changes detected, skipping commit and push"
+            exit 0
+          fi
+
+          git commit -m "Update basic.m3u"
+          git remote set-url origin https://belchew:${GH_PAT}@github.com/belchew/connectdirect.git
+          git push origin HEAD
