@@ -32,7 +32,7 @@ jobs:
       - name: Checkout Generall repo (private repo)
         uses: actions/checkout@v3
         with:
-          repository: your-org/Generall  # Заменете с пълното име на репозиториото
+          repository: belchew/Generall  # Заменете с пълното име на репозиториото
           token: ${{ secrets.general }}  # Токен за достъп
           path: Generall  # Път, където ще бъде клонирано
           persist-credentials: false
