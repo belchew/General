@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout public repo (connectdirect)
+      - name: Checkout current repo (public repo)
         uses: actions/checkout@v3
         with:
           persist-credentials: false  
@@ -24,30 +24,30 @@ jobs:
         run: |
           LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%B)
           echo "Last commit: $LAST_COMMIT_MESSAGE"
-          if [[ "$LAST_COMMIT_MESSAGE" == "Update sources.m3u" ]]; then
+          if [[ "$LAST_COMMIT_MESSAGE" == "Update basic.m3u" ]]; then
             echo "Detected auto-refresh commit, exiting..."
             exit 0
           fi
 
-      - name: Checkout private repo (connecting)
+      - name: Checkout Generall repo (private repo)
         uses: actions/checkout@v3
         with:
-          repository: belchew/connecting
-          token: ${{ secrets.general }}  # Сменено на general токен
-          path: connecting
+          repository: your-org/Generall  # Заменете с пълното име на репозиториото
+          token: ${{ secrets.general }}  # Токен за достъп
+          path: Generall  # Път, където ще бъде клонирано
           persist-credentials: false
 
-      - name: Copy basic.m3u from private repo
+      - name: Copy basic.m3u from Generall repo
         run: |
-          cp connecting/basic.m3u ./
+          cp Generall/basic.m3u ./  # Копиране на файла basic.m3u в текущия работен директория
 
-      - name: Commit and push only if basic changed
+      - name: Commit and push only if basic.m3u changed
         env:
-          GH_PAT: ${{ secrets.general }}  # Сменено на general токен
+          GH_PAT: ${{ secrets.general }}  # Токен за commit и push
         run: |
           git config user.name "belchew"
           git config user.email "belchew@outlook.com"
-          git rm -r --cached connecting || true  
+          git rm -r --cached Generall || true  # Премахва локалния кеш на репото
           git add basic.m3u
 
           if git diff --cached --quiet; then
