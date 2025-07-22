@@ -32,12 +32,12 @@ jobs:
       - name: Checkout Generall repo (private repo)
         uses: actions/checkout@v3
         with:
-          repository: belchew/Generall  
+          repository: belchew/connecting  
           token: ${{ secrets.general }}  
-          path: Generall  
+          path: connecting  
           persist-credentials: false
 
-      - name: Copy basic.m3u from Generall repo
+      - name: Copy basic.m3u from connecting repo
         run: |
           cp connecting/basic.m3u ./  # Копиране на файла basic.m3u в текущия работен директория
 
