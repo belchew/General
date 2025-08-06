@@ -1,8 +1,8 @@
 name: auto
 
 on:
-#  schedule:
-#    - cron: "01 */1 * * *"  
+  schedule:
+    - cron: "01 */1 * * *"  
   workflow_dispatch:     
 
 permissions:
