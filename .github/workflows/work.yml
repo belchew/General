@@ -2,7 +2,7 @@ name: auto
 
 on:
   schedule:
-    - cron: "00 6-23 * * *"  
+    - cron: "00 18-23 * * *"  
   workflow_dispatch:     
 
 permissions:
