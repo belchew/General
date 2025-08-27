@@ -1,17 +1,17 @@
 #EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-3days.details.epg.xml.gz"
-#EXTINF:-1 radio="true" tvg-name="Diema Sport" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-hd.png" group-title="Спортни" , Diema Sport
+#EXTINF:-1 radio="false" tvg-name="Diema Sport" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-hd.png" group-title="Спортни" , Diema Sport
 https://cdn11.glebul.com/dvr/hd-diema-sport-hd/tracks-v1a1/index.m3u8?e=1755802871&hash=CtM9oQSGMW54wT9JgWIqlg
-#EXTINF:-1 radio="true" tvg-name="Diema Sport 2" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-2-hd.png" group-title="Спортни" , Diema Sport 2
+#EXTINF:-1 radio="false" tvg-name="Diema Sport 2" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-2-hd.png" group-title="Спортни" , Diema Sport 2
 https://cdn11.glebul.com/dvr/hd-diema-sport-2-hd/tracks-v1a1/index.m3u8?e=1755802872&hash=plAk7_rqAVx3nOgALko_3Q
-#EXTINF:-1 radio="true" tvg-name="Diema Sport 3" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-3-hd.png" group-title="Спортни" , Diema Sport 3
+#EXTINF:-1 radio="false" tvg-name="Diema Sport 3" tvg-logo="https://www.glebul.com/images/tv-logo/diema-sport-3-hd.png" group-title="Спортни" , Diema Sport 3
 https://cdn11.glebul.com/dvr/hd-diema-sport-3-hd/tracks-v1a1/index.m3u8?e=1755802872&hash=plAk7_rqAVx3nOgALko_3Q
-#EXTINF:-1 radio="true" tvg-name="Max Sport 1 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-1-hd.png" group-title="Спортни" , Max Sport 1 HD
+#EXTINF:-1 radio="false" tvg-name="Max Sport 1 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-1-hd.png" group-title="Спортни" , Max Sport 1 HD
 https://cdn11.glebul.com/dvr/hd-max-sport-1-hd/tracks-v1a1/index.m3u8?e=1755802873&hash=fCwgb5_ij5J6nAAGx5N-8A
-#EXTINF:-1 radio="true" tvg-name="Max Sport 2 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-2-hd.png" group-title="Спортни" , Max Sport 2 HD
+#EXTINF:-1 radio="false" tvg-name="Max Sport 2 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-2-hd.png" group-title="Спортни" , Max Sport 2 HD
 https://cdn11.glebul.com/dvr/hd-max-sport-2-hd/tracks-v1a1/index.m3u8?e=1755802873&hash=fCwgb5_ij5J6nAAGx5N-8A
-#EXTINF:-1 radio="true" tvg-name="Max Sport 3 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-3-hd.png" group-title="Спортни" , Max Sport 3 HD
+#EXTINF:-1 radio="false" tvg-name="Max Sport 3 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-3-hd.png" group-title="Спортни" , Max Sport 3 HD
 https://cdn11.glebul.com/dvr/hd-max-sport-3-hd/tracks-v1a1/index.m3u8?e=1755802873&hash=fCwgb5_ij5J6nAAGx5N-8A
-#EXTINF:-1 radio="true" tvg-name="Max Sport 4 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-4-hd.png" group-title="Спортни" , Max Sport 4 HD
+#EXTINF:-1 radio="false" tvg-name="Max Sport 4 HD" tvg-logo="https://www.glebul.com/images/tv-logo/max-sport-4-hd.png" group-title="Спортни" , Max Sport 4 HD
 https://cdn11.glebul.com/dvr/hd-travel-channel-hd/tracks-v1a1/index.m3u8?e=1755802883&hash=t-JT4VmrNld8xT5LeBwGag
 #EXTINF:-1 id="btvradio" logo="http://livebgtv.stream/logos/btvradio.png" radio="true",BTV Radio
 https://bravo.btv.bg/radioplayer/btvradio.mp3
