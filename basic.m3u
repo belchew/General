@@ -15,7 +15,9 @@ https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #EXTINF:-1 radio="True" id="btvradio" tvg-logo="http://livebgtv.stream/logos/btvradio.png" group-title="Radio", BTV Radio
 https://bravo.btv.bg/radioplayer/btvradio.mp3
-#EXTINF:-1 radio="True" id="radiok2" tvg-logo="http://livebgtv.stream/logos/radiok2.png" group-title="Radio", Radio K2
+#EXTINF:-1 radio="True" id="radiok2" tvg-logo="http://livebgtv.stream/logos/radiok2.png" group-title="Radio" , Radio K2
 http://stream.radiok2.bg:8000/rk2
-#EXTINF:-1 radio="True" id="orvradio" tvg-logo="http://livebgtv.stream/logos/thevoice.png" group-title="Radio", The Voice
+#EXTINF:-1 radio="True" id="orvradio" tvg-logo="http://livebgtv.stream/logos/thevoice.png" group-title="Radio" , The Voice
 https://bss1.neterra.tv/thevoicefm/thevoicefm.m3u8
+#EXTINF:-1  radio="True" id="radiocity" logo="http://livebgtv.stream/logos/city.png" group-title="Radio" , Radio City
+http://149.13.0.81:8000/city.aac
