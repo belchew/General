@@ -54,5 +54,5 @@ jobs:
           fi
 
           git commit -m "Update basic.m3u"
-          git remote set-url origin https://belchew:${GH_PAT}@github.com/belchew/general.git
+          git remote set-url origin https://belchew:${GENERAL}@github.com/belchew/general.git
           git push origin HEAD
