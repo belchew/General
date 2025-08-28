@@ -37,7 +37,7 @@ jobs:
 
       - name: Copy basic.m3u from connecting repo
         run: |
-          cp connecting/basic.m3u ./  # Копиране на файла basic.m3u в текущия работен директория
+          cp connecting/basic.m3u ./ 
 
       - name: Commit and push only if basic.m3u changed
         env:
