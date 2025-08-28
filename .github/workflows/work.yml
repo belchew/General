@@ -41,7 +41,7 @@ jobs:
 
       - name: Commit and push only if basic.m3u changed
         env:
-          GH_PAT: ${{ secrets.general }}  
+          GENERAL: ${{ secrets.general }}  
         run: |
           git config user.name "belchew"
           git config user.email "belchew@outlook.com"
