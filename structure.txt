@@ -1,0 +1,23 @@
+project/
+├── client/                    → Фронтенд файлове
+│   ├── login.html
+│   ├── register.html
+│   ├── stream.html           → Live stream страница (само за логнати)
+│   ├── admin.html            → Admin Dashboard
+│   └── assets/
+│       └── css, js, images
+├── server/
+│   ├── app.js                → Основният Express сървър
+│   ├── models/
+│   │   └── User.js
+│   ├── routes/
+│   │   ├── auth.js           → login, register
+│   │   ├── users.js          → admin действия
+│   │   └── protected.js      → stream достъп
+│   ├── middleware/
+│   │   └── authMiddleware.js → проверка на токени и роли
+│   └── config/
+│       └── db.js             → MongoDB свързване
+├── .env
+├── package.json
+└── README.md
