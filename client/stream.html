@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Stream</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+  <h2>Live Stream (само за логнати)</h2>
+  <video id="video" controls autoplay style="width:100%; max-width:800px;"></video>
+  <p id="msg"></p>
+
+  <script>
+    async function fetchStreamInfo() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        document.getElementById('msg').innerText = "Не сте логнати.";
+        return;
+      }
+      const res = await fetch('http://localhost:5000/api/protected/stream-info', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      if (res.status !== 200) {
+        document.getElementById('msg').innerText = "Нямате достъп до стрийма.";
+        return;
+      }
+      const data = await res.json();
+      const video = document.getElementById('video');
+      const streamUrl = data.streamUrl;
+
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(streamUrl);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          video.play();
+        });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = streamUrl;
+        video.addEventListener('loadedmetadata', () => {
+          video.play();
+        });
+      } else {
+        document.getElementById('msg').innerText = "Вашият браузър не поддържа този стрийм.";
+      }
+    }
+
+    fetchStreamInfo();
+  </script>
+</body>
+</html>

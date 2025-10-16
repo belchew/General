@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h2>Admin Dashboard</h2>
+  <div>
+    <canvas id="userChart" width="400" height="200"></canvas>
+  </div>
+  <h3>Потребители</h3>
+  <table border="1">
+    <thead>
+      <tr><th>Email</th><th>Роля</th><th>Действия</th></tr>
+    </thead>
+    <tbody id="usersBody">
+    </tbody>
+  </table>
+  <p id="msg"></p>
+
+  <script>
+    async function loadUsers() {
+      const token = localStorage.getItem('token');
+      const res = await fetch('http://localhost:5000/api/users', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      if (res.status !== 200) {
+        document.getElementById('msg').innerText = "Нямате достъп.";
+        return;
+      }
+      const users = await res.json();
+      const tbody = document.getElementById('usersBody');
+      tbody.innerHTML = '';
+      users.forEach(u => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${u.email}</td>
+          <td>${u.role}</td>
+          <td>
+            <button onclick="changeRole('${u._id}', '${u.role === 'admin' ? 'user' : 'admin'}')">Промени роля</button>
+            <button onclick="deleteUser('${u._id}')">Изтрий</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function changeRole(userId, newRole) {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`http://localhost:5000/api/users/${userId}/role`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ role: newRole })
+      });
+      await loadUsers();
+    }
+
+    async function deleteUser(userId) {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`http://localhost:5000/api/users/${userId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      await loadUsers();
+    }
+
+    // (Опционално) да направим графика — тук просто пример с фиктивни данни
+    function renderChart(users) {
+      const ctx = document.getElementById('userChart').getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: users.map(u => new Date(u.createdAt).toLocaleDateString()),
+          datasets: [{
+            label: 'Регистрации по дата',
+            data: users.map(u => 1),
+            backgroundColor: 'rgba(75, 192, 192, 0.6)'
+          }]
+        }
+      });
+    }
+
+    async function init() {
+      const token = localStorage.getItem('token');
+      if (!token || localStorage.getItem('role') !== 'admin') {
+        document.getElementById('msg').innerText = "Нямате права за достъп до тази страница.";
+        return;
+      }
+      const res = await fetch('http://localhost:5000/api/users', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      const users = await res.json();
+      renderChart(users);
+      loadUsers();
+    }
+
+    init();
+  </script>
+</body>
+</html>
