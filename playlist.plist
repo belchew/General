@@ -28,8 +28,8 @@
 
     <!-- (по желание) лог файл -->
     <key>StandardOutPath</key>
-    <string>/Users/твоето_име/scripts/myscript.log</string>
+    <string>/Users/administrator/Downloads/runninglog.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/твоето_име/scripts/myscript.err</string>
+    <string>//Users/administrator/Downloads/errorlog.err</string>
 </dict>
 </plist>
