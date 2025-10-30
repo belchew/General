@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.myscript</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <!-- caffeinate гарантира, че компютърът няма да заспи по време на изпълнение -->
+        <string>/usr/bin/caffeinate</string>
+        <string>-i</string>
+        <string>/Users/твоето_име/scripts/myscript.sh</string>
+    </array>
+
+    <!-- стартира се на всеки 5 минути (300 секунди) -->
+    <key>StartInterval</key>
+    <integer>300</integer>
+
+    <!-- стартира се веднага при логин -->
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- не се рестартира непрекъснато, само по интервал -->
+    <key>KeepAlive</key>
+    <false/>
+
+    <!-- (по желание) лог файл -->
+    <key>StandardOutPath</key>
+    <string>/Users/твоето_име/scripts/myscript.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/твоето_име/scripts/myscript.err</string>
+</dict>
+</plist>
