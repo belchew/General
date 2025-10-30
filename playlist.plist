@@ -11,7 +11,7 @@
         <!-- caffeinate гарантира, че компютърът няма да заспи по време на изпълнение -->
         <string>/usr/bin/caffeinate</string>
         <string>-i</string>
-        <string>/Users/твоето_име/scripts/myscript.sh</string>
+        <string>/Users/administrator/Downloads/connecting/auto_script.sh</string>
     </array>
 
     <!-- стартира се на всеки 5 минути (300 секунди) -->
