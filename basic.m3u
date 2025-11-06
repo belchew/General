@@ -1,1 +1,12 @@
+#EXTM3U catchup="flussonic" url-tvg="https://github.com/harrygg/EPG/raw/refs/heads/master/all-2days.full.epg.xml.gz"
 
+#EXTINF:-1 tvg-name="БНТ 1" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-1-hd.png" group-title="ЕФИРНИ" , BNT 1 HD
+https://ssdraid.glebul.com:8443/dvr/hd-bnt-1-hd/tracks-v1a1/rewind-86400.m3u8?token=f6da500fd40073b2be9b87ff5b88f18ee83c8b82-ba5a9945f04a232f3bdf669fd4d45121-1762442658-1762431858
+#EXTINF:-1 tvg-name="bTV" tvg-logo="https://www.glebul.com/images/tv-logo/btv-hd.png" group-title="ЕФИРНИ" , bTV HD
+https://ssdraid.glebul.com:8443/dvr/hd-btv-hd/tracks-v1a1/rewind-86400.m3u8?token=5e88cc644026ec80994d0a4b2c72fe2077d4da7e-603b6f745a7f8db836a11a7d0a59bd01-1762442658-1762431858
+#EXTINF:-1 tvg-name="Nova TV" tvg-logo="https://www.glebul.com/images/tv-logo/nova-tv-hd.png" group-title="ЕФИРНИ" , NovaTV
+https://ssdraid.glebul.com:8443/dvr/hd-nova-tv-hd/tracks-v1a1/rewind-86400.m3u8?token=87e02863def3e79c9939663ad8e60ae559e60153-c0c99b8d3cc1617d30f67005c0c9be1e-1762442659-1762431859
+#EXTINF:-1 tvg-name="БНТ 2" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-2.png" group-title="ЕФИРНИ" , BNT 2
+https://ro.glebul.com/hls/bnt-2/index.m3u8?e=1762439360&hash=lQ_93NiDOvlftZo5e03fqw
+#EXTINF:-1 tvg-name="БНТ 3" tvg-logo="https://www.glebul.com/images/tv-logo/bnt-3-hd.png" group-title="ЕФИРНИ" , BNT 3
+https://ssdraid.glebul.com:8443/dvr/hd-bnt-3-hd/tracks-v1a1/rewind-86400.m3u8?token=c3b1c9aa09e728d3e628b92429e209eb16094ce0-0cb283e941d9d3d0cef4e0e5ff166c68-1762442661-1762431861
